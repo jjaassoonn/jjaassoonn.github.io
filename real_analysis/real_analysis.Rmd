@@ -2758,6 +2758,45 @@ In this lecture, we are trying to learn basic concepts of topology:
 
 # Function and continuity (Lecture 9)
 
+Last lecture, we talked about standard topology or Euclidean topology on $\mathbb R^k$. In this lecture, we are going to use this topology to build notions of limit of a function and continuity of function.
+
+## Limit of a function
+
+<div class="Definition">
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces; suppose $E\subseteq X$, $f : E\to Y$ and $p$ is a limit point of $E$. We write $f(x)\to q$ as $x\to p$ or $$\lim_{x\to p} f(x)$$ if there is a point $q\in Y$ such that
+$$\forall \epsilon>0\exists\delta>0 0< d_X(x,p)\implies d_Y(f(x),q)<\epsilon$$
+</div>
+
+Note that $p$ does not have to be a point of $E$.
+
+<div class="Theorem">[Heine's Definition]
+Let $X,Y,f,p,q$ be as above. Then
+$$\lim_{x\to p}f(x)=q$$ iff and only if $$\lim_{n\to\infty} f(p_n)=q$$ for every sequence $(p_n)$ in $E$ such that $p_n\ne p$ and $\lim_{n\to\infty} p_n=p$.
+</div>
+<div class="Proof">
+
+- from left to right: Choose any sequence $(p_n)$ with required property. Let $\epsilon>0 be given$, there is a $\delta>0$ such that for all $x\in E$ and $0 < d_(x,p) < \delta$ we would have $d_Y(f(x),q)<\epsilon$. There is also an $N\in\mathbb N$ such that $\forall n>N$ we have $0< d_X(p_n,p)<\delta$. Thus for all $n>N$ we have $d_Y(f(p_n),q)<\epsilon$. This is what we want.
+
+- from right to left: We prove the contrapositive: assume $\lim_{x\to p}f(x)\ne q$. Then there is some $\epsilon>0$ such that for every $\delta > 0$ there is some $x\in E$ such that $0< d_X(x,p) < \delta$ but $d_Y(f(x),q)\ge \epsilon$. Let $\delta_n=\frac1n$. Then we find a sequence in $E$ satisfies required properties but the limit is wrong.
+</div>
+
+<div class="Corollary">
+From above theorem and uniqueness of limit of a sequence, limit of a function is unique if exists.
+</div>
+
+<div class="Corollary">
+From the above theorem and properties of limit, immediately we have:
+Let $f,g:E\to\mathbb R$
+Suppose $$\lim_{x\to p} f(x)=A,\lim_{x\to p} g(x)=B$$. Then:
+
+1. $\lim_{x\to p} (f+g)(x) = A + B$
+2. $\lim_{x\to p} (fg)(x) = AB$
+3. $\lim_{x\to p} \left(\frac f g\right)(x)=\frac A B$. Of course provided $g$ and $B$ are non-zero
+</div>
+
+<div class="Remark">
+If $f,g:E\to\mathbb R^k$ then 1 is true 2 becomes $\lim (f\dot g)=A\dot B$
+</div>
 
 # Differentiation (Lecture 10)
 
