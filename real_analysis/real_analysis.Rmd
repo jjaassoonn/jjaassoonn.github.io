@@ -20,9 +20,6 @@ output:
     toc: yes
     slide_level: 2
     latex_engine: xelatex
-  word_document:
-    toc: yes
-    toc_depth: '4'
 header-includes:
 - \usepackage{amssymb}
 - \usepackage{amsmath}
@@ -2424,6 +2421,8 @@ Thus $|x+y|\le |x|+|y|$. Then $|x-y|=|x-z+(z-y)|\le|x-z|+|z-y|$ as required.
 If $(X, d)$ is a metric space and $Y\subseteq X$, then $(Y, d|_{Y\times Y})$ is also a metric space.
 </div>
 
+## Topology induced by the metric
+
 <div class="Definition">
 
 - If $a_i<b_i$ for $i=1,\dots,k$, then the set of all points $x=(x_1,\dots,x_k)\in\mathbb R^k$ where $x_i\in(a_i,b_i)\forall i$ is called a $k$-cell. (So $1-cell$ is closed interval, $2-cell$ is a rectangle etc).
@@ -2458,10 +2457,306 @@ Let $(X,d)$ be a metric space. All points and sets mentioned below are understoo
 - $E$ is dense in $X$ if every point of $X$ is either a limit point of $E$ or a point of $E$ (or both).
 </div>
 
-<div class="Theorem">
+<div class="Theorem"> Every neighborhood is an open set
 </div>
 
-# Continuity continued (Lecture 9)
+<div class="Proof">
+Consider $E=N_r(p)$ and $q\in E$. Then there is a positive real number $h$ such that $d(p,q)=r-h$. For all points $s$ such that $d(q,s) < h$ we have
+$$
+d(p,s)\le d(p,q) + d(q,s) < r-h+h=r
+$$
+</div>
+
+<div class="Theorem">
+If $p$ is a limit point of a set $E$, then every neighbourhood of $p$ contains infinitely many points of $E$
+</div>
+<div class="Proof">
+Suppose there is a neighbourhood $N$ of $p$ which contains only a finite number of points of $E$. Let $q_1,\dots,q_n$ be the points of $N\cap E$ that is not $p$, put $r = \min_{1\le m\le n} d(p,q_m)$. Then $r>0$. The neighbourhood $N_r(p)$ contains no point $q$ of $E$ such that $q\ne p$. Then $p$ is not a limit point of $E$.
+</div>
+
+<div class="Corollary">
+A finite set hence has no limit points. Hence a finite set must be closed.
+</div>
+
+<div class="Example">
+Let us consider the following subsets of $\mathbb R^2$
+
+1. The set of all $z\in \mathbb R^2$ such that $|z|<1$.
+2. The set of all $z\in \mathbb R^2$ such that $|z|\le 1$.
+3. A nonempty finite set.
+4. $\mathbb Z$
+5. $E=\{\frac 1 {n+1}|n\in\mathbb N\}$. Then $0$ is a limit point of $E$ but no points of $E$ is a limit point of $E$.
+6. $\mathbb R^2$
+7. $\{x|a< x < b\}$
+
+Then
+
+|   |Closed|Open|Perfect|Bounded|
+|:-:|:----:|:--:|:-----:|:-----:|
+|1  | No   |Yes | No    | Yes   |
+|2  | Yes  | No | Yes   | Yes   |
+|3  | Yes  | No | No    | Yes   |
+|4  | Yes  | No | No    | No    |
+|5  | No   | No | No    | Yes   |
+|6  | No   | *  | No    | Yes   |
+
+the segment $(a,b)$ is open as a subset of $\mathbb R$ but not open as $\mathbb R^2$
+</div>
+
+<div class="Theorem">
+A set $E$ is open if and only if its complement is closed
+</div>
+<div class="Proof">
+Suppose $E^c$ is closed. Let $x\in E$, then $x\notin E^c$ and $x$ is not a limit point of $E^c$. Hence there is a neighbourhood $N$ of $x$ such that $E^c\cap N$ is empty, this is $N\subseteq E$. Hence $x$ is an interior point of $E$. So $E$ is open.
+
+Next suppose $E$ is open. Let $x$ be a limit point of $E^c$. Then every neighbourhood of $x$ contains a point of $E^c$. Then $x$ is not an interior point of $E$. Since $E$ is open, then $x\in E^c$. Hence $E^c$ is closed.
+</div>
+
+<div class="Corollary">
+A set $F$ is closed if and only if its complement is open
+</div>
+
+Recall the generalised de Morgan Law:
+$$
+\left(\bigcup_\alpha E_\alpha\right)^c=\bigcap_\alpha E_\alpha^c
+$$
+
+<div class="Theorem">
+
+1. For any collection $\{G_\alpha\}$ of open sets, $\bigcup_\alpha G_\alpha$ is open; 
+2. For any collection $\{F_\alpha\}$ of closed sets, $\bigcap_\alpha F_\alpha$ is closed;
+3. For any finite collection $G_1,\dots,G_n$ of open sets, $\bigcap_{i=1}^n G_i$ is open;
+4. For any finite collection $F_1,\dots,F_n$ of closed sets, $\bigcup_{i=1}^n F_i$ is closed.
+
+</div>
+
+<div class="Proof">
+
+1. For simplicity, write $G=\bigcup_\alpha G_\alpha$. If $x\in G$, then for some $\alpha$ $x\in G_\alpha$. Then $x$ is an interior point of $G_\alpha$ hence an interior point of $G$. Hence $G$ is open.
+2. Then $\{F_\alpha^c\}$ is a collection of open sets, then $\bigcup_\alpha F_\alpha^c$ is open then $(\bigcup_\alpha F_\alpha^c)^c$ is closed, but $(\bigcup_\alpha F_\alpha^c)^c=\bigcap_\alpha (F_\alpha^c)^c=\bigcap_\alpha F_\alpha$.
+3. For simplicity write $H=\bigcap_{i=1}^n G_i$. For any $x\in H$, there exist neighbourhoods $N_i$ of $x$ with radii $r_i$ such that $N_i\subseteq G_i$. Let $r=\min(r_1,\dots,r_n)$ and let $N$ be the neighbourhood of $x$ with radius $r$. Then $N\subseteq N_i\subseteq G_i$ for all $i=1,\dots,n$. Hence $N\subseteq H$, so $H is open$.
+4. Then $F_i^c$ are open, then $\bigcap_{i=1}^nF_i^c$ is open then $\left(\bigcap_{i=1}^nF_i^c\right)^c$ is closed. $\left(\bigcap_{i=1}^nF_i^c\right)^c=\bigcup_{i=1}^n\left(F_i^c\right)^c=\bigcup_{i=1}^nF_i$
+</div>
+
+<div class="Example">
+In 3 and 4 of previous theorem, the finiteness condition is essential. For example, let $G_n:=\left(-\frac1n,\frac1n\right)$ for $n=1,\dots,$. Then $G_n$ is open as a subset of $\mathbb R$ for all $n$. But $G=\bigcap_{n=1}^\infty G_n$ contains only $0$ and therefore is not open.
+
+Similarly union of an infinite collection of closed sets need not to be closed. For example for each point $x\in\mathbb Q$, $\{x\}$ is closed but $\mathbb Q$ is not. For example $\pi$ is a limit point of $\mathbb R$ but not a rational number. ($\pi$ being irrational is actually hard to prove.)
+</div>
+
+<div class="Definition">
+Let $(X,d)$ be a metric space and $E\subseteq X$ and let $E'$ be the set of all limit points of $E$ in $X$, then the closure of $E$ is $\bar E:=E\cup E'$.
+</div>
+
+<div class="Theorem">
+Let $(X,d)$ be a metric space and $E\subseteq X$, then
+
+1. $\bar E$ is closed;
+2. $E=\bar E$ if and only if $E$ is closed;
+3. $\bar E\subseteq F$ for every closed set $F\subseteq X$ such that $E\subseteq F$.
+</div>
+
+<div class="Proof">
+
+1. Let $p\in X$ such that $p\notin \bar E$ then $p$ is neither a point of $E$ nor a limit point of $E$. Hence $p$ has neighbourhood which does not intersect $E$. The complement of $\bar E$ is therefore open. Hence $\bar E$ is closed.
+2. left to right trivial by 1; If $E$ is closed then $E'\subseteq E$ then $\bar E=E$.
+3. If $F$ is closed and $E\subseteq F$, then $F'\subseteq F$ then $E'\subseteq F$ then $\bar E\subseteq F$.
+</div>
+
+By previous theorem $$\bar E=\bigcap_{F\in\mathcal P(X)\\ F \textrm{ closed}\\ E\subseteq F} F$$
+
+<div class="Theorem">
+Let $E$ be a nonempty set of real numbers which is bounded above. Let $y=\sup E$. Then $y\in\bar E$. Hence $y\in E$ if $E$ is closed
+</div>
+
+<div class="Proof">
+If $y\in E$ then certainly $y\in\bar E$. Assume $y\notin E$. For every $h>0$, there exists a point $x\in E$ such that $y-h < x < y$, for otherwise $y-h$ would be an upper bound of $E$. Thus $y$ is a limit point of $E$. Then $y\in\bar E$.
+</div>
+
+<div class="Remark">
+Let $(X, d)$ be a metric space, suppose that $E\subseteq Y\subseteq X$. Then $Y$ is also a metric space by restricting $d$ to $Y\times Y$. Then to say $E$ is open in $X$ means that to each point $p\in E$ there is associated a positive number $r$ such that $\forall q\in X,d(p,q)< r \implies q\in E$. We can also say $E$ is an open subset of $Y$ or open relative to $Y$ that is for each $p\in E$ there is associated a positive number $r$ such that $\forall q\in Y, d(p,q)< r\implies q\in E$. We saw in a previous example that, open relative to $Y$ doesn't necessarily mean open relative to $X$. But we still have the following theorem
+</div>
+
+<div class="Theorem">
+Suppose $Y\subseteq X$. $E\subseteq Y$ is open relative to $Y$ if and only if $E=Y\cap G$ for some $G\subseteq X$ open in $X$.
+</div>
+<div class="Proof">
+From right to left is easier: if $G$ is open in $X$ and $E=G\cap Y$ then, for every $p\in E$ has a neighbourhood $V_p\subseteq G$. Then $V_p\cap Y\subseteq E$ and $V_p\cap Y\subseteq E$. So $E$ is open relative to $Y$.
+</div>
+
+## Compact sets
+
+<div class="Definition">
+
+- By an open cover of a set $E$ in a metric space $(X, d)$ we mean a collection $\{G_\alpha\}$ of open subsets of $X$ such that $E\subseteq \bigcup_\alpha G_\alpha$.
+- A subset $K\subseteq X$ is said to be compact if and only if every open cover of $K$ contains a finite subcover. More explicitly, if $\{G_\alpha\}$ is an open cover of $K$, then there are finitely many indices $\alpha_1,\dots,\alpha_n$ such that $K\subseteq G_{\alpha_1}\cup\dots\cup G_{\alpha_n}$.
+
+</div>
+
+Obviously every finite subset is compact.
+
+We have seen that $E\subseteq Y\subseteq X$ then $E$ might be open relative $Y$ without being open relative to $X$. However compactness behaves better:
+
+<div class="Theorem">
+Suppose $K\subseteq Y\subseteq X$. Then $K$ is compact relatvie to $X$ if and only if $K$ is compact relative to $Y$.
+</div>
+
+Because of this theorem, we are able to in many situations to regard compact sets as metric spaces in their own right without paying attention to any embedding space. In particular althought it makes little sense to talk about open spaces or closed spaces (every metric space $X$ is an open and closed subset of itself), however it does make sense to talkt about compact metric spaces.
+
+<div class="Proof">
+Suppose $K$ is compact relative to $X$ and let $\{V_\alpha\}$ be a collection of sets open relative to $Y$ such that $K\subseteq \bigcup_\alpha V_\alpha$. Then there are sets $G_\alpha$ open relative to $X$ such that $V_\alpha=Y\cap G_\alpha$ for all $\alpha$. Since $K$ is compact relative to $X$, we can find some finitely many indices $\alpha_1,\dots,\alpha_n$ such that $K\subseteq G_{\alpha_1}\cup\dots\cup G_{\alpha_n}$. Then $K\subseteq V_{\alpha_1}\cup\dots\cup V_{\alpha_n}$. We have found a finite subcover of $\{V_\alpha\}$.
+
+Conversely, suppose $K$ is compact relative to $Y$ and $\{G_\alpha\}$ is a collection of open subsets of $X$ which covers $K$. Put $V_\alpha=Y\cap G_\alpha$. Then there are some finitely many indeces $\alpha_1,\dots,\alpha_n$ such that $K\subseteq V_{\alpha_1}\cup\dots\cup V_{\alpha_n}$. Then certainly $K\subseteq G_{\alpha_1}\cup\dots\cup G_{\alpha_n}$ because $V_{\alpha_i}\subseteq G_{\alpha_i}$.
+</div>
+
+<div class="Theorem">
+Compact subsets are closed.
+</div>
+<div class="Proof">
+Let $K$ be compact. We will prove $K^c$ open. Suppose $p\notin K$. If $q\in K$. let $V_q$ and $W_q$ be neighbourhoods of $p$ and $q$ with radius less than $\frac12 d(p,q)$. Then $K$ is covered by $\{W_q|q\in K\}$. Hence we can find finitely many $q_1,\dots,q_n\in K$ sucht that $K\subseteq W_{q_1}\cup\dots\cup W_{q_n}=: W$. Write $V:= V_{q_1}\cap\dots\cap V_{q_n}$, then $V$ is a neighbourhood of $p$ which does not intersect $W$. Hence $V\subseteq K^c$. Then $p$ is an interior point.
+</div>
+
+<div class="Theorem">
+Closed subsets of compact subset is compact.
+</div>
+<div class="Proof">
+Suppose $F\subseteq K\subseteq X$, $F$ is closed relative to $X$ and $K$ is compact. Let $\{V_\alpha\}$ be an open cover of $F$. If $F^c$ is adjoined to $\{V_\alpha\}$ we have another open cover $\Omega $ of $K$. Since $K$ is compact there is a finite subcolelction $\Phi$ of $\Omega$ covering $K$, hence covering $F$. If $F^c$ is a memember of $\Phi$, then $\Phi-{F^c}$ still covers F. We have thus found a finite subcover.
+</div>
+
+<div class="Corollary">
+If $F$ is closed and $K$ compact, then $F\cap K$ is compact.
+</div>
+
+<div class="Theorem">
+If $\{K_\alpha\}$ is a collection of compact subsets of a metric space $X$ such that every finite subcollection of $\{K_\alpha\}$ is nonempty then $\bigcap K_\alpha$ is nonempty.
+</div>
+
+<div class="Proof">
+Fix a member $K_1$ of $\{K_\alpha\}$ and put $G_\alpha=K_\alpha^c$. For contradiction assume that no point of $K_1$ belongs to every $K_\alpha$. Then the sets $G_\alpha$ is an open cover of $K_1$, there are finitely many indices $\alpha_1,\dots,\alpha_n$ such that $K_1\subseteq G_{\alpha_1}\cup\dots\cup G_{\alpha_n}$. Then $K_1\cap K_{\alpha_1}\cap\dots\cap K_{\alpha_n}$ is empty.
+</div>
+
+<div class="Corollary">
+If $\{K_n\}$ is a sequence of nonempty compact sets such that $K_{n+1}\subseteq K_n$, then $\bigcap_{i=1}^\infty K_n$.
+</div>
+
+<div class="Theorem">
+If $E$ is an infinite subset of a compact set $K$, then $E$ has a limit point in $K$.
+</div>
+
+<div class="Proof">
+Otherwise, each $q\in K$ would have a neighbourhood $V_q$ which only intersect $E$ at $q$. Clearly no finite subcollection of $\{V_q\}$ can cover $E$. Same is true for $K$ since $E\subset K$. But $K$ is compact.
+</div>
+
+ Let us recall one of the previous theorems, namely nested interval principle:
+
+ <div class="Theorem">
+ If $\{I_n\}$ is a sequence in $\mathbb R^1$ such that $I_{n+1}\subseteq I_n$ then $\bigcap I_n$ is not empty.
+ </div>
+ <div class="Proof">
+ Write $I_n=[a_n,b_n]$. Let $E=\{a_n\}$. Then $E$ is nonempty and bounded above by $b_1$. Let $x=\sup E$. If $m,n$ are positive integers, then 
+ $$
+  a_n\le a_{m+n}\le b_{m+n} \le b_m,
+ $$
+ so that $x\le b_m$ for each $m$. Since it is obvious that $a_m\le x$, we see that $x\in I_m$ for $m=1,2,3\dots$.
+ </div>
+
+ <div class="Theorem">
+ Let $k$ be a positive integer. If $\{I_n\}$ is a sequence of $k-cells$ such that $I_{n+1}\subseteq I_n$. Then $\bigcap_1^\infty I_n$ is nonempty
+ </div>
+<div class="Proof">
+The proof has the idea as the above, mutatis mutandis.
+Let $I_n$ be the cells of points $x=(x_1,\dots,x_k)$ such that for all $1\le j\le k; n=1,2,3,\dots$
+$$
+  a_{n,j}\le x_j\le b_{n,j}
+$$ 
+
+Write $I_{n,j}=[ a_{n,j}, b_{n,j}]$. For each $j$, by previous theorem there is a real number $x_j^*\in\bigcap_n I_{n,j}$. Then $(x_1^*,\dots,x_k^*)\in I_n$ for all $n$.
+</div>
+
+All of above is to prove
+<div class="Theorem">
+Every $k$-cell is compact
+</div>
+<div class="Proof">
+Let $I$ be a $k$-cell, consisting of all points $x=(x_1,\dots,x_k)$ such that $a_j\le x_j\le b_j$ for all $1\le j\le k$. Put
+$$
+  \delta=\sqrt{\sum_1^k (b_j-a_j)^2}.
+$$
+Then for all $x,y\in I, |x-y|\le \delta$.
+
+Suppose for contradiction that there exists an open cover $\{G_\alpha\}$ of $I$ without subcover of $I$. Put $c_i=\frac{a_j+b_j}2$. Then the intervals $[a_j, c_j]$ and $[c_j, b_j]$ determines $2^k$ $k$-cells $Q_i$ whose union is $I$. At least one of $Q_i$ call it $I_1$ cannot be covered by finite subcollection of $\{G_\alpha\}$. Otherwise  $I$ can be covered by a finite cover. We can continue to divide $I_1$ and continue the whole process. We then obtain a sequnce of $\{I_n\}$ such that
+
+1. $\dots\subseteq I_3\subseteq I_2\subseteq I_1\subseteq I$;
+2. $I_n$ is not covered by any finite subcollection of $\{G_\alpha\}$;
+3. if $x, y\in I_n$, then $|x-y|\le 2^{-n}\delta$.
+
+Then by previous theorem, there is a point $\iota$ in every $I_n$. For some $\alpha$, $\iota\in G_\alpha$. Since $G_\alpha$ is open, there is some $r>0$ such that $|y-\iota|< r$ implies that $y\in G_\alpha$. Then for $n$ large enough $2^{-n}\delta< r$ then 3 would implies $I_n\subseteq G_\alpha$ contradicting 2.
+</div>
+
+<div class="Theorem">[Heine-Borel]
+If a set $E\subseteq \mathbb R^k$, TFAE:
+
+1. $E$ is closed and bounded;
+2. $E$ is compact;
+3. Every infinite subset of $E$ has a limit point in $E$.
+</div>
+<div class="Proof">
+
+- Suppose 1, then $E\subseteq I$ for some $k$-cell $I$. Then $E$ is compact as a closed subset of compact set $I$.
+- 2 implies 3 is a previous theorem
+- Let us now prove 3 implying 1.
+  * Suppose $E$ is not bounded, then $E$ contains distinct points $x_n$ such that $|x_n|>n$. Then $\{x_n\}$ is a set without limit point. Then 3 implies $E$ being bounded.
+  * If $E$ is not closed, then there is a point $x_0\in\mathbb R^k$ which is a limit point of $E$ but not a point of $E$. For $n=1,2,3,\dots$, there are points $x_n\in E$ such that $|x_n-x_0|<\frac1n$. Let $S=\{x_n\}$. Then $S$ is infinite (for otherwise $|x_n-x_0|$ would have a constant postitive value, for infinitely many $n$). $S$ has $x_0$ as limit point and no other limit point in $\mathbb R^k$. For if $y\ne x_0$ then
+  $$
+  \begin{aligned}
+  |x_n-y|&\ge|x_0-y|-|x_n-x_0|\\
+         &\ge|x_0-y|-\frac1n\ge\frac12|x_0-y|
+  \end{aligned}
+  $$
+  for all but finitely many $n$; this shows that $y$ is not alimit point of $S$ (otherwise there should be infintely many points in intersection by a previous theorem).
+Thus $S$ has no limit point in $E$; then $E$ must be closed if 3 holds.
+</div>
+
+We can now generalise a theorem proved before
+<div class="Theorem">[Weierstrass] Every bounded infinite subset of $\mathbb R^k$ has a limit in $\mathbb R^k$.
+</div>
+<div class="Proof">
+Being bounded, the set $E$ is a subset of $k$-cell $I\subseteq \mathbb R^k$. $I$ is compact, then $E$ has a limit point in $I$.
+</div>
+
+## Perfect set
+
+<div class="Theorem">
+Every nonempty perfect set in $\mathbb R^k$ is uncountable.
+</div>
+<div class="Proof">
+Since $P$ has limit points, $P$ must be infinite. If $P$ is countable, we can enumerate $P$ by $x_1,x_2,x_3\dots$. Let us construct a sequence $\{V_n\}$ of neighbourhoods as following:
+
+- Let $V_1$ be arbitrary neighbourhood of $x_1$. If $V_1$ consists of all $y\in\mathbb R^k$ such that $|y-x_1|< r$, the closure $\bar {V_1}$ is the set of all points $y\in\mathbb R^k$ such that $|y-x_1|\le r$.
+- Suppose $V_n$ has been constructed, so that $V_n \cap P$ is not empty. Since every point of $P$ is a limit point of $P$. There is a neighbourhood $V_{n+1}$ such that
+  1. $\bar{V}_{n+1}\subseteq V_n$
+  2. $x_n\notin \bar{V}_{n+1}$
+  3. $V_{n+1}\cap P$ is nonempty.
+Hence by induction we can construct a sequence of $\{V_n\}$ such that each $V_n\cap P$ is nonempty.
+
+Put $K_n=\bar{V}_n\cap P$. Since $\bar{V}_n$ is closed and bounded hence compact. Then $x_n\notin K_{n+1}$. No point of $P$ is in $\bigcap K_n$. But $K_n\subseteq P$. Then $\bigcap K_n$ is empty. Since each $K_n$ is nonempty and $K_{n+1}\subseteq K_n$, this contradicts a previous corollary.
+</div>
+
+<div class="Corollary">
+Every interval is uncountable. $\mathbb R$ is uncountable.
+</div>
+
+## Summary
+
+In this lecture, we are trying to learn basic concepts of topology:
+
+- we defined what is a metric space and what is a metric;
+- we defined the topology induced by metrics;
+- we discussed compact set and perfect set;
+- we generalised some theorems from $\mathbb R^1$ to higher dimensions $\mathbb R^k$;
+- We actually proved the uncountability of $\mathbb R$ rigorously.
+
+# Function and continuity (Lecture 9)
 
 
 # Differentiation (Lecture 10)

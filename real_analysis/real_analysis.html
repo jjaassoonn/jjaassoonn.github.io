@@ -4999,6 +4999,9 @@ E:=\{x\in\mathbb R|x\ge 0\land \sum a_nx^n \mathrm{ converges}\}
 <div class="Example">
 <p>If <span class="math inline">\((X, d)\)</span> is a metric space and <span class="math inline">\(Y\subseteq X\)</span>, then <span class="math inline">\((Y, d|_{Y\times Y})\)</span> is also a metric space.</p>
 </div>
+</div>
+<div id="topology-induced-by-the-metric" class="section level2">
+<h2>Topology induced by the metric</h2>
 <div class="Definition">
 <ul>
 <li>If <span class="math inline">\(a_i&lt;b_i\)</span> for <span class="math inline">\(i=1,\dots,k\)</span>, then the set of all points <span class="math inline">\(x=(x_1,\dots,x_k)\in\mathbb R^k\)</span> where <span class="math inline">\(x_i\in(a_i,b_i)\forall i\)</span> is called a <span class="math inline">\(k\)</span>-cell. (So <span class="math inline">\(1-cell\)</span> is closed interval, <span class="math inline">\(2-cell\)</span> is a rectangle etc).</li>
@@ -5030,10 +5033,310 @@ E:=\{x\in\mathbb R|x\ge 0\land \sum a_nx^n \mathrm{ converges}\}
 <li><span class="math inline">\(E\)</span> is dense in <span class="math inline">\(X\)</span> if every point of <span class="math inline">\(X\)</span> is either a limit point of <span class="math inline">\(E\)</span> or a point of <span class="math inline">\(E\)</span> (or both).</li>
 </ul>
 </div>
+<div class="Theorem">
+<p>Every neighborhood is an open set</p>
+</div>
+<div class="Proof">
+<p>Consider <span class="math inline">\(E=N_r(p)\)</span> and <span class="math inline">\(q\in E\)</span>. Then there is a positive real number <span class="math inline">\(h\)</span> such that <span class="math inline">\(d(p,q)=r-h\)</span>. For all points <span class="math inline">\(s\)</span> such that <span class="math inline">\(d(q,s) &lt; h\)</span> we have <span class="math display">\[
+d(p,s)\le d(p,q) + d(q,s) &lt; r-h+h=r
+\]</span></p>
+</div>
+<div class="Theorem">
+<p>If <span class="math inline">\(p\)</span> is a limit point of a set <span class="math inline">\(E\)</span>, then every neighbourhood of <span class="math inline">\(p\)</span> contains infinitely many points of <span class="math inline">\(E\)</span></p>
+</div>
+<div class="Proof">
+<p>Suppose there is a neighbourhood <span class="math inline">\(N\)</span> of <span class="math inline">\(p\)</span> which contains only a finite number of points of <span class="math inline">\(E\)</span>. Let <span class="math inline">\(q_1,\dots,q_n\)</span> be the points of <span class="math inline">\(N\cap E\)</span> that is not <span class="math inline">\(p\)</span>, put <span class="math inline">\(r = \min_{1\le m\le n} d(p,q_m)\)</span>. Then <span class="math inline">\(r&gt;0\)</span>. The neighbourhood <span class="math inline">\(N_r(p)\)</span> contains no point <span class="math inline">\(q\)</span> of <span class="math inline">\(E\)</span> such that <span class="math inline">\(q\ne p\)</span>. Then <span class="math inline">\(p\)</span> is not a limit point of <span class="math inline">\(E\)</span>.</p>
+</div>
+<div class="Corollary">
+<p>A finite set hence has no limit points. Hence a finite set must be closed.</p>
+</div>
+<div class="Example">
+<p>Let us consider the following subsets of <span class="math inline">\(\mathbb R^2\)</span></p>
+<ol style="list-style-type: decimal">
+<li>The set of all <span class="math inline">\(z\in \mathbb R^2\)</span> such that <span class="math inline">\(|z|&lt;1\)</span>.</li>
+<li>The set of all <span class="math inline">\(z\in \mathbb R^2\)</span> such that <span class="math inline">\(|z|\le 1\)</span>.</li>
+<li>A nonempty finite set.</li>
+<li><span class="math inline">\(\mathbb Z\)</span></li>
+<li><span class="math inline">\(E=\{\frac 1 {n+1}|n\in\mathbb N\}\)</span>. Then <span class="math inline">\(0\)</span> is a limit point of <span class="math inline">\(E\)</span> but no points of <span class="math inline">\(E\)</span> is a limit point of <span class="math inline">\(E\)</span>.</li>
+<li><span class="math inline">\(\mathbb R^2\)</span></li>
+<li><span class="math inline">\(\{x|a&lt; x &lt; b\}\)</span></li>
+</ol>
+<p>Then</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Closed</th>
+<th align="center">Open</th>
+<th align="center">Perfect</th>
+<th align="center">Bounded</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">No</td>
+<td align="center">Yes</td>
+<td align="center">No</td>
+<td align="center">Yes</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">Yes</td>
+<td align="center">No</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">Yes</td>
+<td align="center">No</td>
+<td align="center">No</td>
+<td align="center">Yes</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">Yes</td>
+<td align="center">No</td>
+<td align="center">No</td>
+<td align="center">No</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">No</td>
+<td align="center">No</td>
+<td align="center">No</td>
+<td align="center">Yes</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">No</td>
+<td align="center">*</td>
+<td align="center">No</td>
+<td align="center">Yes</td>
+</tr>
+</tbody>
+</table>
+<p>the segment <span class="math inline">\((a,b)\)</span> is open as a subset of <span class="math inline">\(\mathbb R\)</span> but not open as <span class="math inline">\(\mathbb R^2\)</span></p>
+</div>
+<div class="Theorem">
+<p>A set <span class="math inline">\(E\)</span> is open if and only if its complement is closed</p>
+</div>
+<div class="Proof">
+<p>Suppose <span class="math inline">\(E^c\)</span> is closed. Let <span class="math inline">\(x\in E\)</span>, then <span class="math inline">\(x\notin E^c\)</span> and <span class="math inline">\(x\)</span> is not a limit point of <span class="math inline">\(E^c\)</span>. Hence there is a neighbourhood <span class="math inline">\(N\)</span> of <span class="math inline">\(x\)</span> such that <span class="math inline">\(E^c\cap N\)</span> is empty, this is <span class="math inline">\(N\subseteq E\)</span>. Hence <span class="math inline">\(x\)</span> is an interior point of <span class="math inline">\(E\)</span>. So <span class="math inline">\(E\)</span> is open.</p>
+<p>Next suppose <span class="math inline">\(E\)</span> is open. Let <span class="math inline">\(x\)</span> be a limit point of <span class="math inline">\(E^c\)</span>. Then every neighbourhood of <span class="math inline">\(x\)</span> contains a point of <span class="math inline">\(E^c\)</span>. Then <span class="math inline">\(x\)</span> is not an interior point of <span class="math inline">\(E\)</span>. Since <span class="math inline">\(E\)</span> is open, then <span class="math inline">\(x\in E^c\)</span>. Hence <span class="math inline">\(E^c\)</span> is closed.</p>
+</div>
+<div class="Corollary">
+<p>A set <span class="math inline">\(F\)</span> is closed if and only if its complement is open</p>
+</div>
+<p>Recall the generalised de Morgan Law: <span class="math display">\[
+\left(\bigcup_\alpha E_\alpha\right)^c=\bigcap_\alpha E_\alpha^c
+\]</span></p>
+<div class="Theorem">
+<ol style="list-style-type: decimal">
+<li>For any collection <span class="math inline">\(\{G_\alpha\}\)</span> of open sets, <span class="math inline">\(\bigcup_\alpha G_\alpha\)</span> is open;</li>
+<li>For any collection <span class="math inline">\(\{F_\alpha\}\)</span> of closed sets, <span class="math inline">\(\bigcap_\alpha F_\alpha\)</span> is closed;</li>
+<li>For any finite collection <span class="math inline">\(G_1,\dots,G_n\)</span> of open sets, <span class="math inline">\(\bigcap_{i=1}^n G_i\)</span> is open;</li>
+<li>For any finite collection <span class="math inline">\(F_1,\dots,F_n\)</span> of closed sets, <span class="math inline">\(\bigcup_{i=1}^n F_i\)</span> is closed.</li>
+</ol>
+</div>
+<div class="Proof">
+<ol style="list-style-type: decimal">
+<li>For simplicity, write <span class="math inline">\(G=\bigcup_\alpha G_\alpha\)</span>. If <span class="math inline">\(x\in G\)</span>, then for some <span class="math inline">\(\alpha\)</span> <span class="math inline">\(x\in G_\alpha\)</span>. Then <span class="math inline">\(x\)</span> is an interior point of <span class="math inline">\(G_\alpha\)</span> hence an interior point of <span class="math inline">\(G\)</span>. Hence <span class="math inline">\(G\)</span> is open.</li>
+<li>Then <span class="math inline">\(\{F_\alpha^c\}\)</span> is a collection of open sets, then <span class="math inline">\(\bigcup_\alpha F_\alpha^c\)</span> is open then <span class="math inline">\((\bigcup_\alpha F_\alpha^c)^c\)</span> is closed, but <span class="math inline">\((\bigcup_\alpha F_\alpha^c)^c=\bigcap_\alpha (F_\alpha^c)^c=\bigcap_\alpha F_\alpha\)</span>.</li>
+<li>For simplicity write <span class="math inline">\(H=\bigcap_{i=1}^n G_i\)</span>. For any <span class="math inline">\(x\in H\)</span>, there exist neighbourhoods <span class="math inline">\(N_i\)</span> of <span class="math inline">\(x\)</span> with radii <span class="math inline">\(r_i\)</span> such that <span class="math inline">\(N_i\subseteq G_i\)</span>. Let <span class="math inline">\(r=\min(r_1,\dots,r_n)\)</span> and let <span class="math inline">\(N\)</span> be the neighbourhood of <span class="math inline">\(x\)</span> with radius <span class="math inline">\(r\)</span>. Then <span class="math inline">\(N\subseteq N_i\subseteq G_i\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span>. Hence <span class="math inline">\(N\subseteq H\)</span>, so <span class="math inline">\(H is open\)</span>.</li>
+<li>Then <span class="math inline">\(F_i^c\)</span> are open, then <span class="math inline">\(\bigcap_{i=1}^nF_i^c\)</span> is open then <span class="math inline">\(\left(\bigcap_{i=1}^nF_i^c\right)^c\)</span> is closed. <span class="math inline">\(\left(\bigcap_{i=1}^nF_i^c\right)^c=\bigcup_{i=1}^n\left(F_i^c\right)^c=\bigcup_{i=1}^nF_i\)</span></li>
+</ol>
+</div>
+<div class="Example">
+<p>In 3 and 4 of previous theorem, the finiteness condition is essential. For example, let <span class="math inline">\(G_n:=\left(-\frac1n,\frac1n\right)\)</span> for <span class="math inline">\(n=1,\dots,\)</span>. Then <span class="math inline">\(G_n\)</span> is open as a subset of <span class="math inline">\(\mathbb R\)</span> for all <span class="math inline">\(n\)</span>. But <span class="math inline">\(G=\bigcap_{n=1}^\infty G_n\)</span> contains only <span class="math inline">\(0\)</span> and therefore is not open.</p>
+<p>Similarly union of an infinite collection of closed sets need not to be closed. For example for each point <span class="math inline">\(x\in\mathbb Q\)</span>, <span class="math inline">\(\{x\}\)</span> is closed but <span class="math inline">\(\mathbb Q\)</span> is not. For example <span class="math inline">\(\pi\)</span> is a limit point of <span class="math inline">\(\mathbb R\)</span> but not a rational number. (<span class="math inline">\(\pi\)</span> being irrational is actually hard to prove.)</p>
+</div>
+<div class="Definition">
+<p>Let <span class="math inline">\((X,d)\)</span> be a metric space and <span class="math inline">\(E\subseteq X\)</span> and let <span class="math inline">\(E&#39;\)</span> be the set of all limit points of <span class="math inline">\(E\)</span> in <span class="math inline">\(X\)</span>, then the closure of <span class="math inline">\(E\)</span> is <span class="math inline">\(\bar E:=E\cup E&#39;\)</span>.</p>
+</div>
+<div class="Theorem">
+<p>Let <span class="math inline">\((X,d)\)</span> be a metric space and <span class="math inline">\(E\subseteq X\)</span>, then</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\bar E\)</span> is closed;</li>
+<li><span class="math inline">\(E=\bar E\)</span> if and only if <span class="math inline">\(E\)</span> is closed;</li>
+<li><span class="math inline">\(\bar E\subseteq F\)</span> for every closed set <span class="math inline">\(F\subseteq X\)</span> such that <span class="math inline">\(E\subseteq F\)</span>.</li>
+</ol>
+</div>
+<div class="Proof">
+<ol style="list-style-type: decimal">
+<li>Let <span class="math inline">\(p\in X\)</span> such that <span class="math inline">\(p\notin \bar E\)</span> then <span class="math inline">\(p\)</span> is neither a point of <span class="math inline">\(E\)</span> nor a limit point of <span class="math inline">\(E\)</span>. Hence <span class="math inline">\(p\)</span> has neighbourhood which does not intersect <span class="math inline">\(E\)</span>. The complement of <span class="math inline">\(\bar E\)</span> is therefore open. Hence <span class="math inline">\(\bar E\)</span> is closed.</li>
+<li>left to right trivial by 1; If <span class="math inline">\(E\)</span> is closed then <span class="math inline">\(E&#39;\subseteq E\)</span> then <span class="math inline">\(\bar E=E\)</span>.</li>
+<li>If <span class="math inline">\(F\)</span> is closed and <span class="math inline">\(E\subseteq F\)</span>, then <span class="math inline">\(F&#39;\subseteq F\)</span> then <span class="math inline">\(E&#39;\subseteq F\)</span> then <span class="math inline">\(\bar E\subseteq F\)</span>.</li>
+</ol>
+</div>
+<p>By previous theorem <span class="math display">\[\bar E=\bigcap_{F\in\mathcal P(X)\\ F \textrm{ closed}\\ E\subseteq F} F\]</span></p>
+<div class="Theorem">
+<p>Let <span class="math inline">\(E\)</span> be a nonempty set of real numbers which is bounded above. Let <span class="math inline">\(y=\sup E\)</span>. Then <span class="math inline">\(y\in\bar E\)</span>. Hence <span class="math inline">\(y\in E\)</span> if <span class="math inline">\(E\)</span> is closed</p>
+</div>
+<div class="Proof">
+<p>If <span class="math inline">\(y\in E\)</span> then certainly <span class="math inline">\(y\in\bar E\)</span>. Assume <span class="math inline">\(y\notin E\)</span>. For every <span class="math inline">\(h&gt;0\)</span>, there exists a point <span class="math inline">\(x\in E\)</span> such that <span class="math inline">\(y-h &lt; x &lt; y\)</span>, for otherwise <span class="math inline">\(y-h\)</span> would be an upper bound of <span class="math inline">\(E\)</span>. Thus <span class="math inline">\(y\)</span> is a limit point of <span class="math inline">\(E\)</span>. Then <span class="math inline">\(y\in\bar E\)</span>.</p>
+</div>
+<div class="Remark">
+<p>Let <span class="math inline">\((X, d)\)</span> be a metric space, suppose that <span class="math inline">\(E\subseteq Y\subseteq X\)</span>. Then <span class="math inline">\(Y\)</span> is also a metric space by restricting <span class="math inline">\(d\)</span> to <span class="math inline">\(Y\times Y\)</span>. Then to say <span class="math inline">\(E\)</span> is open in <span class="math inline">\(X\)</span> means that to each point <span class="math inline">\(p\in E\)</span> there is associated a positive number <span class="math inline">\(r\)</span> such that <span class="math inline">\(\forall q\in X,d(p,q)&lt; r \implies q\in E\)</span>. We can also say <span class="math inline">\(E\)</span> is an open subset of <span class="math inline">\(Y\)</span> or open relative to <span class="math inline">\(Y\)</span> that is for each <span class="math inline">\(p\in E\)</span> there is associated a positive number <span class="math inline">\(r\)</span> such that <span class="math inline">\(\forall q\in Y, d(p,q)&lt; r\implies q\in E\)</span>. We saw in a previous example that, open relative to <span class="math inline">\(Y\)</span> doesn’t necessarily mean open relative to <span class="math inline">\(X\)</span>. But we still have the following theorem</p>
+</div>
+<div class="Theorem">
+<p>Suppose <span class="math inline">\(Y\subseteq X\)</span>. <span class="math inline">\(E\subseteq Y\)</span> is open relative to <span class="math inline">\(Y\)</span> if and only if <span class="math inline">\(E=Y\cap G\)</span> for some <span class="math inline">\(G\subseteq X\)</span> open in <span class="math inline">\(X\)</span>.</p>
+</div>
+<div class="Proof">
+<p>From right to left is easier: if <span class="math inline">\(G\)</span> is open in <span class="math inline">\(X\)</span> and <span class="math inline">\(E=G\cap Y\)</span> then, for every <span class="math inline">\(p\in E\)</span> has a neighbourhood <span class="math inline">\(V_p\subseteq G\)</span>. Then <span class="math inline">\(V_p\cap Y\subseteq E\)</span> and <span class="math inline">\(V_p\cap Y\subseteq E\)</span>. So <span class="math inline">\(E\)</span> is open relative to <span class="math inline">\(Y\)</span>.</p>
 </div>
 </div>
-<div id="continuity-continued-lecture-9" class="section level1">
-<h1>Continuity continued (Lecture 9)</h1>
+<div id="compact-sets" class="section level2">
+<h2>Compact sets</h2>
+<div class="Definition">
+<ul>
+<li>By an open cover of a set <span class="math inline">\(E\)</span> in a metric space <span class="math inline">\((X, d)\)</span> we mean a collection <span class="math inline">\(\{G_\alpha\}\)</span> of open subsets of <span class="math inline">\(X\)</span> such that <span class="math inline">\(E\subseteq \bigcup_\alpha G_\alpha\)</span>.</li>
+<li>A subset <span class="math inline">\(K\subseteq X\)</span> is said to be compact if and only if every open cover of <span class="math inline">\(K\)</span> contains a finite subcover. More explicitly, if <span class="math inline">\(\{G_\alpha\}\)</span> is an open cover of <span class="math inline">\(K\)</span>, then there are finitely many indices <span class="math inline">\(\alpha_1,\dots,\alpha_n\)</span> such that <span class="math inline">\(K\subseteq G_{\alpha_1}\cup\dots\cup G_{\alpha_n}\)</span>.</li>
+</ul>
+</div>
+<p>Obviously every finite subset is compact.</p>
+<p>We have seen that <span class="math inline">\(E\subseteq Y\subseteq X\)</span> then <span class="math inline">\(E\)</span> might be open relative <span class="math inline">\(Y\)</span> without being open relative to <span class="math inline">\(X\)</span>. However compactness behaves better:</p>
+<div class="Theorem">
+<p>Suppose <span class="math inline">\(K\subseteq Y\subseteq X\)</span>. Then <span class="math inline">\(K\)</span> is compact relatvie to <span class="math inline">\(X\)</span> if and only if <span class="math inline">\(K\)</span> is compact relative to <span class="math inline">\(Y\)</span>.</p>
+</div>
+<p>Because of this theorem, we are able to in many situations to regard compact sets as metric spaces in their own right without paying attention to any embedding space. In particular althought it makes little sense to talk about open spaces or closed spaces (every metric space <span class="math inline">\(X\)</span> is an open and closed subset of itself), however it does make sense to talkt about compact metric spaces.</p>
+<div class="Proof">
+<p>Suppose <span class="math inline">\(K\)</span> is compact relative to <span class="math inline">\(X\)</span> and let <span class="math inline">\(\{V_\alpha\}\)</span> be a collection of sets open relative to <span class="math inline">\(Y\)</span> such that <span class="math inline">\(K\subseteq \bigcup_\alpha V_\alpha\)</span>. Then there are sets <span class="math inline">\(G_\alpha\)</span> open relative to <span class="math inline">\(X\)</span> such that <span class="math inline">\(V_\alpha=Y\cap G_\alpha\)</span> for all <span class="math inline">\(\alpha\)</span>. Since <span class="math inline">\(K\)</span> is compact relative to <span class="math inline">\(X\)</span>, we can find some finitely many indices <span class="math inline">\(\alpha_1,\dots,\alpha_n\)</span> such that <span class="math inline">\(K\subseteq G_{\alpha_1}\cup\dots\cup G_{\alpha_n}\)</span>. Then <span class="math inline">\(K\subseteq V_{\alpha_1}\cup\dots\cup V_{\alpha_n}\)</span>. We have found a finite subcover of <span class="math inline">\(\{V_\alpha\}\)</span>.</p>
+<p>Conversely, suppose <span class="math inline">\(K\)</span> is compact relative to <span class="math inline">\(Y\)</span> and <span class="math inline">\(\{G_\alpha\}\)</span> is a collection of open subsets of <span class="math inline">\(X\)</span> which covers <span class="math inline">\(K\)</span>. Put <span class="math inline">\(V_\alpha=Y\cap G_\alpha\)</span>. Then there are some finitely many indeces <span class="math inline">\(\alpha_1,\dots,\alpha_n\)</span> such that <span class="math inline">\(K\subseteq V_{\alpha_1}\cup\dots\cup V_{\alpha_n}\)</span>. Then certainly <span class="math inline">\(K\subseteq G_{\alpha_1}\cup\dots\cup G_{\alpha_n}\)</span> because <span class="math inline">\(V_{\alpha_i}\subseteq G_{\alpha_i}\)</span>.</p>
+</div>
+<div class="Theorem">
+<p>Compact subsets are closed.</p>
+</div>
+<div class="Proof">
+<p>Let <span class="math inline">\(K\)</span> be compact. We will prove <span class="math inline">\(K^c\)</span> open. Suppose <span class="math inline">\(p\notin K\)</span>. If <span class="math inline">\(q\in K\)</span>. let <span class="math inline">\(V_q\)</span> and <span class="math inline">\(W_q\)</span> be neighbourhoods of <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> with radius less than <span class="math inline">\(\frac12 d(p,q)\)</span>. Then <span class="math inline">\(K\)</span> is covered by <span class="math inline">\(\{W_q|q\in K\}\)</span>. Hence we can find finitely many <span class="math inline">\(q_1,\dots,q_n\in K\)</span> sucht that <span class="math inline">\(K\subseteq W_{q_1}\cup\dots\cup W_{q_n}=: W\)</span>. Write <span class="math inline">\(V:= V_{q_1}\cap\dots\cap V_{q_n}\)</span>, then <span class="math inline">\(V\)</span> is a neighbourhood of <span class="math inline">\(p\)</span> which does not intersect <span class="math inline">\(W\)</span>. Hence <span class="math inline">\(V\subseteq K^c\)</span>. Then <span class="math inline">\(p\)</span> is an interior point.</p>
+</div>
+<div class="Theorem">
+<p>Closed subsets of compact subset is compact.</p>
+</div>
+<div class="Proof">
+<p>Suppose <span class="math inline">\(F\subseteq K\subseteq X\)</span>, <span class="math inline">\(F\)</span> is closed relative to <span class="math inline">\(X\)</span> and <span class="math inline">\(K\)</span> is compact. Let <span class="math inline">\(\{V_\alpha\}\)</span> be an open cover of <span class="math inline">\(F\)</span>. If <span class="math inline">\(F^c\)</span> is adjoined to <span class="math inline">\(\{V_\alpha\}\)</span> we have another open cover $$ of <span class="math inline">\(K\)</span>. Since <span class="math inline">\(K\)</span> is compact there is a finite subcolelction <span class="math inline">\(\Phi\)</span> of <span class="math inline">\(\Omega\)</span> covering <span class="math inline">\(K\)</span>, hence covering <span class="math inline">\(F\)</span>. If <span class="math inline">\(F^c\)</span> is a memember of <span class="math inline">\(\Phi\)</span>, then <span class="math inline">\(\Phi-{F^c}\)</span> still covers F. We have thus found a finite subcover.</p>
+</div>
+<div class="Corollary">
+<p>If <span class="math inline">\(F\)</span> is closed and <span class="math inline">\(K\)</span> compact, then <span class="math inline">\(F\cap K\)</span> is compact.</p>
+</div>
+<div class="Theorem">
+<p>If <span class="math inline">\(\{K_\alpha\}\)</span> is a collection of compact subsets of a metric space <span class="math inline">\(X\)</span> such that every finite subcollection of <span class="math inline">\(\{K_\alpha\}\)</span> is nonempty then <span class="math inline">\(\bigcap K_\alpha\)</span> is nonempty.</p>
+</div>
+<div class="Proof">
+<p>Fix a member <span class="math inline">\(K_1\)</span> of <span class="math inline">\(\{K_\alpha\}\)</span> and put <span class="math inline">\(G_\alpha=K_\alpha^c\)</span>. For contradiction assume that no point of <span class="math inline">\(K_1\)</span> belongs to every <span class="math inline">\(K_\alpha\)</span>. Then the sets <span class="math inline">\(G_\alpha\)</span> is an open cover of <span class="math inline">\(K_1\)</span>, there are finitely many indices <span class="math inline">\(\alpha_1,\dots,\alpha_n\)</span> such that <span class="math inline">\(K_1\subseteq G_{\alpha_1}\cup\dots\cup G_{\alpha_n}\)</span>. Then <span class="math inline">\(K_1\cap K_{\alpha_1}\cap\dots\cap K_{\alpha_n}\)</span> is empty.</p>
+</div>
+<div class="Corollary">
+<p>If <span class="math inline">\(\{K_n\}\)</span> is a sequence of nonempty compact sets such that <span class="math inline">\(K_{n+1}\subseteq K_n\)</span>, then <span class="math inline">\(\bigcap_{i=1}^\infty K_n\)</span>.</p>
+</div>
+<div class="Theorem">
+<p>If <span class="math inline">\(E\)</span> is an infinite subset of a compact set <span class="math inline">\(K\)</span>, then <span class="math inline">\(E\)</span> has a limit point in <span class="math inline">\(K\)</span>.</p>
+</div>
+<div class="Proof">
+<p>Otherwise, each <span class="math inline">\(q\in K\)</span> would have a neighbourhood <span class="math inline">\(V_q\)</span> which only intersect <span class="math inline">\(E\)</span> at <span class="math inline">\(q\)</span>. Clearly no finite subcollection of <span class="math inline">\(\{V_q\}\)</span> can cover <span class="math inline">\(E\)</span>. Same is true for <span class="math inline">\(K\)</span> since <span class="math inline">\(E\subset K\)</span>. But <span class="math inline">\(K\)</span> is compact.</p>
+</div>
+<p>Let us recall one of the previous theorems, namely nested interval principle:</p>
+<div class="Theorem">
+If <span class="math inline">\(\{I_n\}\)</span> is a sequence in <span class="math inline">\(\mathbb R^1\)</span> such that <span class="math inline">\(I_{n+1}\subseteq I_n\)</span> then <span class="math inline">\(\bigcap I_n\)</span> is not empty.
+</div>
+<div class="Proof">
+Write <span class="math inline">\(I_n=[a_n,b_n]\)</span>. Let <span class="math inline">\(E=\{a_n\}\)</span>. Then <span class="math inline">\(E\)</span> is nonempty and bounded above by <span class="math inline">\(b_1\)</span>. Let <span class="math inline">\(x=\sup E\)</span>. If <span class="math inline">\(m,n\)</span> are positive integers, then <span class="math display">\[
+  a_n\le a_{m+n}\le b_{m+n} \le b_m,
+ \]</span> so that <span class="math inline">\(x\le b_m\)</span> for each <span class="math inline">\(m\)</span>. Since it is obvious that <span class="math inline">\(a_m\le x\)</span>, we see that <span class="math inline">\(x\in I_m\)</span> for <span class="math inline">\(m=1,2,3\dots\)</span>.
+</div>
+<div class="Theorem">
+Let <span class="math inline">\(k\)</span> be a positive integer. If <span class="math inline">\(\{I_n\}\)</span> is a sequence of <span class="math inline">\(k-cells\)</span> such that <span class="math inline">\(I_{n+1}\subseteq I_n\)</span>. Then <span class="math inline">\(\bigcap_1^\infty I_n\)</span> is nonempty
+</div>
+<div class="Proof">
+<p>The proof has the idea as the above, mutatis mutandis. Let <span class="math inline">\(I_n\)</span> be the cells of points <span class="math inline">\(x=(x_1,\dots,x_k)\)</span> such that for all <span class="math inline">\(1\le j\le k; n=1,2,3,\dots\)</span> <span class="math display">\[
+  a_{n,j}\le x_j\le b_{n,j}
+\]</span></p>
+<p>Write <span class="math inline">\(I_{n,j}=[ a_{n,j}, b_{n,j}]\)</span>. For each <span class="math inline">\(j\)</span>, by previous theorem there is a real number <span class="math inline">\(x_j^*\in\bigcap_n I_{n,j}\)</span>. Then <span class="math inline">\((x_1^*,\dots,x_k^*)\in I_n\)</span> for all <span class="math inline">\(n\)</span>.</p>
+</div>
+All of above is to prove
+<div class="Theorem">
+<p>Every <span class="math inline">\(k\)</span>-cell is compact</p>
+</div>
+<div class="Proof">
+<p>Let <span class="math inline">\(I\)</span> be a <span class="math inline">\(k\)</span>-cell, consisting of all points <span class="math inline">\(x=(x_1,\dots,x_k)\)</span> such that <span class="math inline">\(a_j\le x_j\le b_j\)</span> for all <span class="math inline">\(1\le j\le k\)</span>. Put <span class="math display">\[
+  \delta=\sqrt{\sum_1^k (b_j-a_j)^2}.
+\]</span> Then for all <span class="math inline">\(x,y\in I, |x-y|\le \delta\)</span>.</p>
+<p>Suppose for contradiction that there exists an open cover <span class="math inline">\(\{G_\alpha\}\)</span> of <span class="math inline">\(I\)</span> without subcover of <span class="math inline">\(I\)</span>. Put <span class="math inline">\(c_i=\frac{a_j+b_j}2\)</span>. Then the intervals <span class="math inline">\([a_j, c_j]\)</span> and <span class="math inline">\([c_j, b_j]\)</span> determines <span class="math inline">\(2^k\)</span> <span class="math inline">\(k\)</span>-cells <span class="math inline">\(Q_i\)</span> whose union is <span class="math inline">\(I\)</span>. At least one of <span class="math inline">\(Q_i\)</span> call it <span class="math inline">\(I_1\)</span> cannot be covered by finite subcollection of <span class="math inline">\(\{G_\alpha\}\)</span>. Otherwise <span class="math inline">\(I\)</span> can be covered by a finite cover. We can continue to divide <span class="math inline">\(I_1\)</span> and continue the whole process. We then obtain a sequnce of <span class="math inline">\(\{I_n\}\)</span> such that</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\dots\subseteq I_3\subseteq I_2\subseteq I_1\subseteq I\)</span>;</li>
+<li><span class="math inline">\(I_n\)</span> is not covered by any finite subcollection of <span class="math inline">\(\{G_\alpha\}\)</span>;</li>
+<li>if <span class="math inline">\(x, y\in I_n\)</span>, then <span class="math inline">\(|x-y|\le 2^{-n}\delta\)</span>.</li>
+</ol>
+<p>Then by previous theorem, there is a point <span class="math inline">\(\iota\)</span> in every <span class="math inline">\(I_n\)</span>. For some <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\iota\in G_\alpha\)</span>. Since <span class="math inline">\(G_\alpha\)</span> is open, there is some <span class="math inline">\(r&gt;0\)</span> such that <span class="math inline">\(|y-\iota|&lt; r\)</span> implies that <span class="math inline">\(y\in G_\alpha\)</span>. Then for <span class="math inline">\(n\)</span> large enough <span class="math inline">\(2^{-n}\delta&lt; r\)</span> then 3 would implies <span class="math inline">\(I_n\subseteq G_\alpha\)</span> contradicting 2.</p>
+</div>
+<div class="Theorem">
+<p>[Heine-Borel] If a set <span class="math inline">\(E\subseteq \mathbb R^k\)</span>, TFAE:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(E\)</span> is closed and bounded;</li>
+<li><span class="math inline">\(E\)</span> is compact;</li>
+<li>Every infinite subset of <span class="math inline">\(E\)</span> has a limit point in <span class="math inline">\(E\)</span>.</li>
+</ol>
+</div>
+<div class="Proof">
+<ul>
+<li>Suppose 1, then <span class="math inline">\(E\subseteq I\)</span> for some <span class="math inline">\(k\)</span>-cell <span class="math inline">\(I\)</span>. Then <span class="math inline">\(E\)</span> is compact as a closed subset of compact set <span class="math inline">\(I\)</span>.</li>
+<li>2 implies 3 is a previous theorem</li>
+<li>Let us now prove 3 implying 1.
+<ul>
+<li>Suppose <span class="math inline">\(E\)</span> is not bounded, then <span class="math inline">\(E\)</span> contains distinct points <span class="math inline">\(x_n\)</span> such that <span class="math inline">\(|x_n|&gt;n\)</span>. Then <span class="math inline">\(\{x_n\}\)</span> is a set without limit point. Then 3 implies <span class="math inline">\(E\)</span> being bounded.</li>
+<li>If <span class="math inline">\(E\)</span> is not closed, then there is a point <span class="math inline">\(x_0\in\mathbb R^k\)</span> which is a limit point of <span class="math inline">\(E\)</span> but not a point of <span class="math inline">\(E\)</span>. For <span class="math inline">\(n=1,2,3,\dots\)</span>, there are points <span class="math inline">\(x_n\in E\)</span> such that <span class="math inline">\(|x_n-x_0|&lt;\frac1n\)</span>. Let <span class="math inline">\(S=\{x_n\}\)</span>. Then <span class="math inline">\(S\)</span> is infinite (for otherwise <span class="math inline">\(|x_n-x_0|\)</span> would have a constant postitive value, for infinitely many <span class="math inline">\(n\)</span>). <span class="math inline">\(S\)</span> has <span class="math inline">\(x_0\)</span> as limit point and no other limit point in <span class="math inline">\(\mathbb R^k\)</span>. For if <span class="math inline">\(y\ne x_0\)</span> then <span class="math display">\[
+\begin{aligned}
+|x_n-y|&amp;\ge|x_0-y|-|x_n-x_0|\\
+     &amp;\ge|x_0-y|-\frac1n\ge\frac12|x_0-y|
+\end{aligned}
+\]</span> for all but finitely many <span class="math inline">\(n\)</span>; this shows that <span class="math inline">\(y\)</span> is not alimit point of <span class="math inline">\(S\)</span> (otherwise there should be infintely many points in intersection by a previous theorem). Thus <span class="math inline">\(S\)</span> has no limit point in <span class="math inline">\(E\)</span>; then <span class="math inline">\(E\)</span> must be closed if 3 holds.</li>
+</ul></li>
+</ul>
+</div>
+We can now generalise a theorem proved before
+<div class="Theorem">
+<p>[Weierstrass] Every bounded infinite subset of <span class="math inline">\(\mathbb R^k\)</span> has a limit in <span class="math inline">\(\mathbb R^k\)</span>.</p>
+</div>
+<div class="Proof">
+<p>Being bounded, the set <span class="math inline">\(E\)</span> is a subset of <span class="math inline">\(k\)</span>-cell <span class="math inline">\(I\subseteq \mathbb R^k\)</span>. <span class="math inline">\(I\)</span> is compact, then <span class="math inline">\(E\)</span> has a limit point in <span class="math inline">\(I\)</span>.</p>
+</div>
+</div>
+<div id="perfect-set" class="section level2">
+<h2>Perfect set</h2>
+<div class="Theorem">
+<p>Every nonempty perfect set in <span class="math inline">\(\mathbb R^k\)</span> is uncountable.</p>
+</div>
+<div class="Proof">
+<p>Since <span class="math inline">\(P\)</span> has limit points, <span class="math inline">\(P\)</span> must be infinite. If <span class="math inline">\(P\)</span> is countable, we can enumerate <span class="math inline">\(P\)</span> by <span class="math inline">\(x_1,x_2,x_3\dots\)</span>. Let us construct a sequence <span class="math inline">\(\{V_n\}\)</span> of neighbourhoods as following:</p>
+<ul>
+<li>Let <span class="math inline">\(V_1\)</span> be arbitrary neighbourhood of <span class="math inline">\(x_1\)</span>. If <span class="math inline">\(V_1\)</span> consists of all <span class="math inline">\(y\in\mathbb R^k\)</span> such that <span class="math inline">\(|y-x_1|&lt; r\)</span>, the closure <span class="math inline">\(\bar {V_1}\)</span> is the set of all points <span class="math inline">\(y\in\mathbb R^k\)</span> such that <span class="math inline">\(|y-x_1|\le r\)</span>.</li>
+<li>Suppose <span class="math inline">\(V_n\)</span> has been constructed, so that <span class="math inline">\(V_n \cap P\)</span> is not empty. Since every point of <span class="math inline">\(P\)</span> is a limit point of <span class="math inline">\(P\)</span>. There is a neighbourhood <span class="math inline">\(V_{n+1}\)</span> such that
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\bar{V}_{n+1}\subseteq V_n\)</span></li>
+<li><span class="math inline">\(x_n\notin \bar{V}_{n+1}\)</span></li>
+<li><span class="math inline">\(V_{n+1}\cap P\)</span> is nonempty. Hence by induction we can construct a sequence of <span class="math inline">\(\{V_n\}\)</span> such that each <span class="math inline">\(V_n\cap P\)</span> is nonempty.</li>
+</ol></li>
+</ul>
+<p>Put <span class="math inline">\(K_n=\bar{V}_n\cap P\)</span>. Since <span class="math inline">\(\bar{V}_n\)</span> is closed and bounded hence compact. Then <span class="math inline">\(x_n\notin K_{n+1}\)</span>. No point of <span class="math inline">\(P\)</span> is in <span class="math inline">\(\bigcap K_n\)</span>. But <span class="math inline">\(K_n\subseteq P\)</span>. Then <span class="math inline">\(\bigcap K_n\)</span> is empty. Since each <span class="math inline">\(K_n\)</span> is nonempty and <span class="math inline">\(K_{n+1}\subseteq K_n\)</span>, this contradicts a previous corollary.</p>
+</div>
+<div class="Corollary">
+<p>Every interval is uncountable. <span class="math inline">\(\mathbb R\)</span> is uncountable.</p>
+</div>
+</div>
+<div id="summary-7" class="section level2">
+<h2>Summary</h2>
+<p>In this lecture, we are trying to learn basic concepts of topology:</p>
+<ul>
+<li>we defined what is a metric space and what is a metric;</li>
+<li>we defined the topology induced by metrics;</li>
+<li>we discussed compact set and perfect set;</li>
+<li>we generalised some theorems from <span class="math inline">\(\mathbb R^1\)</span> to higher dimensions <span class="math inline">\(\mathbb R^k\)</span>;</li>
+<li>We actually proved the uncountability of <span class="math inline">\(\mathbb R\)</span> rigorously.</li>
+</ul>
+</div>
+</div>
+<div id="function-and-continuity-lecture-9" class="section level1">
+<h1>Function and continuity (Lecture 9)</h1>
 </div>
 <div id="differentiation-lecture-10" class="section level1">
 <h1>Differentiation (Lecture 10)</h1>
