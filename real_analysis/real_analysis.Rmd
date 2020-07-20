@@ -2764,7 +2764,8 @@ Last lecture, we talked about standard topology or Euclidean topology on $\mathb
 
 <div class="Definition">
 Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces; suppose $E\subseteq X$, $f : E\to Y$ and $p$ is a limit point of $E$. We write $f(x)\to q$ as $x\to p$ or $$\lim_{x\to p} f(x)$$ if there is a point $q\in Y$ such that
-$$\forall \epsilon>0\exists\delta>0 0< d_X(x,p)\implies d_Y(f(x),q)<\epsilon$$
+$$\forall \epsilon>0\exists\delta>0 
+, 0< d_X(x,p)\implies d_Y(f(x),q)<\epsilon$$
 </div>
 
 Note that $p$ does not have to be a point of $E$.
@@ -3085,6 +3086,15 @@ Wlog, $f$ is monotonically increasing. Let $E$ be the set of discontinuities of 
 
 With every point $x\in E$ we associate a rational number $r(x)$ such that $f(x-)< r(x) < f(x+)$. Since $x_1 < x_2$ implies $f(x_1 + )\le f(x_2-)$, we can see that $r(x_1)\ne r(x_2)$. But rational numbers are countable.
 </div>
+
+## Summary
+
+In this lecture we discussed:
+
+- limit of function and continuity;
+- continuity interacting with compactness;
+- two type of discontinuities;
+- monotonic functions and their discontinuities.
 
 # Differentiation (Lecture 10)
 
