@@ -1,0 +1,63 @@
+.Theorem {
+    display: block;
+    margin: 12px 0;
+    font-style: italic;
+}
+.Theorem:before {
+    content: "Theorem.";
+    font-weight: bold;
+    font-style: normal;
+}
+.Lemma {
+    display: block;
+    margin: 12px 0;
+    font-style: italic;
+}
+.Lemma:before {
+    content: "Lemma.";
+    font-weight: bold;
+    font-style: normal;
+}
+.Proof {
+    display: block;
+    margin: 12px 0;
+    font-style: normal;
+}
+.Proof:before {
+    content: "Proof.";
+    font-style: italic;
+}
+.Proof:after {
+    content: "\25FC";
+    float:right;
+}
+.Definition {
+    display: block;
+    margin: 12px 0;
+    font-style: normal;
+}
+.Definition:before {
+    content: "Definition.";
+    font-weight: bold;
+    font-style: normal;
+}
+.Example {
+    display: block;
+    margin: 12px 0;
+    font-style: normal;
+}
+.Example:before {
+    content: "Example.";
+    font-weight: bold;
+    font-style: normal;
+}
+.Corollary {
+    display: block;
+    margin: 12px 0;
+    font-style: italic;
+}
+.Corollary:before {
+    content: "Corollary.";
+    font-weight: bold;
+    font-style: normal;
+}
