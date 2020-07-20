@@ -2457,6 +2457,10 @@ Let $(X,d)$ be a metric space. All points and sets mentioned below are understoo
 - $E$ is bounded if there is real number $M$ and a point $q\in X$ such that $\forall p\in E, d(p,q)<M$.
 - $E$ is dense in $X$ if every point of $X$ is either a limit point of $E$ or a point of $E$ (or both).
 </div>
+
+<div class="Theorem">
+</div>
+
 # Continuity continued (Lecture 9)
 
 

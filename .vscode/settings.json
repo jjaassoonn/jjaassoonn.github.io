@@ -1,0 +1,6 @@
+{
+  "emmet.includeLanguages": {
+    "Rmd": "html"
+  },
+  "emmet.triggerExpansionOnTab": true
+}
