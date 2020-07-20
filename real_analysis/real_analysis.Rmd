@@ -2871,7 +2871,7 @@ Thus assuming continuity of $f$ then continuity of $f_i$ is trivial. Conversely 
 
 <div class="Example">
 If we define $\phi_i (x): \mathbb R^k \to \mathbb R=x_i$. Then $\phi_i$ are continuous. Apply above theorem repeatedly we can show that evaluatiing every multivariable polynomial is continuous:
-$$P(x)=\sum c_{n_1\dots n_k}x_1^{n_1}\dotsx_k^{n_k}.$$
+$$P(x)=\sum c_{n_1\dots n_k}x_1^{n_1}\dots x_k^{n_k}.$$
 </div>
 
 <div class="Example">
@@ -3066,7 +3066,7 @@ For monotonically decreasing functions, analogous results hold.
 <div class="Proof">
 By hypothesis, the set of numbers $f(t)$ where $a < t < x$ is bounded above by $f(x)$. Hence a least upper bound exists, we call is $A$. Then $A\le f(x)$. We need to show $A=f(x-)$.
 
-Let $\epsilon>0$. Then by defniition of $\sup$, there is a $\delta>0$ such that $a< x-\delta < x$ and $$A-\epsilon< f(x-\delta)\le A$$ By monotonicity, for all $x-\delta< t < x$ $$f(x-\delta)\le f(t)\le A$$ Thus we have $$|f(t)-A|\le \espilon$$ for all $x-\delta < t < x$. Hence we have $f(x-)=A$.
+Let $\epsilon>0$. Then by defniition of $\sup$, there is a $\delta>0$ such that $a< x-\delta < x$ and $$A-\epsilon< f(x-\delta)\le A$$ By monotonicity, for all $x-\delta< t < x$ $$f(x-\delta)\le f(t)\le A$$ Thus we have $$|f(t)-A|\le \epsilon$$ for all $x-\delta < t < x$. Hence we have $f(x-)=A$.
 The other half use the same method mutatis mutandis.
 
 Assume $a < x < y < b$, then $$f(x+)=\inf_{x< t < b}f(t)=\inf_{x < t < y}f(t)$$ Similarly we also have $$f(y-)=\sup_{a < t < y} f(t)=\sup_{x< t < y} f(t)$$. This finishes the proof.
