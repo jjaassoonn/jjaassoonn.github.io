@@ -2798,6 +2798,294 @@ Suppose $$\lim_{x\to p} f(x)=A,\lim_{x\to p} g(x)=B$$. Then:
 If $f,g:E\to\mathbb R^k$ then 1 is true 2 becomes $\lim (f\dot g)=A\dot B$
 </div>
 
+## Continuous functions
+
+<div class="Definition">
+
+- Suppose $X$ and $Y$ are metric spaces, $E\subseteq X$ and $p\in E$ and $f$ maps $E$ into $Y$. Then $f$ is said to be continuous at $p$ if for every $\epsilon>0$ there is a $\delta$ such that for all points $x\in E$ with $d_X(x,p)<\delta$, we have $d_Y(f(x),f(p))<\epsilon$.
+- If $f$ is continuous at every point of $E$, we say $f$ is continuous on $E$.
+</div>
+
+Note that:
+
+- $f$ does not have to be defined at point $p$ for this definition to make sense.
+- If $p$ is an isolated point of $E$, then our definition implies that every function which has $E$ as domain is automatically continuous at $p$. Because no matter which $\epsilon>0$, we can always find a $\delta>0$ such that the only point in $E$ and the neighbourhood with radius $\delta$ is $p$. Then $d_Y(f(x),f(p))=0<\epsilon$.
+
+<div class="Theroem">
+If $p$ is a limit point of $E$. Then $f$ is continuous at $p$ if and only if $\lim_{x\to p} f(x)=f(p)$
+</div>
+<div class="Proof">
+This is really just rephrasing definition.
+</div>
+
+<div class="Theorem">
+Suppose $X,Y,Z$ are metric spaces with $E\subset X$, $f:E\to Y$, $g:f(E)\to Z$. Then if $f$ is continuous at a point $p\in E$ and if $g$ is continuous at the point $f(p)$, then $g\circ f$ is continuous at p.
+</div>
+<div class="Proof">
+Let $\epsilon > 0$. Since $g$ is continuous at $f(p)$, there is some $\eta>0$ such that
+$$d_Z(g(y), g(f(p))<\epsilon \textrm{if } d_Y(y,f(p))<\eta\textrm{ and }t\in f(E).$$
+
+Since $f$ is continuous at $p$, there is a $\delta>0$ such that
+$$d_Y(f(x),f(p))<\eta\textrm{ if }d_X(x,p)<\delta \textrm{ and }x\in E$$.
+
+Combine these, if $d_X(x,p)<\delta$ and $x\in E$. Then
+$$d_Z(g\circ f(x), g\circ f(p))<\epsilon.$$ This is continuity at $p$.
+</div>
+
+<div class="Theorem">
+A mapping $f:X\to Y$ is continuous if and only if $f^{-1}(V)$ is open for every open set $V$ in $Y$.
+</div>
+<div class="Proof">
+- From left to right: suppose $f$ is continuous on $X$ and $V$ is an open set in $Y$. We have to show that $f^{-1}(V)$ is an interior point of $f^{-1}(V)$. Suppose $f(p)\in V$. Then since $V$ open, there is $\epsilon > 0$ such that $y\in V$ if $d_Y(f(p),y)<\epsilon$. Since $f$ is continuous then there is $\delta>0$ such that $d_Y(f(x), f(p))<\epsilon$ if $d_X(x,p)<\delta$. Thus $x\in f^{-1}(V)$ as long as $d_X(x,p)<\delta$.
+- From right to left: Fix $p\in X$ and $\epsilon > 0$. Let $V$ be ball of radius $\epsilon$ around $f(p)$. Then $V$ is open then $f^{-1}(V)$ is open. Then there is $\delta > 0$ such that $x\in f^{-1}(V)$ as long as $d_X(p,x)<\delta$. But if $x\in f^{-1}(V)$ then $f(x)\in V$. So $d_Y(f(x),f(p))<\epsilon$
+</div>
+
+<div class="Corollary">
+A mapping $f:X\to Y$ is continuous if and only if $f^{-1}(C)$ is closed for all closed set $C$ in $Y$.
+</div>
+<div class="Proof">
+A set is closed if and only if its complement is open. But $f^{-1}(E^c)=[f^{-1}(E)]^c$
+</div>
+
+<div class="Theorem">
+Let $f$ and $g$ be continuous functions from $X \to \mathbb R$. Then $f+g$, $fg$ $f/g$ are continuous.
+</div>
+<div class="Proof">
+At isolated points, nothing to prove. Otherwise use previous theorems, easy.
+</div>
+
+<div class="Theorem">
+
+1. Let $f_1,\dots,f_k$ be a real functions on a metric space $X$, let $f:X\to \mathbb R^k$ be defined as
+$$f(x)=(f_1(x),\dots,f_k(x)).$$
+Then $f$ is continuous if and only if $f_i$ are continuous for all $i=1,\dots,k$.
+2. Thus if $f,g:X\to \mathbb R^k$ then $f+g:X\to\mathbb R^k$ and $f\dot g:X\to\mathbb R$ are all continuous.
+</div>
+<div class="Proof">
+From 1 to 2 is trivial. Just prove 1.
+Part 1 follows from this inequaly:
+$$|f_j(x)-f_j(y)|\le |f(x)-f(y)|=\sqrt{\sum_{i=1}^k |f_i(x)-f_i(y)|^2}$$
+for $j=1,\dots,k$.
+Thus assuming continuity of $f$ then continuity of $f_i$ is trivial. Conversely for any $\epsilon>0$, there is $\delta_i$ such that $d(x,y)\le \delta_i$ we have $|f_i(x)-f_i(y)|\le \frac{\epsilon^2}k$ hence $|f(x)-f(y)| \le \epsilon$.
+</div>
+
+<div class="Example">
+If we define $\phi_i (x): \mathbb R^k \to \mathbb R=x_i$. Then $\phi_i$ are continuous. Apply above theorem repeatedly we can show that evaluatiing every multivariable polynomial is continuous:
+$$P(x)=\sum c_{n_1\dots n_k}x_1^{n_1}\dotsx_k^{n_k}.$$
+</div>
+
+<div class="Example">
+Since $\left||x|-|y|\right|\le|x-y|$, we have $x\mapsto |x|$ is continuous. Hence if $f:X\to\mathbb R^k$ is continuous, $\phi(x):=|f(x)|$ is continuous.
+</div>
+
+<div class="Remark">
+Being continuous is a "local" property. In the definition the complement of $E$ never played any rule. Hence nothing of interest is lost if we just think $E$ as a metric space on its own right other than a subset of an ambient space. Similarly we think the image as a metric space on its own (with subspace topology of course). In this way we don't have to pass subsets around.
+</div>
+
+## Continuity and compactness
+
+<div class="Definition">
+A mapping $f:E\to \mathbb R^k$ is bounded if and only if there is a real number $M$ such that $|f(x)|\le M$ forall $x\in E$.
+</div>
+
+<div class="Theorem">
+Suppose $f$ is continuous mapping of compact metric space X to compact metric space Y. Then image of $f$ is compact.
+</div>
+
+<div class="Proof">
+Let $\{V_\alpha\}$ convers $f(X)$. Since $f$ is continuous, $f^{-1}(V_\alpha)$ is open and covers $X$. Hence there is a choice of finitely many indeces $\alpha_1,\dots,\alpha_n$ such that $X\subseteq f^{-1}(V_{\alpha_1})\cup\dots \cup f^{-1}(V_{\alpha_n})$. Then since $f(f^{-1}(E))\subseteq E$ So $f(X)\subseteq V_{\alpha_1}\cup\dots V_{\alpha_n}$. This is everything.
+</div>
+
+<div class="Theorem">
+If $f$ is continuous mapping from compact $X$ to $\mathbb R^k$ then image is closed and bounded. Hence $f$ is bounded.
+</div>
+<div class="Proof">
+Preivous theorem + Heine-Borel.
+</div>
+
+The following is  <span style="font-size:20px;">super important!</span> If you decided just to remember one thing from this lecture, remeber this!
+
+<div class="Theorem">[IMPORTANT]
+Suppose $f$ is continuous $X\to \mathbb R$ and $M=\sup f(X)$ and $m=\in f(X)$. Then there exists points $p,q\in X$ such that $f(p)=M$ and $f(q)=m$.
+</div>
+<div class="Proof">
+previous theorem + a theorem from last lecture.
+Recall:
+<div class="Theorem">
+Let $E$ be nonempty set of real numbers which is bounded above. Let $y=\sup E$. Then $y\in\bar E$. Hence $y\in E$ if $E$ is closed.
+</div>
+Use $E$ to be $f(X)$ which is closed and bounded. $\inf$ is similar.
+</div>
+
+<div class="Theorem">Suppose $f$ is a continuous bijection from compact $X$ to (not necessarily compact) $Y$. Then the inverse $f^{-1}:Y\to X$ is continuous
+</div>
+<div class="Proof">
+Suffices to prove that $f(V)$ is open in $Y$ for every open set $V$ in $X$.
+Fix $V$. Then $V^c$ is closed hence compact. $f(V^c)$ is compact in $Y$ hence closed in $Y$. Since $f$ bijection $f(V^c)=f(V)^c$ is closed. Then $f(V)$ is open.
+</div>
+
+<div class="Example">
+Here compactness of $X$ is really important.
+Consider $X=[0,2\pi)$ and $Y$ being the unit circle on $\mathbb R^2$ and $f(t)=(\cos t, \sin t)$. Though havn't formally defined trigonometry. Let's just work from intuition. $f$ is indeed bijection. But $X$ is not compact in $\mathbb R$. The inverse function is not continuous because $f^{-1}(1,0)=0$ but just above $(1,0)$ the preimage is close $0$ just below $(1,0)$ preimage is close to $2\pi$. Note $Y$ is compact and this still fails. $X$ being compact is the key.
+
+</div>
+
+## Uniform continuity
+
+This part is potentially confusing, I am not sure how much I would use in future lectures. If you find yourself wandering too much about the difference between uniform continuity and continuity, perhaps save this bit for later. But uniform continuity is nevertheless an important topic and should be understood fully.
+
+<div class="Definition">
+Let $f:X\to Y$ be a mapping between metric spaces. We say $f$ is uniformly continuous on $X$ if for every $\epsilon > 0$ there exists $\delta>0$ such that $d_Y(f(p),f(q))<\epsilon$ for all $p, q\in \mathbb X$ for which $d_X(p,q)<\epsilon$.
+</div>
+
+For continuity the choice of $\delta$ can be dependent on choice of $p$. But for uniform continuity $\delta$ can only dependent on $\epsilon$ and nothing else.
+Trivially, uniform continuity $\implies$ continuity but generally not vice versa unless $X$ is compact. See below.
+
+<div class="Theorem">
+Let $f$ be a continuous mapping from compact $X$ to $Y$. Then $f$ is uniformly continuous.
+</div>
+
+<div class="Proof">
+Let $\epsilon > 0$. Since $f$ is continuous, we can associate each $p\in X$ a positive number $\phi(p)$ such that
+$$q\in X, d_X(p,q)<\phi(p) \implies d_Y(f(p), f(q))<\frac\epsilon 2.$$
+Let $J(p)$ be the open neighbourhood around $p$ with radius $\frac12 \phi(p)$.
+Then $p\in J(p)$ hence the collection of all $\{J(p)\}$ forms an open cover of $X$. Hence admit a finite subcover $X\subseteq J(p_1)\cup\dots\cup J(p_n)$.
+Let 
+$$\delta=\frac12\min(\phi(p_1),\dots,\phi(p_n)).$$
+Then by finiteness $\delta > 0$. Suppose $p,q$ are points of distance less than $\delta$. Then there is an interger $m$ between $1$ and $n$ such that $p\in J(p_m)$. Hence
+$$d_X(p, p_m)\le \frac12\phi(p_m)$$
+Also,
+$$d_X(q, p_m)\le d_X(p,q)+d_X(p,p_m)<\delta+\frac12\phi(p_m)\le\phi(p_m).$$
+Then by definition of $\phi$ we have
+$$d_Y(f(p),f(q))\le d_Y(f(p),f(p_m))+d_Y(f(q),f(p_m))<\frac\epsilon2+\frac\epsilon2=\epsilon$$
+</div>
+
+However,
+<div class="Theorem">
+If $E$ is noncompact set in $\mathbb R$. Then
+
+1. there is a continuous function on $E$ that is not bounded;
+2. there is a continuous and bounded function on $E$ without maximum;
+3. If $E$ is bounded, there is a continuous function on $E$ that is not uniformly continuous.
+</div>
+
+<div class="Proof">
+
+If $E$ is bounded then $E$ is not closed. Hence there is a limit point $x_0$ of $E$ but not in $E$. Consider
+  $$f(x)=\frac1{x-x_0}$$
+This is continuous but not bounded. It is not uniformly continuous. Let $\delta>0$ be arbitrary. Choose a point $x\in E$ so that $|x-x_0|<\delta$. Let $t$ be a number close to $x_0$ we can make the difference $|f(t)-f(x)|>1$ while $|t-x|<\delta$. The detail is left as an exercise of algebraic manipulation.
+
+Consider $$g(x)=\frac1{1+(x-x_0)^2}$$ This function is bounded since $0< g(x) < 1$. supremum is $1$ but the supremum is never achieved.
+
+If $E$ is unbounded, then $f(x)=x$ is a continuous function that is not bounded and 
+$$h(x)=\frac{x^2}{1+x^2}$$ is a bounded function but supremum is $1$ and this is never attained. This finishes the proof.
+</div>
+
+## Discontinuity
+
+If $x$ is a point in the domain of the definition of the function $f$ at which $f$ is not continuous, we say that $f$ is discontinuous at $x$, or that $f$ has a discontinuity at $x$. In this part we are going to classify two types of discontinuities.
+
+<div class="Definition">[One side limit]
+Let $f$ be defined on $(a,b)$. Consider any point $x$ such that $a\le x< b$. We write
+$$f(x+)=q$$ if $f(t_n)\to q$ as $n\to\infty$ for all sequences $(t_n)$ in $(x,b)$ such that $t_n\to x$. For the definition of $f(x-)$ for $a< x\le b$, we restrict ourselves to sequences $(t_n)$ in $(a,x)$.
+</div>
+
+It is clear that any point $x$ of $(a,b)$, then $\lim_{t\to x} f(t)$ exists if and only if
+$$f(x+)=f(x-)=\lim_{t\to x} f(t)$$
+
+<div class="Definition">
+Let $f$ be defined on $(a,b)$. If $f$ is discontinuous at a point $x$ and if $f(x+)$ an $f(x-)$ exist, then $f$ is said to have a discontinuity of the first kind, or a simple discontinuity at $x$. Otherwise the discontinuity is said to be of the second kind.
+</div>
+
+There are two ways in which a function can have a simple discontinuity:
+
+- $f(x+)\ne f(x-)$ in this case the value of $f(x)$ doesn't really matter.
+- $f(x+)=f(x-)\ne f(x)$
+
+<div class="Example">
+
+1. Define:
+$$
+f(x)=\left\{
+\begin{aligned}
+& 1 & (x\textrm{ rational})\\
+& 0 & (x\textrm{ irrational})
+\end{aligned}\right.
+$$
+Then $f$ has a discontinuity of the second kind at every point $x$, since neither $f(x+)$ nor $f(x-)$ exists
+
+2. Define:
+$$
+f(x)=\left\{
+\begin{aligned}
+& x & (x\textrm{ rational}) \\
+& 0 & (x\textrm{ irrational})
+\end{aligned}
+\right.
+$$
+Then $f$ is continuous at $x=0$ and discontinuous of the second kind at every other point.
+
+3. Define:
+$$
+f(x)=\left\{
+\begin{aligned}
+& x+2 & (-3< x <-2)\\
+& -x-2 & (-2\le x<0)\\
+& x+2 & (0\le x<1)
+\end{aligned}
+\right.
+$$
+Then $f$ has a simple discontinuity at $x=0$ and is continuous at every other point of $(-3,1)$.
+
+4. Define
+$$
+f(x)=\left\{
+\begin{aligned}
+& \sin\frac1x & (x\ne 0)\\
+& 0 & (x = 0)
+\end{aligned}
+\right.
+$$
+Neither $f(0+)$ nor $f(0-)$ exists, $f$ has a discontinuity of second at $x=0$. Assume the continuity of $\sin$. Then $f(x)$ is continuous at every other points $x\ne 0$. One side limit doesn't exists because $sin(2n\pi)=0$ but $sin\left(\left(2n+\frac12\right)\pi\right)=1$ for all $n\in\mathbb Z$ or something like that. Then by picking $(t_n)=\left(\frac1{2n\pi}\right)$ and $(s_n)=\left(\frac1{\left(2n+\frac12\right)\pi}\right)$. They both tends to $0$ but result in different limits after applying $f$. Similarly for $f(0-)$.
+</div>
+
+## Monotonic functions
+
+<div class="Definition">
+Let $f:(a,b)\to\mathbb R$. We say $f$ to be monotonically increasing (decreasing resp.) on $(a,b)$ if $a< x < y< b$ implies $f(x)\le f(y)$ ($f(y) \le f(x)$ resp.).
+</div>
+
+<div class="Theorem">
+Let $f$ be monotonically increasing on $(a,b)$. Then $f(x+)$ and $f(x-)$ exists at every point of $x\in(a,b)$. More precisely,
+$$\sup_{a < t < x}f(t)=f(x-)\le f(x)\le f(x+)=\inf_{x < t < b} f(t)$$
+Futhermore, if $a < x < y < b$, then
+$$f(x+)\le f(y-)$$.
+
+For monotonically decreasing functions, analogous results hold.
+</div>
+<div class="Proof">
+By hypothesis, the set of numbers $f(t)$ where $a < t < x$ is bounded above by $f(x)$. Hence a least upper bound exists, we call is $A$. Then $A\le f(x)$. We need to show $A=f(x-)$.
+
+Let $\epsilon>0$. Then by defniition of $\sup$, there is a $\delta>0$ such that $a< x-\delta < x$ and $$A-\epsilon< f(x-\delta)\le A$$ By monotonicity, for all $x-\delta< t < x$ $$f(x-\delta)\le f(t)\le A$$ Thus we have $$|f(t)-A|\le \espilon$$ for all $x-\delta < t < x$. Hence we have $f(x-)=A$.
+The other half use the same method mutatis mutandis.
+
+Assume $a < x < y < b$, then $$f(x+)=\inf_{x< t < b}f(t)=\inf_{x < t < y}f(t)$$ Similarly we also have $$f(y-)=\sup_{a < t < y} f(t)=\sup_{x< t < y} f(t)$$. This finishes the proof.
+</div>
+
+<div class="Corollary">
+Monotonic functions have no discontinuity of the second kind.
+</div>
+
+<div class="Theorem">
+Let $f$ be monotonic on $(a,b)$. Then the set of points of $(a,b)$ at which $f$ is discontinuous is at most countable.
+</div>
+
+<div class="Proof">
+Wlog, $f$ is monotonically increasing. Let $E$ be the set of discontinuities of $f$.
+
+With every point $x\in E$ we associate a rational number $r(x)$ such that $f(x-)< r(x) < f(x+)$. Since $x_1 < x_2$ implies $f(x_1 + )\le f(x_2-)$, we can see that $r(x_1)\ne r(x_2)$. But rational numbers are countable.
+</div>
+
 # Differentiation (Lecture 10)
 
 

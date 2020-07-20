@@ -5343,6 +5343,240 @@ We can now generalise a theorem proved before
 <div class="Definition">
 <p>Let <span class="math inline">\((X,d_X)\)</span> and <span class="math inline">\((Y,d_Y)\)</span> be metric spaces; suppose <span class="math inline">\(E\subseteq X\)</span>, <span class="math inline">\(f : E\to Y\)</span> and <span class="math inline">\(p\)</span> is a limit point of <span class="math inline">\(E\)</span>. We write <span class="math inline">\(f(x)\to q\)</span> as <span class="math inline">\(x\to p\)</span> or <span class="math display">\[\lim_{x\to p} f(x)\]</span> if there is a point <span class="math inline">\(q\in Y\)</span> such that <span class="math display">\[\forall \epsilon&gt;0\exists\delta&gt;0 0&lt; d_X(x,p)\implies d_Y(f(x),q)&lt;\epsilon\]</span></p>
 </div>
+<p>Note that <span class="math inline">\(p\)</span> does not have to be a point of <span class="math inline">\(E\)</span>.</p>
+<div class="Theorem">
+<p>[Heine’s Definition] Let <span class="math inline">\(X,Y,f,p,q\)</span> be as above. Then <span class="math display">\[\lim_{x\to p}f(x)=q\]</span> iff and only if <span class="math display">\[\lim_{n\to\infty} f(p_n)=q\]</span> for every sequence <span class="math inline">\((p_n)\)</span> in <span class="math inline">\(E\)</span> such that <span class="math inline">\(p_n\ne p\)</span> and <span class="math inline">\(\lim_{n\to\infty} p_n=p\)</span>.</p>
+</div>
+<div class="Proof">
+<ul>
+<li><p>from left to right: Choose any sequence <span class="math inline">\((p_n)\)</span> with required property. Let <span class="math inline">\(\epsilon&gt;0 be given\)</span>, there is a <span class="math inline">\(\delta&gt;0\)</span> such that for all <span class="math inline">\(x\in E\)</span> and <span class="math inline">\(0 &lt; d_(x,p) &lt; \delta\)</span> we would have <span class="math inline">\(d_Y(f(x),q)&lt;\epsilon\)</span>. There is also an <span class="math inline">\(N\in\mathbb N\)</span> such that <span class="math inline">\(\forall n&gt;N\)</span> we have <span class="math inline">\(0&lt; d_X(p_n,p)&lt;\delta\)</span>. Thus for all <span class="math inline">\(n&gt;N\)</span> we have <span class="math inline">\(d_Y(f(p_n),q)&lt;\epsilon\)</span>. This is what we want.</p></li>
+<li><p>from right to left: We prove the contrapositive: assume <span class="math inline">\(\lim_{x\to p}f(x)\ne q\)</span>. Then there is some <span class="math inline">\(\epsilon&gt;0\)</span> such that for every <span class="math inline">\(\delta &gt; 0\)</span> there is some <span class="math inline">\(x\in E\)</span> such that <span class="math inline">\(0&lt; d_X(x,p) &lt; \delta\)</span> but <span class="math inline">\(d_Y(f(x),q)\ge \epsilon\)</span>. Let <span class="math inline">\(\delta_n=\frac1n\)</span>. Then we find a sequence in <span class="math inline">\(E\)</span> satisfies required properties but the limit is wrong.</p></li>
+</ul>
+</div>
+<div class="Corollary">
+<p>From above theorem and uniqueness of limit of a sequence, limit of a function is unique if exists.</p>
+</div>
+<div class="Corollary">
+<p>From the above theorem and properties of limit, immediately we have: Let <span class="math inline">\(f,g:E\to\mathbb R\)</span> Suppose <span class="math display">\[\lim_{x\to p} f(x)=A,\lim_{x\to p} g(x)=B\]</span>. Then:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\lim_{x\to p} (f+g)(x) = A + B\)</span></li>
+<li><span class="math inline">\(\lim_{x\to p} (fg)(x) = AB\)</span></li>
+<li><span class="math inline">\(\lim_{x\to p} \left(\frac f g\right)(x)=\frac A B\)</span>. Of course provided <span class="math inline">\(g\)</span> and <span class="math inline">\(B\)</span> are non-zero</li>
+</ol>
+</div>
+<div class="Remark">
+<p>If <span class="math inline">\(f,g:E\to\mathbb R^k\)</span> then 1 is true 2 becomes <span class="math inline">\(\lim (f\dot g)=A\dot B\)</span></p>
+</div>
+</div>
+<div id="continuous-functions" class="section level2">
+<h2>Continuous functions</h2>
+<div class="Definition">
+<ul>
+<li>Suppose <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are metric spaces, <span class="math inline">\(E\subseteq X\)</span> and <span class="math inline">\(p\in E\)</span> and <span class="math inline">\(f\)</span> maps <span class="math inline">\(E\)</span> into <span class="math inline">\(Y\)</span>. Then <span class="math inline">\(f\)</span> is said to be continuous at <span class="math inline">\(p\)</span> if for every <span class="math inline">\(\epsilon&gt;0\)</span> there is a <span class="math inline">\(\delta\)</span> such that for all points <span class="math inline">\(x\in E\)</span> with <span class="math inline">\(d_X(x,p)&lt;\delta\)</span>, we have <span class="math inline">\(d_Y(f(x),f(p))&lt;\epsilon\)</span>.</li>
+<li>If <span class="math inline">\(f\)</span> is continuous at every point of <span class="math inline">\(E\)</span>, we say <span class="math inline">\(f\)</span> is continuous on <span class="math inline">\(E\)</span>.</li>
+</ul>
+</div>
+<p>Note that:</p>
+<ul>
+<li><span class="math inline">\(f\)</span> does not have to be defined at point <span class="math inline">\(p\)</span> for this definition to make sense.</li>
+<li>If <span class="math inline">\(p\)</span> is an isolated point of <span class="math inline">\(E\)</span>, then our definition implies that every function which has <span class="math inline">\(E\)</span> as domain is automatically continuous at <span class="math inline">\(p\)</span>. Because no matter which <span class="math inline">\(\epsilon&gt;0\)</span>, we can always find a <span class="math inline">\(\delta&gt;0\)</span> such that the only point in <span class="math inline">\(E\)</span> and the neighbourhood with radius <span class="math inline">\(\delta\)</span> is <span class="math inline">\(p\)</span>. Then <span class="math inline">\(d_Y(f(x),f(p))=0&lt;\epsilon\)</span>.</li>
+</ul>
+<div class="Theroem">
+<p>If <span class="math inline">\(p\)</span> is a limit point of <span class="math inline">\(E\)</span>. Then <span class="math inline">\(f\)</span> is continuous at <span class="math inline">\(p\)</span> if and only if <span class="math inline">\(\lim_{x\to p} f(x)=f(p)\)</span></p>
+</div>
+<div class="Proof">
+<p>This is really just rephrasing definition.</p>
+</div>
+<div class="Theorem">
+<p>Suppose <span class="math inline">\(X,Y,Z\)</span> are metric spaces with <span class="math inline">\(E\subset X\)</span>, <span class="math inline">\(f:E\to Y\)</span>, <span class="math inline">\(g:f(E)\to Z\)</span>. Then if <span class="math inline">\(f\)</span> is continuous at a point <span class="math inline">\(p\in E\)</span> and if <span class="math inline">\(g\)</span> is continuous at the point <span class="math inline">\(f(p)\)</span>, then <span class="math inline">\(g\circ f\)</span> is continuous at p.</p>
+</div>
+<div class="Proof">
+<p>Let <span class="math inline">\(\epsilon &gt; 0\)</span>. Since <span class="math inline">\(g\)</span> is continuous at <span class="math inline">\(f(p)\)</span>, there is some <span class="math inline">\(\eta&gt;0\)</span> such that <span class="math display">\[d_Z(g(y), g(f(p))&lt;\epsilon \textrm{if } d_Y(y,f(p))&lt;\eta\textrm{ and }t\in f(E).\]</span></p>
+<p>Since <span class="math inline">\(f\)</span> is continuous at <span class="math inline">\(p\)</span>, there is a <span class="math inline">\(\delta&gt;0\)</span> such that <span class="math display">\[d_Y(f(x),f(p))&lt;\eta\textrm{ if }d_X(x,p)&lt;\delta \textrm{ and }x\in E\]</span>.</p>
+<p>Combine these, if <span class="math inline">\(d_X(x,p)&lt;\delta\)</span> and <span class="math inline">\(x\in E\)</span>. Then <span class="math display">\[d_Z(g\circ f(x), g\circ f(p))&lt;\epsilon.\]</span> This is continuity at <span class="math inline">\(p\)</span>.</p>
+</div>
+<div class="Theorem">
+<p>A mapping <span class="math inline">\(f:X\to Y\)</span> is continuous if and only if <span class="math inline">\(f^{-1}(V)\)</span> is open for every open set <span class="math inline">\(V\)</span> in <span class="math inline">\(Y\)</span>.</p>
+</div>
+<div class="Proof">
+<ul>
+<li>From left to right: suppose <span class="math inline">\(f\)</span> is continuous on <span class="math inline">\(X\)</span> and <span class="math inline">\(V\)</span> is an open set in <span class="math inline">\(Y\)</span>. We have to show that <span class="math inline">\(f^{-1}(V)\)</span> is an interior point of <span class="math inline">\(f^{-1}(V)\)</span>. Suppose <span class="math inline">\(f(p)\in V\)</span>. Then since <span class="math inline">\(V\)</span> open, there is <span class="math inline">\(\epsilon &gt; 0\)</span> such that <span class="math inline">\(y\in V\)</span> if <span class="math inline">\(d_Y(f(p),y)&lt;\epsilon\)</span>. Since <span class="math inline">\(f\)</span> is continuous then there is <span class="math inline">\(\delta&gt;0\)</span> such that <span class="math inline">\(d_Y(f(x), f(p))&lt;\epsilon\)</span> if <span class="math inline">\(d_X(x,p)&lt;\delta\)</span>. Thus <span class="math inline">\(x\in f^{-1}(V)\)</span> as long as <span class="math inline">\(d_X(x,p)&lt;\delta\)</span>.</li>
+<li>From right to left: Fix <span class="math inline">\(p\in X\)</span> and <span class="math inline">\(\epsilon &gt; 0\)</span>. Let <span class="math inline">\(V\)</span> be ball of radius <span class="math inline">\(\epsilon\)</span> around <span class="math inline">\(f(p)\)</span>. Then <span class="math inline">\(V\)</span> is open then <span class="math inline">\(f^{-1}(V)\)</span> is open. Then there is <span class="math inline">\(\delta &gt; 0\)</span> such that <span class="math inline">\(x\in f^{-1}(V)\)</span> as long as <span class="math inline">\(d_X(p,x)&lt;\delta\)</span>. But if <span class="math inline">\(x\in f^{-1}(V)\)</span> then <span class="math inline">\(f(x)\in V\)</span>. So <span class="math inline">\(d_Y(f(x),f(p))&lt;\epsilon\)</span></li>
+</ul>
+</div>
+<div class="Corollary">
+<p>A mapping <span class="math inline">\(f:X\to Y\)</span> is continuous if and only if <span class="math inline">\(f^{-1}(C)\)</span> is closed for all closed set <span class="math inline">\(C\)</span> in <span class="math inline">\(Y\)</span>.</p>
+</div>
+<div class="Proof">
+<p>A set is closed if and only if its complement is open. But <span class="math inline">\(f^{-1}(E^c)=[f^{-1}(E)]^c\)</span></p>
+</div>
+<div class="Theorem">
+<p>Let <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> be continuous functions from <span class="math inline">\(X \to \mathbb R\)</span>. Then <span class="math inline">\(f+g\)</span>, <span class="math inline">\(fg\)</span> <span class="math inline">\(f/g\)</span> are continuous.</p>
+</div>
+<div class="Proof">
+<p>At isolated points, nothing to prove. Otherwise use previous theorems, easy.</p>
+</div>
+<div class="Theorem">
+<ol style="list-style-type: decimal">
+<li>Let <span class="math inline">\(f_1,\dots,f_k\)</span> be a real functions on a metric space <span class="math inline">\(X\)</span>, let <span class="math inline">\(f:X\to \mathbb R^k\)</span> be defined as <span class="math display">\[f(x)=(f_1(x),\dots,f_k(x)).\]</span> Then <span class="math inline">\(f\)</span> is continuous if and only if <span class="math inline">\(f_i\)</span> are continuous for all <span class="math inline">\(i=1,\dots,k\)</span>.</li>
+<li>Thus if <span class="math inline">\(f,g:X\to \mathbb R^k\)</span> then <span class="math inline">\(f+g:X\to\mathbb R^k\)</span> and <span class="math inline">\(f\dot g:X\to\mathbb R\)</span> are all continuous.</li>
+</ol>
+</div>
+<div class="Proof">
+<p>From 1 to 2 is trivial. Just prove 1. Part 1 follows from this inequaly: <span class="math display">\[|f_j(x)-f_j(y)|\le |f(x)-f(y)|=\sqrt{\sum_{i=1}^k |f_i(x)-f_i(y)|^2}\]</span> for <span class="math inline">\(j=1,\dots,k\)</span>. Thus assuming continuity of <span class="math inline">\(f\)</span> then continuity of <span class="math inline">\(f_i\)</span> is trivial. Conversely for any <span class="math inline">\(\epsilon&gt;0\)</span>, there is <span class="math inline">\(\delta_i\)</span> such that <span class="math inline">\(d(x,y)\le \delta_i\)</span> we have <span class="math inline">\(|f_i(x)-f_i(y)|\le \frac{\epsilon^2}k\)</span> hence <span class="math inline">\(|f(x)-f(y)| \le \epsilon\)</span>.</p>
+</div>
+<div class="Example">
+<p>If we define <span class="math inline">\(\phi_i (x): \mathbb R^k \to \mathbb R=x_i\)</span>. Then <span class="math inline">\(\phi_i\)</span> are continuous. Apply above theorem repeatedly we can show that evaluatiing every multivariable polynomial is continuous: <span class="math display">\[P(x)=\sum c_{n_1\dots n_k}x_1^{n_1}\dotsx_k^{n_k}.\]</span></p>
+</div>
+<div class="Example">
+<p>Since <span class="math inline">\(\left||x|-|y|\right|\le|x-y|\)</span>, we have <span class="math inline">\(x\mapsto |x|\)</span> is continuous. Hence if <span class="math inline">\(f:X\to\mathbb R^k\)</span> is continuous, <span class="math inline">\(\phi(x):=|f(x)|\)</span> is continuous.</p>
+</div>
+<div class="Remark">
+<p>Being continuous is a “local” property. In the definition the complement of <span class="math inline">\(E\)</span> never played any rule. Hence nothing of interest is lost if we just think <span class="math inline">\(E\)</span> as a metric space on its own right other than a subset of an ambient space. Similarly we think the image as a metric space on its own (with subspace topology of course). In this way we don’t have to pass subsets around.</p>
+</div>
+</div>
+<div id="continuity-and-compactness" class="section level2">
+<h2>Continuity and compactness</h2>
+<div class="Definition">
+<p>A mapping <span class="math inline">\(f:E\to \mathbb R^k\)</span> is bounded if and only if there is a real number <span class="math inline">\(M\)</span> such that <span class="math inline">\(|f(x)|\le M\)</span> forall <span class="math inline">\(x\in E\)</span>.</p>
+</div>
+<div class="Theorem">
+<p>Suppose <span class="math inline">\(f\)</span> is continuous mapping of compact metric space X to compact metric space Y. Then image of <span class="math inline">\(f\)</span> is compact.</p>
+</div>
+<div class="Proof">
+<p>Let <span class="math inline">\(\{V_\alpha\}\)</span> convers <span class="math inline">\(f(X)\)</span>. Since <span class="math inline">\(f\)</span> is continuous, <span class="math inline">\(f^{-1}(V_\alpha)\)</span> is open and covers <span class="math inline">\(X\)</span>. Hence there is a choice of finitely many indeces <span class="math inline">\(\alpha_1,\dots,\alpha_n\)</span> such that <span class="math inline">\(X\subseteq f^{-1}(V_{\alpha_1})\cup\dots \cup f^{-1}(V_{\alpha_n})\)</span>. Then since <span class="math inline">\(f(f^{-1}(E))\subseteq E\)</span> So <span class="math inline">\(f(X)\subseteq V_{\alpha_1}\cup\dots V_{\alpha_n}\)</span>. This is everything.</p>
+</div>
+<div class="Theorem">
+<p>If <span class="math inline">\(f\)</span> is continuous mapping from compact <span class="math inline">\(X\)</span> to <span class="math inline">\(\mathbb R^k\)</span> then image is closed and bounded. Hence <span class="math inline">\(f\)</span> is bounded.</p>
+</div>
+<div class="Proof">
+<p>Preivous theorem + Heine-Borel.</p>
+</div>
+<p>The following is <span style="font-size:20px;">super important!</span> If you decided just to remember one thing from this lecture, remeber this!</p>
+<div class="Theorem">
+<p>[IMPORTANT] Suppose <span class="math inline">\(f\)</span> is continuous <span class="math inline">\(X\to \mathbb R\)</span> and <span class="math inline">\(M=\sup f(X)\)</span> and <span class="math inline">\(m=\in f(X)\)</span>. Then there exists points <span class="math inline">\(p,q\in X\)</span> such that <span class="math inline">\(f(p)=M\)</span> and <span class="math inline">\(f(q)=m\)</span>.</p>
+</div>
+<div class="Proof">
+previous theorem + a theorem from last lecture. Recall:
+<div class="Theorem">
+<p>Let <span class="math inline">\(E\)</span> be nonempty set of real numbers which is bounded above. Let <span class="math inline">\(y=\sup E\)</span>. Then <span class="math inline">\(y\in\bar E\)</span>. Hence <span class="math inline">\(y\in E\)</span> if <span class="math inline">\(E\)</span> is closed.</p>
+</div>
+<p>Use <span class="math inline">\(E\)</span> to be <span class="math inline">\(f(X)\)</span> which is closed and bounded. <span class="math inline">\(\inf\)</span> is similar.</p>
+</div>
+<div class="Theorem">
+<p>Suppose <span class="math inline">\(f\)</span> is a continuous bijection from compact <span class="math inline">\(X\)</span> to (not necessarily compact) <span class="math inline">\(Y\)</span>. Then the inverse <span class="math inline">\(f^{-1}:Y\to X\)</span> is continuous</p>
+</div>
+<div class="Proof">
+<p>Suffices to prove that <span class="math inline">\(f(V)\)</span> is open in <span class="math inline">\(Y\)</span> for every open set <span class="math inline">\(V\)</span> in <span class="math inline">\(X\)</span>. Fix <span class="math inline">\(V\)</span>. Then <span class="math inline">\(V^c\)</span> is closed hence compact. <span class="math inline">\(f(V^c)\)</span> is compact in <span class="math inline">\(Y\)</span> hence closed in <span class="math inline">\(Y\)</span>. Since <span class="math inline">\(f\)</span> bijection <span class="math inline">\(f(V^c)=f(V)^c\)</span> is closed. Then <span class="math inline">\(f(V)\)</span> is open.</p>
+</div>
+<div class="Example">
+<p>Here compactness of <span class="math inline">\(X\)</span> is really important. Consider <span class="math inline">\(X=[0,2\pi)\)</span> and <span class="math inline">\(Y\)</span> being the unit circle on <span class="math inline">\(\mathbb R^2\)</span> and <span class="math inline">\(f(t)=(\cos t, \sin t)\)</span>. Though havn’t formally defined trigonometry. Let’s just work from intuition. <span class="math inline">\(f\)</span> is indeed bijection. But <span class="math inline">\(X\)</span> is not compact in <span class="math inline">\(\mathbb R\)</span>. The inverse function is not continuous because <span class="math inline">\(f^{-1}(1,0)=0\)</span> but just above <span class="math inline">\((1,0)\)</span> the preimage is close <span class="math inline">\(0\)</span> just below <span class="math inline">\((1,0)\)</span> preimage is close to <span class="math inline">\(2\pi\)</span>. Note <span class="math inline">\(Y\)</span> is compact and this still fails. <span class="math inline">\(X\)</span> being compact is the key.</p>
+</div>
+</div>
+<div id="uniform-continuity" class="section level2">
+<h2>Uniform continuity</h2>
+<p>This part is potentially confusing, I am not sure how much I would use in future lectures. If you find yourself wandering too much about the difference between uniform continuity and continuity, perhaps save this bit for later. But uniform continuity is nevertheless an important topic and should be understood fully.</p>
+<div class="Definition">
+<p>Let <span class="math inline">\(f:X\to Y\)</span> be a mapping between metric spaces. We say <span class="math inline">\(f\)</span> is uniformly continuous on <span class="math inline">\(X\)</span> if for every <span class="math inline">\(\epsilon &gt; 0\)</span> there exists <span class="math inline">\(\delta&gt;0\)</span> such that <span class="math inline">\(d_Y(f(p),f(q))&lt;\epsilon\)</span> for all <span class="math inline">\(p, q\in \mathbb X\)</span> for which <span class="math inline">\(d_X(p,q)&lt;\epsilon\)</span>.</p>
+</div>
+<p>For continuity the choice of <span class="math inline">\(\delta\)</span> can be dependent on choice of <span class="math inline">\(p\)</span>. But for uniform continuity <span class="math inline">\(\delta\)</span> can only dependent on <span class="math inline">\(\epsilon\)</span> and nothing else. Trivially, uniform continuity <span class="math inline">\(\implies\)</span> continuity but generally not vice versa unless <span class="math inline">\(X\)</span> is compact. See below.</p>
+<div class="Theorem">
+<p>Let <span class="math inline">\(f\)</span> be a continuous mapping from compact <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span>. Then <span class="math inline">\(f\)</span> is uniformly continuous.</p>
+</div>
+<div class="Proof">
+<p>Let <span class="math inline">\(\epsilon &gt; 0\)</span>. Since <span class="math inline">\(f\)</span> is continuous, we can associate each <span class="math inline">\(p\in X\)</span> a positive number <span class="math inline">\(\phi(p)\)</span> such that <span class="math display">\[q\in X, d_X(p,q)&lt;\phi(p) \implies d_Y(f(p), f(q))&lt;\frac\epsilon 2.\]</span> Let <span class="math inline">\(J(p)\)</span> be the open neighbourhood around <span class="math inline">\(p\)</span> with radius <span class="math inline">\(\frac12 \phi(p)\)</span>. Then <span class="math inline">\(p\in J(p)\)</span> hence the collection of all <span class="math inline">\(\{J(p)\}\)</span> forms an open cover of <span class="math inline">\(X\)</span>. Hence admit a finite subcover <span class="math inline">\(X\subseteq J(p_1)\cup\dots\cup J(p_n)\)</span>. Let <span class="math display">\[\delta=\frac12\min(\phi(p_1),\dots,\phi(p_n)).\]</span> Then by finiteness <span class="math inline">\(\delta &gt; 0\)</span>. Suppose <span class="math inline">\(p,q\)</span> are points of distance less than <span class="math inline">\(\delta\)</span>. Then there is an interger <span class="math inline">\(m\)</span> between <span class="math inline">\(1\)</span> and <span class="math inline">\(n\)</span> such that <span class="math inline">\(p\in J(p_m)\)</span>. Hence <span class="math display">\[d_X(p, p_m)\le \frac12\phi(p_m)\]</span> Also, <span class="math display">\[d_X(q, p_m)\le d_X(p,q)+d_X(p,p_m)&lt;\delta+\frac12\phi(p_m)\le\phi(p_m).\]</span> Then by definition of <span class="math inline">\(\phi\)</span> we have <span class="math display">\[d_Y(f(p),f(q))\le d_Y(f(p),f(p_m))+d_Y(f(q),f(p_m))&lt;\frac\epsilon2+\frac\epsilon2=\epsilon\]</span></p>
+</div>
+However,
+<div class="Theorem">
+<p>If <span class="math inline">\(E\)</span> is noncompact set in <span class="math inline">\(\mathbb R\)</span>. Then</p>
+<ol style="list-style-type: decimal">
+<li>there is a continuous function on <span class="math inline">\(E\)</span> that is not bounded;</li>
+<li>there is a continuous and bounded function on <span class="math inline">\(E\)</span> without maximum;</li>
+<li>If <span class="math inline">\(E\)</span> is bounded, there is a continuous function on <span class="math inline">\(E\)</span> that is not uniformly continuous.</li>
+</ol>
+</div>
+<div class="Proof">
+<p>If <span class="math inline">\(E\)</span> is bounded then <span class="math inline">\(E\)</span> is not closed. Hence there is a limit point <span class="math inline">\(x_0\)</span> of <span class="math inline">\(E\)</span> but not in <span class="math inline">\(E\)</span>. Consider <span class="math display">\[f(x)=\frac1{x-x_0}\]</span> This is continuous but not bounded. It is not uniformly continuous. Let <span class="math inline">\(\delta&gt;0\)</span> be arbitrary. Choose a point <span class="math inline">\(x\in E\)</span> so that <span class="math inline">\(|x-x_0|&lt;\delta\)</span>. Let <span class="math inline">\(t\)</span> be a number close to <span class="math inline">\(x_0\)</span> we can make the difference <span class="math inline">\(|f(t)-f(x)|&gt;1\)</span> while <span class="math inline">\(|t-x|&lt;\delta\)</span>. The detail is left as an exercise of algebraic manipulation.</p>
+<p>Consider <span class="math display">\[g(x)=\frac1{1+(x-x_0)^2}\]</span> This function is bounded since <span class="math inline">\(0&lt; g(x) &lt; 1\)</span>. supremum is <span class="math inline">\(1\)</span> but the supremum is never achieved.</p>
+<p>If <span class="math inline">\(E\)</span> is unbounded, then <span class="math inline">\(f(x)=x\)</span> is a continuous function that is not bounded and <span class="math display">\[h(x)=\frac{x^2}{1+x^2}\]</span> is a bounded function but supremum is <span class="math inline">\(1\)</span> and this is never attained. This finishes the proof.</p>
+</div>
+</div>
+<div id="discontinuity" class="section level2">
+<h2>Discontinuity</h2>
+<p>If <span class="math inline">\(x\)</span> is a point in the domain of the definition of the function <span class="math inline">\(f\)</span> at which <span class="math inline">\(f\)</span> is not continuous, we say that <span class="math inline">\(f\)</span> is discontinuous at <span class="math inline">\(x\)</span>, or that <span class="math inline">\(f\)</span> has a discontinuity at <span class="math inline">\(x\)</span>. In this part we are going to classify two types of discontinuities.</p>
+<div class="Definition">
+<p>[One side limit] Let <span class="math inline">\(f\)</span> be defined on <span class="math inline">\((a,b)\)</span>. Consider any point <span class="math inline">\(x\)</span> such that <span class="math inline">\(a\le x&lt; b\)</span>. We write <span class="math display">\[f(x+)=q\]</span> if <span class="math inline">\(f(t_n)\to q\)</span> as <span class="math inline">\(n\to\infty\)</span> for all sequences <span class="math inline">\((t_n)\)</span> in <span class="math inline">\((x,b)\)</span> such that <span class="math inline">\(t_n\to x\)</span>. For the definition of <span class="math inline">\(f(x-)\)</span> for <span class="math inline">\(a&lt; x\le b\)</span>, we restrict ourselves to sequences <span class="math inline">\((t_n)\)</span> in <span class="math inline">\((a,x)\)</span>.</p>
+</div>
+<p>It is clear that any point <span class="math inline">\(x\)</span> of <span class="math inline">\((a,b)\)</span>, then <span class="math inline">\(\lim_{t\to x} f(t)\)</span> exists if and only if <span class="math display">\[f(x+)=f(x-)=\lim_{t\to x} f(t)\]</span></p>
+<div class="Definition">
+<p>Let <span class="math inline">\(f\)</span> be defined on <span class="math inline">\((a,b)\)</span>. If <span class="math inline">\(f\)</span> is discontinuous at a point <span class="math inline">\(x\)</span> and if <span class="math inline">\(f(x+)\)</span> an <span class="math inline">\(f(x-)\)</span> exist, then <span class="math inline">\(f\)</span> is said to have a discontinuity of the first kind, or a simple discontinuity at <span class="math inline">\(x\)</span>. Otherwise the discontinuity is said to be of the second kind.</p>
+</div>
+<p>There are two ways in which a function can have a simple discontinuity:</p>
+<ul>
+<li><span class="math inline">\(f(x+)\ne f(x-)\)</span> in this case the value of <span class="math inline">\(f(x)\)</span> doesn’t really matter.</li>
+<li><span class="math inline">\(f(x+)=f(x-)\ne f(x)\)</span></li>
+</ul>
+<div class="Example">
+<ol style="list-style-type: decimal">
+<li><p>Define: <span class="math display">\[
+f(x)=\left\{
+\begin{aligned}
+&amp; 1 &amp; (x\textrm{ rational})\\
+&amp; 0 &amp; (x\textrm{ irrational})
+\end{aligned}\right.
+\]</span> Then <span class="math inline">\(f\)</span> has a discontinuity of the second kind at every point <span class="math inline">\(x\)</span>, since neither <span class="math inline">\(f(x+)\)</span> nor <span class="math inline">\(f(x-)\)</span> exists</p></li>
+<li><p>Define: <span class="math display">\[
+f(x)=\left\{
+\begin{aligned}
+&amp; x &amp; (x\textrm{ rational}) \\
+&amp; 0 &amp; (x\textrm{ irrational})
+\end{aligned}
+\right.
+\]</span> Then <span class="math inline">\(f\)</span> is continuous at <span class="math inline">\(x=0\)</span> and discontinuous of the second kind at every other point.</p></li>
+<li><p>Define: <span class="math display">\[
+f(x)=\left\{
+\begin{aligned}
+&amp; x+2 &amp; (-3&lt; x &lt;-2)\\
+&amp; -x-2 &amp; (-2\le x&lt;0)\\
+&amp; x+2 &amp; (0\le x&lt;1)
+\end{aligned}
+\right.
+\]</span> Then <span class="math inline">\(f\)</span> has a simple discontinuity at <span class="math inline">\(x=0\)</span> and is continuous at every other point of <span class="math inline">\((-3,1)\)</span>.</p></li>
+<li><p>Define <span class="math display">\[
+f(x)=\left\{
+\begin{aligned}
+&amp; \sin\frac1x &amp; (x\ne 0)\\
+&amp; 0 &amp; (x = 0)
+\end{aligned}
+\right.
+\]</span> Neither <span class="math inline">\(f(0+)\)</span> nor <span class="math inline">\(f(0-)\)</span> exists, <span class="math inline">\(f\)</span> has a discontinuity of second at <span class="math inline">\(x=0\)</span>. Assume the continuity of <span class="math inline">\(\sin\)</span>. Then <span class="math inline">\(f(x)\)</span> is continuous at every other points <span class="math inline">\(x\ne 0\)</span>. One side limit doesn’t exists because <span class="math inline">\(sin(2n\pi)=0\)</span> but <span class="math inline">\(sin\left(\left(2n+\frac12\right)\pi\right)=1\)</span> for all <span class="math inline">\(n\in\mathbb Z\)</span> or something like that. Then by picking <span class="math inline">\((t_n)=\left(\frac1{2n\pi}\right)\)</span> and <span class="math inline">\((s_n)=\left(\frac1{\left(2n+\frac12\right)\pi}\right)\)</span>. They both tends to <span class="math inline">\(0\)</span> but result in different limits after applying <span class="math inline">\(f\)</span>. Similarly for <span class="math inline">\(f(0-)\)</span>.</p></li>
+</ol>
+</div>
+</div>
+<div id="monotonic-functions" class="section level2">
+<h2>Monotonic functions</h2>
+<div class="Definition">
+<p>Let <span class="math inline">\(f:(a,b)\to\mathbb R\)</span>. We say <span class="math inline">\(f\)</span> to be monotonically increasing (decreasing resp.) on <span class="math inline">\((a,b)\)</span> if <span class="math inline">\(a&lt; x &lt; y&lt; b\)</span> implies <span class="math inline">\(f(x)\le f(y)\)</span> (<span class="math inline">\(f(y) \le f(x)\)</span> resp.).</p>
+</div>
+<div class="Theorem">
+<p>Let <span class="math inline">\(f\)</span> be monotonically increasing on <span class="math inline">\((a,b)\)</span>. Then <span class="math inline">\(f(x+)\)</span> and <span class="math inline">\(f(x-)\)</span> exists at every point of <span class="math inline">\(x\in(a,b)\)</span>. More precisely, <span class="math display">\[\sup_{a &lt; t &lt; x}f(t)=f(x-)\le f(x)\le f(x+)=\inf_{x &lt; t &lt; b} f(t)\]</span> Futhermore, if <span class="math inline">\(a &lt; x &lt; y &lt; b\)</span>, then <span class="math display">\[f(x+)\le f(y-)\]</span>.</p>
+<p>For monotonically decreasing functions, analogous results hold.</p>
+</div>
+<div class="Proof">
+<p>By hypothesis, the set of numbers <span class="math inline">\(f(t)\)</span> where <span class="math inline">\(a &lt; t &lt; x\)</span> is bounded above by <span class="math inline">\(f(x)\)</span>. Hence a least upper bound exists, we call is <span class="math inline">\(A\)</span>. Then <span class="math inline">\(A\le f(x)\)</span>. We need to show <span class="math inline">\(A=f(x-)\)</span>.</p>
+<p>Let <span class="math inline">\(\epsilon&gt;0\)</span>. Then by defniition of <span class="math inline">\(\sup\)</span>, there is a <span class="math inline">\(\delta&gt;0\)</span> such that <span class="math inline">\(a&lt; x-\delta &lt; x\)</span> and <span class="math display">\[A-\epsilon&lt; f(x-\delta)\le A\]</span> By monotonicity, for all <span class="math inline">\(x-\delta&lt; t &lt; x\)</span> <span class="math display">\[f(x-\delta)\le f(t)\le A\]</span> Thus we have <span class="math display">\[|f(t)-A|\le \espilon\]</span> for all <span class="math inline">\(x-\delta &lt; t &lt; x\)</span>. Hence we have <span class="math inline">\(f(x-)=A\)</span>. The other half use the same method mutatis mutandis.</p>
+<p>Assume <span class="math inline">\(a &lt; x &lt; y &lt; b\)</span>, then <span class="math display">\[f(x+)=\inf_{x&lt; t &lt; b}f(t)=\inf_{x &lt; t &lt; y}f(t)\]</span> Similarly we also have <span class="math display">\[f(y-)=\sup_{a &lt; t &lt; y} f(t)=\sup_{x&lt; t &lt; y} f(t)\]</span>. This finishes the proof.</p>
+</div>
+<div class="Corollary">
+<p>Monotonic functions have no discontinuity of the second kind.</p>
+</div>
+<div class="Theorem">
+<p>Let <span class="math inline">\(f\)</span> be monotonic on <span class="math inline">\((a,b)\)</span>. Then the set of points of <span class="math inline">\((a,b)\)</span> at which <span class="math inline">\(f\)</span> is discontinuous is at most countable.</p>
+</div>
+<div class="Proof">
+<p>Wlog, <span class="math inline">\(f\)</span> is monotonically increasing. Let <span class="math inline">\(E\)</span> be the set of discontinuities of <span class="math inline">\(f\)</span>.</p>
+<p>With every point <span class="math inline">\(x\in E\)</span> we associate a rational number <span class="math inline">\(r(x)\)</span> such that <span class="math inline">\(f(x-)&lt; r(x) &lt; f(x+)\)</span>. Since <span class="math inline">\(x_1 &lt; x_2\)</span> implies <span class="math inline">\(f(x_1 + )\le f(x_2-)\)</span>, we can see that <span class="math inline">\(r(x_1)\ne r(x_2)\)</span>. But rational numbers are countable.</p>
+</div>
 </div>
 </div>
 <div id="differentiation-lecture-10" class="section level1">
