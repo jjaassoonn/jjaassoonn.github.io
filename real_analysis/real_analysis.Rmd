@@ -3098,31 +3098,365 @@ In this lecture we discussed:
 
 # Differentiation (Lecture 10)
 
+Last time we discussed notion of continuity, this time we shall focus on differentiability. Let us consider the function $x\mapsto |x|$. This functoin is continuous at $x=0$, however it has a sharp corner at $x=0$. In this lecture we will see in what sense this corner is troublesome.
 
+## Definition and basic properties
 
-# Mean value theorem amongst other similar flavoured theorem (Lecture 11)
+<div class="Definition">
+Let $f : [a,b]\to\mathbb R$. For any $x\in[a,b]$, we consider the quotient
+$$
+\phi(t)=\frac{f(t)-f(x)}{t-x}
+$$
+for $t\in(a,b)$ and $t\ne x$.
+Define
+$$
+f'(x)=\lim_{t\to x}\phi(t)
+$$
 
-# Taylor Expansion (Lecture 12)
+provided the limit exists.
+</div>
 
+We thus associate the function $f$ with another function $f'$ whose domain is the set of points $x$ at which the limit exists. $f'$ is called the derivative of $f$.
 
-# exponentiation and logarithm (Lecture 13)
+If $f'$ is defined at a point $x$. We say that $f$ is differentiable at $x$. If $f'$ is defined everywhere on a set $E\subseteq[a,b]$, we say that $f$ is differentiable on $E$. We can consider one sided limit to define one sided derivative at end points $a$ and $b$. But we wont discuss it in detail.
 
+<div class="Theorem">
+Let $f:[a,b]\to\mathbb R$, then $f$ is differentiable at $x\in[a,b]$, then $f$ is continuous at $x$.
+</div>
+<div class="Proof">
+As $t\to x$,
+$$
+f(t)-f(x)=\frac{f(t)-f(x)}{t-x}(t-x)
+$$
+will approach $f'(x)\cdot 0 = 0$.
+</div>
 
-# sine and cosine (Lecture 14)
+The converse is not true, in fact there exists function continuous every but not differentiable anywhere.
 
+<div class="Theorem">
+Suppose $f$ and $g$ are defined on $[a,b]$ and differentiable at $x\in [a,b]$. Then $f+g$, $fg$ and $\frac{f}{g}$ are differentiable at $x$ with
 
-# Riemann integral I (Lecture 15)
+- $(f+g)'(x)=f'(x)+g'(x)$;
+- $(fg)'(x) = f'(x)g(x) + f(x)g'(x)$;
+- $\left(\frac{f}{g}\right)'(x)=\frac{g(x)f'(x)-g'(x)f(x)}{g^2(x)}$ (Assuming $g(x)\ne 0$).
 
-# Riemann integral II (Lecture 16)
+</div>
 
-# integral and differentiation (Lecture 17)
+<div class="Proof">
 
-# examples of Reimann integral (Lecture 18)
+- Clear
+- Write $h=fg$. Then
+$$
+h(t)-h(x)=f(t)[g(t)-g(x)]+g(x)[f(t)-f(x)]
+$$
+Divide by $t-x$, since $f$ is continuous at $x$, $f(t)\to f(x)$ as $t\to x$. The result follows.
+- Write $h=\frac f g$, then
+$$
+\frac{h(t)-h(x)}{t-x}=\frac{1}{g(t)g(x)}\left[g(x)\frac{f(t)-f(x)}{t-x}-f(x)\frac{g(t)-g(x)}{t-x} \right]
+$$
+by continuity of $f$ and $g$ and results from previous lecture, the result follows.
 
-# improper Integral and series (Lecture 19)
+</div>
 
-# Application of integral (Lecture 20)
+<div class="Example">
 
+- Clearly, constant functions are differentiable and the derivative is 0.
+- If $f(x)=x$, then $f'(x)=1$.
+- If $g(x)=x^2=f(x)^2$, then $g'(x)=f'(x)f(x)+f(x)f'(x)=2f(x)=2x$
+- By induction suppose the derivative of $g_n(x)=x^n$ is $g_n'(x)=nx^{n-1}$. Then $g_{n+1}(x)=x^{n+1}=g_n{x}f(x)$, the derivative will be $g_n'(x)f(x)+g_n(x)f'(x)=nx^{n-1}x+x^n=(n+1)x^n$.
+- Hence for all $n\in\mathbb N$, we have the derivative of $x\mapsto x^n$ is $x\mapsto nx^{n-1}$.
+- Using first and second part of previous theorem, we know every polynomial is differentiable. Using the third part, we know that every quotient of polynomial is differentiable except for finite points where the denominator is zero.
+
+</div>
+
+<div class="Theorem">[Chain rule]
+Suppose $f$ is continuous on $[a,b]$, $f'(x)$ exists at some point $x\in[a,b]$, $g$ is defined on an interval $I$ which contains the range of $f$, and $g$ is differentiable at the point $f(x)$. Let us write $h(t)=g(f(t))$. Then $h$ is differentiable at $x$ and
+
+$$
+h'(x)=g'(f(x))f'(x)
+$$
+
+</div>
+
+<div class="Proof">
+Write $y=f(x)$. Then by definition:
+$$
+f(t)-f(x)=(t-x)[f'(x)+u(t)]\\
+g(s)-g(y)=(s-y)[g'(y)+v(s)]
+$$
+for some $u$ and $v$ such that $u(t)\to 0$ as $t\to x$ and $v(s)\to 0$ as $s\to y$. Let $s=f(t)$, we have
+$$
+h(t)-h(x)=g(f(t))-g(f(x))\\
+=[f(t)-f(x)][g'(y)+v(s)]\\
+=(t-x)[f'(x)+u(t)][g'(y)+v(s)]
+$$
+
+in another word, for $t\ne x$:
+$$
+\frac{h(t)-h(x)}{t-x}=[g'(y)+v(s)][f'(x)+u(t)]
+$$
+As $t\to x$, we have $s\to y$ by continuity of $f$. Hence rhs approaches $g'(y)f'(x)$.
+
+This is exactly what we want.
+
+</div>
+
+Chain rule is of vital importance, one should practice it a lot.
+
+<div class="Example">
+
+- Define $f$ to be
+$$
+f(x)=\left\{
+\begin{aligned}
+  & x\sin{\frac1 x} & (x\ne 0)\\
+  & 0 & (x = 0)
+\end{aligned}
+\right.
+$$
+Take it for granted that $\sin$ has $\cos$ as its derivative for now. Let us calculate derivative of $f$ for $x\ne 0$, we can see
+$$
+f'(x)=\sin{\frac1 x}-\frac{1}{x}\cos{\frac1x}
+$$
+
+However at $x=0$, we cannot use any of the theorem since $\frac 1 x$ is not defined at $0$. Let us work harder: for $t\ne 0$,
+$$
+\frac{f(t)-f(0)}{t-0}=\sin{\frac 1t}
+$$
+. As $t\to 0$, this does not attain any limit. Hence $f'$ is not defined at $0$.
+
+- Let $f$ be defined as
+$$
+f(x)=\left\{
+\begin{aligned}
+&x^2\sin{\frac1x}&(x\ne 0)\\
+&0&(x=0)
+\end{aligned}
+\right.
+$$
+for $x\ne 0$, the theorem does everything for us:
+$$
+f'(x)=2x\sin{\frac1x}-\cos{\frac1x} & (x\ne 0)
+$$
+At $x=0$, let us work harder:
+$$
+0\le\left|\frac{f(t)-f(0)}{t-0}\right|=\left|t\sin{\frac1t}\right|\le|t|
+$$
+Thus as $t\to 0$, we see $f'(0)=0$. In this case $f$ is differentiable at all points $x$. But its derivative is not continuous since $\cos{\frac1x}$ does not have a limit. (For reason, similar to $\sin{\frac1x}$)
+</div>
+
+## Mean value theorems and other theorems
+
+<div class="Definition">
+Let $f:X\to\mathbb R$ where $X$ is a metric space. We say $f$ has a local maximum at a point $p$ if ther exists some $\delta>0$ such that $f(q)\le f(p)$ for all $q\in X$ with $d(p,q)<\delta$.
+
+Local minimum is similar.
+
+(draw a little picture to demonstrate)
+</div>
+
+<div class="Theorem">[Rolle]
+Let $f:[a,b]\to\mathbb R$. If $x\in(a,b)$ is a local maximum, if $f'(x)$ exists then $f'(x)=0$.
+</div>
+<div class="Proof">
+Use the $\delta$ from definition of local maxima so that $a< x-\delta< x< x+\delta< b$. If $x-\delta< t < x$, then
+$$
+\frac{f(t)-f(x)}{t-x}\ge 0
+$$
+Let $t\to x$, we see $f'(x)\ge 0$.
+If $x< t< x+\delta$, then
+$$
+\frac{f(t)-f(x)}{t-x}\le 0
+$$
+Hence $f'(x)\le 0$. Together: $f'(x)=0$
+</div>
+<div class="Corollary">
+For local minimum $x$, if $f'(x)$ exists, it is $0$
+</div>
+<div class="Proof">
+Apply the previous theorem to $g=-f$.
+</div>
+
+<div class="Theorem">[Cauchy]
+If $f$ and $g$ are continuous real functions on $[a,b]$ which are differentiable in $(a,b)$ then there is a point $x\in(a,b)$ at which
+$$
+[f(b)-f(a)]g'(x)=[g(b)-g(a)]f'(x)
+$$
+Note that, we do not require differentiability at $a$ and $b$.
+</div>
+<div class="Proof">
+Let us consider $h:[a,b]\to\mathbb R$
+$$
+h(t)=[f(b)-f(a)]g(t)-[g(b)-g(a)]f(t)
+$$
+We can see $h$ is continuous on $[a,b]$ and differentiable on $(a,b)$ and
+$$
+h(a)=f(b)g(a)-f(a)g(b)=h(b).
+$$
+To prove the theorem, we need to show that $h'(x)=0$ for some $x\in(a,b)$.
+
+If $h$ is constant, this holds for every $x\in(a,b)$. If $h(t)>h(a)$ for some $t\in(a,b)$, let $x$ be a point in $[a,b]$ at which $h$ has maximum. (Remember the important theorem, this is that.) $x\in(a,b)$ and the previous theorem shows that $h'(x)=0$. If $h(t)< h(a)$ for some $t$, we can use the important theorem to pick a minimum.
+</div>
+
+This theorem is some times refered to as generalized mean value theorem. We more often just use a corollary.
+
+<div class="Corollary">
+If $f:[a,b]\to\mathbb R$ is differentiable in $(a,b)$, then there is some point $x\in(a,b)$ at which
+$$
+f(b)-f(a)=(b-a)f'(x)
+$$
+(draw a picture here)
+</div>
+<div class="Proof">
+Use $g(x)=x$
+</div>
+
+<div class="Theorem">
+Suppose $f$ is differentiable in $(a,b)$.
+
+- If $f'(x)\ge 0$ for all $x\in(a,b)$, then $f$ is monotonically increasing;
+- If $f'(x)=0$ for all $x\in(a,b)$, then $f$ is constant;
+- If $f'(x)\le 0$ for all $x\in(a,b)$, then $f$ is monotonically decreasing.
+
+</div>
+<div class="Proof">
+For any pair of $x_1,x_2$ in $(a,b)$, there is some $x$ in between $x_1$ and $x_2$ such that
+$$
+f(x_2)-f(x_1)=(x_2-x_1)f'(x)
+$$.
+
+Everything follows from this equation.
+</div>
+
+<div class="Theorem">
+Suppose $f:[a,b]\to\mathbb R$ is differentiable on $[a,b]$ and suppose $f'(a)<\lambda< f'(b)$. Then there is a point $x\in(a,b)$ such that $f'(x)=\lambda$.
+
+A similar result holds if $f'(a)>f'(b)$.
+</div>
+<div class="Proof">
+Put $g(t)=f(t)-\lambda t$. Then $g'(a)< 0$ so that for some $t_1\in(a,b)$ that $g(t_1)< g(a)$. $g'(b)>0$, hence for some $t_2\in(a,b)$ there is some $g(t_2) < g(b)$. Hence $g$ attains minimum on $[a,b]$. (The important theorem again). At minimum $x$, $g'(x)=0$. Hence $f'(x)=\lambda$.
+</div>
+
+<div class="Corollary">
+If $f$ is differentiable on $[a,b]$ then $f'$ cannot have any simple discontinuities on $[a,b]$.
+</div>
+
+But $f'$ may have discontinuities of the second kind. See above example $x^2\sin{\frac1x}$
+
+We are going to state and prove L'Hospital's Rule which is useful in the evaluation of limits.
+
+<div class="Theorem">[L'Hospital's rule]
+Suppose $f$ and $g$ are real and differentiable in $(a,b)$ and $g'(x)\ne 0$ for all $x\in(a,b)$ where $-\infty\le a< b\le\infty$. Suppose as $x\to a$
+$$
+\frac{f'(x)}{g'(x)}\to A.
+$$
+If as $x\to a$,
+$$f(x)\to 0\land g(x)\to 0$$
+then as $x\to a$
+$$
+\frac{f(x)}{g(x)}\to A.
+$$
+
+The analogous statement is also true if $x\to b$. This is not the fullest version of L'Hospital's rule. For more information, one can read @rudin1964principles theorem 5.13.
+</div>
+
+<div class="Proof">
+We choose a real number $q$ such that $A< q$ and then choose $A< r < q$. There is a point $c\in(a,b)$ such that $a< x < c$ implies
+$$
+\frac{f'(x)}{g'(x)}< r.
+$$
+
+If $a< x < y < c$, by generalized mean value theorem, there is a point $t\in(x,y)$ such that
+$$
+\frac{f(x)-f(y)}{g(x)-g(y)}=\frac{f'(t)}{g'(t)}< r.
+$$
+Suppose that $f(x)\to 0$ and $g(x)\to 0$, as $x\to a$, we see that
+$$
+\frac{f(y)}{g(y)}\le r < q.
+$$
+This is true for any $A< q$. Hence $\frac{f(y)}{g(y)}\le A$.
+
+Similarly, let us choose $p$ such that $p < A$, we can find $c_3$ such that for $a< x < c_3$
+$$
+p<\frac{f(x)}{g(x)}.
+$$
+Then $A\le\frac{f(x)}{g(x)}$. The result follows.
+</div>
+
+<div class="Example">
+$\lim_{x\to 0}\frac{\sin x}{x}=\lim_{x\to 0}\frac{\cos x}=1$
+</div>
+
+## Taylor's theorem
+
+<div class="Definition">
+If $f$ has a derivative $f'$ on an interval and if $f'$ is itself differentiable we denote the derivative of $f'$ by $f''$, the second derivative of $f$. Continuing in this manner, we obtain functions $f,f',f'',f^{(3)},\dots,f^{(n)}$, each of which is the derivative of the preceding one. $f^{(n)}$ is called the $n$-th derivative of $f$. 
+</div>
+
+In order for $f^{(n)}$ to exist at a point $x$, $f^{(n-1)}$ needs to exist in a neighborhood of $x$ (or a one sided neighborhood if $x$ is endpoint) and $f^{(n-2)}$ must exist in a neighborhood of $x$ etc.
+
+<div class="Theorem">[Taylor's theorem]
+Suppose $f:[a,b]\to\mathbb R$ and $n$ is a positive integer, $f^{(n-1)}$ is continuous on $[a,b]$ and $f^{(n)}(t)$ exists for every $t\in(a,b)$. Let $\alpha$ and $\beta$ be distinct points of $[a,b]$ and define
+$$
+P(t):=\sum_{k=0}^{n-1}\frac{f^{(k)}(\alpha)}{k!}(t-\alpha)^k.
+$$
+Then there exists a point $x$ between $\alpha$ and $\beta$ such that
+$$
+f(\beta)=P(\beta)+\frac{f^{(n)}(x)}{n!}(\beta-\alpha)^n.
+$$
+
+For $n=1$, this is just the mean value theorem. In general, the theorem shows that $f$ can be approxiamted by a polynomial of degree $n-1$ and the error can be estimated once we know the bounds on $|f^{(n)}(x)|$.
+</div>
+<div class="Proof">
+Let $M$ be the number defined by
+$$
+f(\beta)=P(\beta)+M(\beta-\alpha)^n
+$$
+and for $a\le t\le b$, put
+$$
+g(t)=f(t)-P(t)-M(t-\alpha)^n
+$$.
+We need to show that $n!M=f^{(n)}(x)$ for some $x$ between $\alpha$ and $\beta$.
+
+We know that
+$$
+g^{(n)}(t)=f^{(n)}(t)-n!M.
+$$
+Hence the proof is complete if $g^{(n)}(x)=0$ for some $x$ between $\alpha$ and $\beta$.
+
+Since $P^{(k)}(\alpha)=f^{(k)}(\alpha)$ for $k=0,\dots,n-1$, we have
+$$
+g(\alpha)=g'(\alpha)=\dots=g^{(n-1)}(\alpha)=0
+$$
+Our choice of $M$ shows that $g(\beta)=0$. Thus there is some $x_1$ between $\alpha$ and $\beta$ such that $g'(x_1)=0$ by mean value theorem. Since $g'(\alpha)=0$, we can use mean value theorem to find $x_2$ between $\alpha$ and $x_1$ such that $g''(x_2)=0$. After $n$ steps we arrive at the conclusion that $g^{(n)}(x_n)=0$ for some $x_n$ between $\alpha$ and $x_{n-1}$.
+</div>
+
+<div class="Example">
+Let $\r\in\mathbb R$, let $f:(-1,1]\to\mathbb R$ be given by $f(t)=(1+t)^\r$. Since
+$$
+f^{(n)}(x)=\r(\r-1)\dots(\r-n+1)(1+x)^{\r-n}
+$$
+and
+$$
+f^{(n)}(0)=\r(\r-1)\dots(\r-n+1)
+$$
+
+We can see that
+$$
+(1+x)^{\r}=1+\frac\r{1!}x+\frac{\r(\alpha-1)}{2!}x^2+\dots+\frac{\r(\r-1)\dots(\r-n+1)}{n!}x^n+\frac{f^{(n)}(0)}{n!}x_0^n
+$$
+for some $x_0$
+</div>
+
+We conclude this lecture by a brief introduction of differentiation of vector valued functions
+
+# Summary
+
+In this lecture, we talked about differentiation of function $f:[a,b]\to\mathbb R$.
+
+- Definition and basic properties
+- Mean value theorem
+- Taylor theorem
 
 # References 
 
