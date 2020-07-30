@@ -3432,18 +3432,18 @@ Our choice of $M$ shows that $g(\beta)=0$. Thus there is some $x_1$ between $\al
 </div>
 
 <div class="Example">
-Let $\r\in\mathbb R$, let $f:(-1,1]\to\mathbb R$ be given by $f(t)=(1+t)^\r$. Since
+Let $r\in\mathbb R$, let $f:(-1,1]\to\mathbb R$ be given by $f(t)=(1+t)^r$. Since
 $$
-f^{(n)}(x)=\r(\r-1)\dots(\r-n+1)(1+x)^{\r-n}
+f^{(n)}(x)=r(r-1)\dots(r-n+1)(1+x)^{r-n}
 $$
 and
 $$
-f^{(n)}(0)=\r(\r-1)\dots(\r-n+1)
+f^{(n)}(0)=r(r-1)\dots(r-n+1)
 $$
 
 We can see that
 $$
-(1+x)^{\r}=1+\frac\r{1!}x+\frac{\r(\alpha-1)}{2!}x^2+\dots+\frac{\r(\r-1)\dots(\r-n+1)}{n!}x^n+\frac{f^{(n)}(0)}{n!}x_0^n
+(1+x)^{r}=1+\frac r{1!}x+\frac{r(r-1)}{2!}x^2+\dots+\frac{r(r-1)\dots(r-n+1)}{n!}x^n+\frac{f^{(n+1)}(0)}{(n+1)!}x_0^{n+1}
 $$
 for some $x_0$
 </div>
