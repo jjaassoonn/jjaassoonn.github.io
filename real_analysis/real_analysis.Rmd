@@ -3450,13 +3450,15 @@ for some $x_0$
 
 We conclude this lecture by a brief introduction of differentiation of vector valued functions
 
-# Summary
+## Summary
 
 In this lecture, we talked about differentiation of function $f:[a,b]\to\mathbb R$.
 
 - Definition and basic properties
 - Mean value theorem
 - Taylor theorem
+
+# Riemman Integral
 
 # References 
 
