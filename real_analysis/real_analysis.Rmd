@@ -3458,7 +3458,619 @@ In this lecture, we talked about differentiation of function $f:[a,b]\to\mathbb 
 - Mean value theorem
 - Taylor theorem
 
-# Riemman Integral
+# Riemman Integral (Lecture 11)
+
+Last time, we talked about differentiation, this time, we embark on Riemann integration of a function $f:[a,b]\to \mathbb R$, sometimes also known as Riemann-Stieltjes integral. Our definition, compared to a standard approach of choosing an $\alpha(x)=x$, seems to be unnecessarily complicated, and this criticism is perhaps true. But by allowing $\alpha(x)$ to be any monotonically increasing function, pedagogically not more is added and careless reader could assume $\alpha(x)=x$ any way, but the advantage is clear when introducing integration by part and changing variables.
+
+## Definition and existence of integral
+
+Before we can define integral, we define partition of an interval.
+
+<div class="Definition">
+Let $[a,b]$ be a given interval. By a partition $P$ of $[a,b]$, we mean a finite set of points $x_0,x_1,\dots,x_n$ where
+$$
+a=x_0\le x_1\le\dots\le x_{n-1}\le x_n=b
+$$
+For $i=1,\dots,n$, we write
+$$
+\Delta x_i=x_i-x_{i-1}
+$$
+Suppose $f$ is bounded real function defined on $[a,b]$. Corresponding to each partition $P$ of $[a,b]$, we write
+$$
+\begin{aligned}
+M_i    &= \sup_{x_{i-1}\le x\le x_i}f(x)\\
+m_i    &= \inf_{x_{i-1}\le x\le x_i}f(x)\\
+U(P,f) &= \sum_{i=1}^n M_i \Delta x_i \\
+L(P,f) &= \sum_{i=1}^n m_i \Delta x_i
+\end{aligned}
+$$
+and finally we define the upper and lower Riemann integrals of $f$ over $[a,b]$ respectively,
+$$
+\begin{aligned}
+\overline{\int_a^b}f\mathrm{d}x=\inf_{P\text{ is a partition}}U(P,f)\\
+\underline{\int_a^b}f\mathrm{d}x=\sup_{P\text{ is a partition}}L(P,f)\\
+\end{aligned}
+$$
+
+If the upper and lower integrals are equal, we say $f$ is Riemann integrable on $[a,b]$ and we denote the common value as
+$$
+\int_a^b f\mathrm{d}x
+$$
+This is called the Riemann integral of $f$ over $[a,b]$.
+
+Draw a picture here.
+</div>
+
+Since $f$ is assumed to be bounded, there exists two numbers $m$ and $M$ such that for all $a\le x\le b$ we have $m\le f(x)\le M$. Then for any partition $P$, we have
+$$
+m(b-a)\le L(P, f)\le U(P,f)\le M(b-a)
+$$
+so the upper and lower sums are bounded hence ther infimum and superemum exist.
+
+We can generalise the notion of Reimann integral a little to the Reimann-Stieltjes integral.
+
+<div class="Definition">
+Let $\alpha$ be a monotonically increasing function on $[a,b]$ and $P$ be a partition of $[a,b]$. We write
+$$
+\Delta \alpha_i=\alpha(x_i)-\alpha(x_{i-1})
+$$
+By monotonicity of $\alpha$, each $\Delta \alpha_i\ge 0$. For any bounded function $f:[a,b]\to\mathbb R$, we write
+$$
+\begin{aligned}
+U(P,f,\alpha)&=\sum_{i=1}^n M_i\Delta\alpha_i\\
+L(P,f,\alpha)&=\sum_{i=1}^n m_i\Delta\alpha_i
+\end{aligned}
+$$
+and we define
+$$
+\begin{aligned}
+\overline{\int_a^b}f\mathrm{d}\alpha=\inf_{P\text{ is a partition}}U(P,f,\alpha)\\
+\underline{\int_a^b}f\mathrm{d}\alpha=\sup_{P\text{ is a partition}}L(P,f,\alpha)\\
+\end{aligned}
+$$
+If the upper integral and lower integral are equal, we denote the common value by
+$$
+\int_a^b f\mathrm{d}\alpha
+$$
+This is called the Riemann-Stieltjes integral of $f$ with respec to $\alpha$ over $[a,b]$.
+</div>
+
+Note that by taking $\alpha(x)=x$, we recover the Reimann integral. We now investigate existence of integral. From this point in this lecture, we assume $f$ to be a bounded real function and $\alpha$ to be monotonically increasing on $[a,b]$.
+
+<div class="Definition"> 
+Let $P, P^*$ be partions, we say $P^*$ is a refinement of $P$ if $P\subseteq P^*$. Given two partions $P_1$ and $P_2$, we say that $P^*$ is their common refinment if $P^*=P_1\cup P_2$.
+</div>
+
+<div class="Theorem">
+If $P^*$ is a refinement of $P$, then
+$$
+\begin{aligned}
+L(P,f,\alpha)&\le L(P^*,f\alpha)\\
+U(P^*,f,\alpha)&le U(P,f,\alpha)
+\end{aligned}
+$$
+</div>
+<div class="Proof">
+Let us assume that $P^*$ contains just on point more than $P$. Say the extra point is $x^*$, and suppose $x_{i-1}< x^* < x_i$ where $x_{i-1}$ and $x_i$ are two consecutive points of $P$. Let
+$$
+\begin{aligned}
+w_1 &= \inf_{x_{i-1}\le x\le x^*} f(x) \\
+w_2 &= \inf_{x^*\le x \le x_i}f(x)
+\end{aligned}
+$$
+Clearly $w_1\ge m_i$ and $w_2\ge m_i$. Hence
+$$
+\begin{aligned}
+L(P^*,f,\alpha)-L(P,f,\alpha)&=w_1[\alpha(x^*)-\alpha(x_{i-1})]+w_2[\alpha(x_i)-\alpha(x^*)]-m_i[\alpha(x_i)-\alpha(x_{i-1})]\\
+&=(w_1-m_i)[\alpha(x^*)-\alpha(x_{i-1})]+(w_2-m_i)[\alpha(x_i)-\alpha(x*)]\ge 0
+\end{aligned}
+$$
+
+If $P^*$ contains $k$ points more than $P$, say the $k$ points are $y_1\dots y_k$. Then $L(P^*,f,\alpha)\ge L(P\cup\{y_1,\dots,y_{k-1}\},f,\alpha)$, we can conclude by induction.
+
+
+For upper sum, the proof is analogous hence left as an exercise.
+</div>
+
+<div class="Theorem">
+$$
+\underline{\int_a^b}f\mathrm{d}\alpha\le\overline{\int_a^b}f\mathrm{d}\alpha
+$$
+</div>
+<div class="Proof">
+For any partitions $P_1$ and $P_2$, let $P^*$ be their common refinement. By previous theorem, we have
+$$
+L(P_1,f,\alpha)\le L(P^*,f,\alpha)\le U(P^*,f,\alpha)\le U(P_2,f,\alpha)
+$$
+Hence
+$$
+L(P_1,f,\alpha)\le U(P_2,f,\alpha)
+$$
+Since this is true for all $P_1$ we have
+$$
+\sup_{P_1\text{ is a partition}}L(P_1,f,\alpha)\le U(P_2,f,\alpha)
+$$
+This is:
+$$
+\underline{\int_a^b}f\mathrm{d}\alpha\le U(P_2,f,\alpha)
+$$
+Since this is true for any $P_2$, we have:
+$$
+\underline{\int_a^b}f\mathrm{d}\alpha\le\inf_{P_2\text{ is a partition}} U(P_2,f,\alpha)
+$$
+This is exactly what we want:
+$$
+\underline{\int_a^b}f\mathrm{d}\alpha\le\overline{\int_a^b}f\mathrm{d}\alpha
+$$
+</div>
+
+<div class="Theorem">
+$f:[a,b]\to\mathbb R$ is integrable with respect to $\alpha$ if and only if for every $\epsilon>0$ there is a partition $P$ such that
+$$
+U(P,f,\alpha)-L(P,f,\alpha)<\epsilon
+$$
+</div>
+<div class="Proof">
+For any partition $P$ we have
+$$
+L(P,f,\alpha)\le\underline{\int_a^b}f\mathrm{d}\alpha\le\overline{\int_a^b}f\mathrm{d}\alpha\le U(P,f,\alpha)
+$$
+
+Let us prove from right to left: the inequality implies that
+$$
+0\le\overline{\int_a^b}f\mathrm{d}\alpha-\underline{\int_a^b}f\mathrm{d}\alpha<\epsilon
+$$
+Since this is true for any $\epsilon>0$, we have to conclude that
+$$
+\overline{\int_a^b}f\mathrm{d}\alpha=\underline{\int_a^b}f\mathrm{d}\alpha
+$$
+This is precisely what we mean by $f$ being integrable with respect to $\alpha$.
+
+Let us prove from left to right: for any $f:[a,b]\to\mathbb R$ integrable with respect to $\alpha$ and let $\epsilon>0$ be given. There exists partitions $P_1$ and $P_2$ due to definition of $\sup$ and $\inf$ such that
+$$
+\begin{aligned}
+U(P_2,f,\alpha)-\int_a^b f\mathrm{d}\alpha&<\frac\epsilon2\\
+\int_a^bf\mathrm d\alpha-L(P_1,f,\alpha)<\frac\epsilon2
+\end{aligned}
+$$
+So let $P$ be the common refine ment of $P_1$ and $P_2$. Then by previous theorems and inequalies
+$$
+U(P,f,\alpha)\le U(P_2,f,\alpha)<\int_a^b f\mathrm d\alpha+\frac\epsilon2< L(P_1,f,\alpha)+\epsilon\le L(P,f,\alpha)+\epsilon
+$$
+This is what we want.
+</div>
+
+This theorem is a convenient criterion for integrability. Before we apply it, we state some closely related facts.
+
+<div class="Theorem">
+
+- If $U(P,f,\alpha)-L(P,f,\alpha)<\epsilon$ then for any refinement $P^*$ of $P$ we have $U(P^*,f,\alpha)-L(P^*,f,\alpha)<\epsilon$
+- If $U(P,f,\alpha)-L(P,f,\alpha)<\epsilon$ for $P=\{x_0,\dots,x_n\}$ and if $s_i$ and $t_i$ are points in $[x_{i-1},x_i]$ then
+$$
+\sum_{i=1}^n\left|f(s_i)-f(t_i)\right|\Delta\alpha_i<\epsilon
+$$
+- If $U(P,f,\alpha)-L(P,f,\alpha)<\epsilon$ for $P=\{x_0,\dots,x_n\}$ and if $t_i$ are points in $[x_{i-1},x_i]$ then
+$$. then for any $f:[a,b]\to\mathbb R$ integrable with respect to $\alpha$, we have
+$$
+\left|\sum_{i=1}^nf(t_i)\Delta\alpha_i-\int_a^bf\mathrm d\alpha\right|<\epsilon
+$$
+</div>
+<div class="Proof">
+
+- Trivial from a theorem above.
+- We know $f(s_i)$ and $f(t_i)$ are in $[m_i,M_i]$ hence $|f(s_i)-f(t_i)|\le M_i-m_i$. Thus $\sum_{i=1}^n |f(s_i)-f(t_i)|\le U(P,f,\alpha)-L(P,f,\alpha)$
+- We know obviously
+$$
+L(P,f,\alpha)\le\sum f(t_i)\Delta\alpha_i\le U(P,f,\alpha)
+$$
+and
+$$
+L(P,f,\alpha)\le\int f\mathrm d\alpha\le U(P,f,\alpha)
+$$
+This prove the last part.
+</div>
+
+<div class="Theorem">
+If $f:[a,b]\mathbb R$ is continuous on $[a,b]$ then $f$ is integrable with respect to $\alpha$
+</div>
+<div class="Proof">
+Let $\epsilon>0$ be arbitrary. Choose $\eta>0$ such that $[\alpha(b)-\alpha(a)]\eta<\epsilon$. Then since $f$ is continuous on $[a,b]$ and $[a,b]$ is compact, $f$ is uniformly continuous on $[a,b]$. Then there is a $\delta>0$ such that for any $x,t\in[a,b]$ with $|x-t|<\delta$ we have
+$$
+|f(x)-f(t)|<\eta.
+$$
+
+If $P$ is any partition of $[a,b]$ such that $\Delta x_i<\delta$ for all $i$, then by the choice of $\delta$ we have $M_i-m_i\le\eta$. Therefore
+$$
+U(P,f,\alpha)-L(P,f,\alpha)=\sum_{i=1}^n(M_i-m_i)\Delta\alpha_i\le\eta\sum_{i=1}^n\Delta\alpha_i=\eta[\alpha(b)-\alpha(a)]<\epsilon.
+$$
+By the above criterion we are done.
+</div>
+
+We missed a results of intermediate value theorem in previous lectures, which we quote now.
+
+<div class="Theorem">
+If $g:[a,b]\to\mathbb R$ be a continuous function and $g(a)< g(b)$ and $c$ is a number such that $f(a)< c< f(b)$ then there is a point $x\in(a,b)$ such that $f(x)=c$.
+</div>
+<div class="Proof">
+Let $E=\{y\in[a,b]|g(y)\le c\}$. Then $a\in E$ and $E$ is bounded above. Then $x_0=\sup E$ exists.
+
+Prove that $f(x_0)=c$ as an exercise using continuity and definition of supremum.
+</div>
+
+
+<div class="Theorem">
+If $f$ is monotic on $[a,b]$ and if $\alpha$ is continuous on $[a,b]$ then $f$ is integrable with respect to $\alpha$ over $[a,b]$.
+</div>
+<div class="Proof">
+
+Let $\epsilon>0$ and $n$ be a positive integer. By intermediate value theorem we can choose a partition such that
+$$
+\Delta\alpha_i=\frac{\alpha(b)-\alpha(a)}n
+$$
+
+Without loss of generality suppose $f$ is monotonically increasing. Then $M_i=f(x_i)$ and $m_i=f(x_{i-1})$. So
+$$
+U(P,f,\alpha)-L(P,f,\alpha)=\frac{\alpha(b)-\alpha(a)}n\sum_{i=1}^n[f(x_i)-f(x_{i-1})]=\frac{\alpha(b)-\alpha(a)}n(f(b)-f(a))
+$$
+For $n$ large enough, this is less than $\epsilon$. So $f$ is integrable.
+</div>
+
+We quote a theorem without proof.
+<div class="Theorem">
+Suppose $f$ is bounded on $[a,b]$ with finitely many discontinuities. Suppose $\alpha$ is continuous at every discontinuities of $f$. Then $f$ is integrable with respect to $\alpha$.
+</div>
+
+<div class="Theorem">
+Suppose $f:[a,b]\to\mathbb R$ is integrable with respect to $\alpha$, $m\le f\le M$, $\phi$ is continuous on $[m,M]$. Write $h(x)=\phi(f(x))$ on $[a,b]$. Then $h$ is integrable over $[a,b]$ with respect to $\alpha$.
+</div>
+<div class="Proof">
+Choose $\epsilon>0$. Since $\phi$ is uniformly continuous on $[m, M]$, there exists $\delta>0$ such that $\delta<\epsilon$ and $|\phi(s)-\phi(t)|<\epsilon$ for any $s,t\in[m, M]$ $|s-t|\le\delta$.
+
+Since $f$ is integrable over $[a,b]$ with respect to $\alpha$, there is a partition $P=\{x_0,\dots,x_n\}$ such that
+$$
+U(P,f,\alpha)-L(P,f,\alpha)<\delta^2
+$$
+Let us write $M_i$ and $m_i$ be supremum and infimum of $f$ on $[x_{i-1},x_i]$ and $M_i^*$ and $m_i^*$ be supremum and infimum of $h$. We put $i=1,\dots,n$ into two sets $A$ and $B$: put $i\in A$ if $M_i-m_i<\delta$ and $i\in B$ otherwise.
+
+- For any $i\in A$, our choice of $\delta$ shows that  $M_i^*-m_i^*\le\epsilon$
+- For any $i\in B$, $M_i^*-m_i^*\le2K$ where $K=\sup_{m\le t\le M}|\phi(t)|$. By $U(P,f,\alpha)-L(P,f,\alpha)<\delta^2$ and definition of $B$, we get
+$$
+\delta\sum_{i\in B}\Delta\alpha_i\le\sum_{i\in B}(M_i-m_i)\Delta \alpha_i<\delta^2
+$$
+so that $\sum_{i\in B}\Delta\alpha_i<\delta$. It follows that
+$$
+U(P,h,\alpha)-L(P,h,\alpha)=\sum_{i\in A}(M_i^*-m_i^*)\Delta\alpha+i+\sum_{i\in B}(M_i^*-m_i^*)\Delta\alpha_i\le\epsilon[\alpha(b)-\alpha(a)]+2K\delta<\epsilon[\alpha(b)-\alpha(a)+2K].
+$$
+Since $\epsilon$ is arbitrary, we proved integrability of $h$ by the previous criterion.
+</div>
+
+## Properties of integral
+
+<div class="Theorem">
+Assume $f$ is an integrable function on $[a,b]$ with respect to $\alpha$ and $c\in\mathbb R$ is a constant then $c\cdot f$ is integrable and $\int_a^b cf\mathrm d\alpha=c\int_a^b f\mathrm d\alpha$.
+</div>
+<div class="Proof">
+If $c=0$, trivial.
+We can assume $c>0$ for $cf=(-c)(-f)$.
+Let $\epsilon>0$ be given and by integrability of $f$ we can find a partition $P$ such that
+$$
+U(P,f,\alpha)-L(P,f,\alpha)<\frac\epsilon c.
+$$
+So 
+$$
+U(P,cf,\alpha)-L(P,cf,\alpha)<\epsilon.
+$$
+
+Since for any partition $P$, $U(P,cf,\alpha)=cU(P,f,\alpha)$ and $L(P,cf,\alpha)=cL(P,f,\alpha)$, we have
+$$
+\begin{aligned}
+\overline{\int_a^b}cf\mathrm{d}x=c\overline{\int_a^b}f\mathrm{d}x\\
+\underline{\int_a^b}cf\mathrm{d}x=c\underline{\int_a^b}f\mathrm{d}x\\
+\end{aligned}
+$$
+This is what we want.
+</div>
+
+<div class="Theorem">
+Assume $f_1$ and $f_2$ are real functions on $[a,b]$ that are integrable with respect to $\alpha$. Then 
+
+- $f_1+f_2$ is also integrable with respect to $\alpha$
+- $\int_a^b(f_1+f_2)\mathrm d\alpha=\int_a^bf_1\mathrm d\alpha+\int_a^b\mathrm d\alpha$
+
+</div>
+<div class="Proof">
+Write $f=f_1+f_2$ then for any partition $P$ of $[a,b]$, we have
+$$
+L(P,f_1,\alpha)+L(P,f_2,\alpha)\le L(P,f,\alpha)\le U(P,f,\alpha)\le U(P,f_1,\alpha)+U(P,f_2,\alpha).
+$$
+Let $\epsilon>0$, then there is two partitions $P_1$ and $P_2$ such that $U(P_1,f_1,\alpha)-L(P_1,f_1,\alpha)<\epsilon$ and $U(P_2,f_2,\alpha)-L(P_2,f_2,\alpha)<\epsilon$. By one of previous theorem, let $P$ be common refinment of $P_1$ and $P_2$, we have $U(P,f_i,\alpha)-L(P,f_i,\alpha)$ for $i=1,2$. So
+$$
+U(P,f,\alpha)-L(P,f,\alpha)< 2\epsilon.
+$$
+With the same $P$ we have 
+$$
+U(P,f_i,\alpha)<\int f_i\mathrm d\alpha+\epsilon
+$$
+So
+$$
+\int f\mathrm d\alpha\le U(P,f,\alpha)<\int f_1\mathrm d\alpha+\int f_2\mathrm d\alpha+2\epsilon+2\epsilon.
+$$
+Since $\epsilon$ is arbitrary we conclude that $\int f\mathrm d\alpha\le\int f_1\mathrm d\alpha+\int f_2\mathrm d\alpha$
+
+If we use the same method but consider $-f_1$ and $-f_2$ we get $\int ((-f_1)+(-f_2))\mathrm d\alpha<\int -f_1\mathrm d\alpha+\int -f_2\mathrm d\alpha$. Combine with the last theorem, we have
+$$
+-\int (f_1+f_2)< -\int f_1-\int f_2.
+$$
+We rest our case.
+</div>
+
+By similar method, we obtain that
+<div class="Theorem">
+
+- If $f_1(x)\le f_2(x)$ for any $x\in[a,b]$, we have 
+$$
+\int_a^b f_1\mathrm d\alpha\le\int_a^b f_2\mathrm d\alpha
+$$
+- If $f$ is integrable on $[a,b]$ and $a< c< b$, then $f$ is integrable on $[a,c]$ and $[b,c]$ and
+$$
+\int_a^b f\mathrm d\alpha=\int_a^c f\mathrm d\alpha+\int_c^b f\mathrm d\alpha.
+$$
+- If $f$ is integrable on $[a,b]$ and $|f(x)|< M$ for all $x\in[a,b]$ then
+$$
+|\int_a^b f\mathrm d\alpha|\le M[\alpha(b)-\alpha(a)]
+$$
+- If $f$ is integrable with respect to $\alpha_1$ and $\alpha_2$ then $f$ is integrable with respect to $\alpha_1+\alpha_2$ and
+$$
+\int_a^b f\mathrm d{(\alpha_1+\alpha_2)}=\int_a^b f\mathrm d\alpha_1+\int_a^b f\mathrm d\alpha_2 
+$$
+- If If $f$ is integrable with respect to $\alpha$ and $c$ is a postive constant then $f$ is integrable with respect to $c\alpha$ and
+$$
+\int_a^b f\mathrm d(c\alpha)=c\int_a^b f\mathrm d\alpha
+$$
+</div>
+<div class="Proof">
+Proofs are similarly to the proof of the above theorem. In second part, by passing to refinements we amy restrict ourselves to partitions which cantain the point $c$ in approximating $\int f\mathrm d\alpha$.
+
+This is a good exercise for testing understanding of the definition of Riemann-Stieltjes integral.
+</div>
+
+<div class="Theorem">
+If $f$ and $g$ are integrable function on $[a,b]$ with respect to $\alpha$ then
+
+- $fg$ is integrable
+- $|f|$ is integrable and
+$$
+\left|\int_a^b f\mathrm d\alpha\right|\le\int_a^b|f|\mathrm d\alpha
+$$
+</div>
+
+<div class="Proof">
+
+- $\phi(t)=t^2$ is certainly continuous. So $\phi(f(x))=f^2(x)$ and $g^2(x)$ is integrable. Basic arithmetics:
+$$
+4fg=(f+g)^2-(f-g)^2.
+$$
+We are done.
+- $\phi(t)=|t|$ is continuous. So $|f|$ is integrable. Depending on the sign of $\int f \mathrm d\alpha$, choose $c=1$ or $c=-1$ so that $c\int fd\alpha \ge 0$. Then
+$$
+\left|\int f\mathrm d\alpha\right|=c\int f\mathrm d\alpha=\int cf\mathrm d\alpha\le\int|f|\mathrm d\alpha
+$$
+($cf\le |f|$.)
+</div>
+
+<div class="Definition">
+The unit step function $I$ is defined by
+$$
+I(x)=\left\{
+\begin{aligned}
+&0&(x\le 0)\\
+&1&(x>0)
+\end{aligned}
+\right.
+$$
+</div>
+
+<div class="Theorem">
+Let $a< s< b$, assume $f$ to be bounded on $[a,b]$, continuous at $s$ and $\alpha(x)=I(x-s)$. Then
+$$
+\int_a^b\mathrm d\alpha=f(s)
+$$
+</div>
+<div class="Proof">
+Consider partition $P=\{x_0,x_1,x_2,x_3\}$ where $x_0=a$ and $x_1=s< x_2 < x_3=b$. Then
+$$
+U(P,f,\alpha)=M_2, L(P,f,\alpha)=m_2.
+$$
+Since $f$ is continuous at $s$ we see that $M_2$ and $m_2$ converges to $f(s)$ as $x_2\to s$.
+</div>
+
+<div class="Theorem">
+Suppose $c_n\ge 0$ for all $n\in\mathbb N$ and $\sum c_n$ converges, $(s_n)$ is a sequence of distinct points in $(a,b)$ and write
+$$
+\alpha(x)=\sum_{n=1}^\infty c_nI(x-s_n).
+$$
+Let $f:[a,b]\to\mathbb R$ be continuous then
+$$
+\int_a^b f\mathrm d\alpha=\sum_{n=1}^\infty c_n f(s_n).
+$$
+</div>
+<div class="Proof">
+Comparison test shows that $\alpha(x)$ converges for all $x$. $\alpha$ is evidently monotonic since $c_n\ge 0$. We have $\alpha(a)=0$ and $\alpha(b)=\sum c_n$.
+
+Let $\epsilon>0$, we choose $N$ such that 
+$$
+\sum_{N+1}^\infty c_n<\epsilon.
+$$
+Split $\alpha(x)$ as
+$$
+\alpha_1(x)=\sum_{n=1}^N c_nI(x-s_n),\alpha_2(x)=\sum_{n=N+1}\infty c_n I(x-s_n).
+$$
+By previous theorems we have
+$$
+\int_a^b f\mathrm d\alpha_1=\sum_{n=1}^N c_n f(s_n)
+$$
+Since $\alpha_2(b)-alpha_2(a)<\epsilon$,
+$$
+\left|\int_a^b f\mathrm d\alpha_2\le M\epsilon\right|
+$$
+where $M=\sup|f(x)|$. Since $\alpha=\alpha_1+\alpha_2$, we have
+$$
+\left|\int_a^b f\mathrm d\alpha-\sum_{n=1}^Nc_nf(s_n)\right|\le M\epsilon
+$$
+Taking limit as $N\to\infty$, we conclude.
+</div>
+
+<div class="Theorem">
+Assume $\alpha$ increases monotonically and is differentiable. Assume $\alpha'$ is integrable with respect to $x$. Let $f$ be a bounded real function on $[a,b]$. Then $f$ is integrable if and only if $f\alpha'$ is integrable. In that case we have
+$$
+\int_a^b f\mathrm d\alpha=\int_a^b f(x)\alpha'(x)\mathrm dx.
+$$
+</div>
+<div class="Proof">
+Let $\epsilon>0$ since $\alpha'$ then there is a partition $P=\{x_0,\dots,x_n\}$ such that
+$$
+U(P,\alpha')-L(P,\alpha')<\epsilon.
+$$
+Use mean value theorem to find points $t_i\in[x_{i-1},x_i]$ such that $\Delta\alpha_i=\alpha'(t_i)\Delta x_i$.
+Then if $s_i\in[x_{i-1},x_i]$ we have
+$$
+\sum_{i=1}^n|\alpha'(s_i)-\alpha'(t_i)|\Delta x_i<\epsilon
+$$
+by the theorem immediately after the criterion of integrability.
+Write $M=\sup|f(x)|$. By previous inequality and
+$$
+\sum_{i=1}^nf(s_i)\Delta\alpha_i=\sum_{i=1}^nf(s_i)\alpha'(t_i)\Delta x_i,
+$$
+we have
+$$
+\left|\sum_{i=1}^nf(s_i)\Delta \alpha_i-\sum_{i=1}^nf(s_i)\alpha'(s_i)\Delta x_i\right|\le M\epsilon.
+$$
+In particular, we have
+$$
+\sum_{i=1}^n f(s_i)\Delta\alpha_i\le U(P,f\alpha')+M\epsilon
+$$
+for any $s_i\in[x_{i-1},x_i]$. Then
+$$
+U(P,f,\alpha)\le U(P, f\alpha')+M\epsilon.
+$$
+Similarly we have
+$$
+U(P,f\alpha')\le U(P,f,\alpha)+M\epsilon.
+$$
+So 
+$$
+|U(P,f,\alpha)-U(P,f\alpha')|\le M\epsilon.
+$$
+Now the above argument remains true for any refinement of $P$. Hence we have
+$$
+\left|\overline{\int_a^b}f\mathrm{d}\alpha-\overline{\int_a^b}f(x)\alpha'(x)\mathrm{d}x\right|\le M\epsilon.
+$$
+Since $\epsilon$ is arbitrary, we have
+$$
+\overline{\int_a^b}f\mathrm{d}\alpha=\overline{\int_a^b}f(x)\alpha'(x)\mathrm{d}x
+$$
+for any bounded $f$. The equality of lower integral is similar. The theorem follows.
+</div>
+
+<div class="Theorem">
+Suppose $\phi$ is a strictly increasing continuous function that maps $[A,B]$ onto $[a,b]$. Suppose $\alpha$ is monotonically increasing function on $[a,b]$ and $f:[a,b]\to\mathbb R$ is integrable with respect to $\alpha$. Define $\beta$ and $g$ to be functinos on $[A,B]$ by
+$$
+\beta(y)=\alpha(\phi(y)), g(y)=f(\phi(y))
+$$
+Then $g$ is integrable with respect to $\beta$ and
+$$
+\int_A^B g\mathrm d\beta=\int_a^b f\mathrm d\alpha.
+$$
+</div>
+
+<div class="Proof">
+To each partition $P=\{x_0,x_1,\dots,x_n\}$ of $[a,b]$ there is a partion $Q=\{y_0,\dots,y_n\}$ of $[A,B]$ such that $x_i=\phi(y_i)$. All partition of $[A,B]$ can be obtained this way. By intermediate value theorem, we see the values taken by $f$ on $[x_{i-1},x_i]$ are the same as those taken by $g$ on $[y_{i-1},y_i]$, hence we have
+$$
+U(Q,g,\beta)=U(P,f,\alpha),L(Q,g,\beta)=L(P,f,\alpha).
+$$
+$f$ is integrable so $P$ can be chosen so that $U(P,f,\alpha)$ and $L(P,f, \alpha)$ are arbitrarily close to $\int f\mathrm d\alpha$. Then find corresponding $Q$, we conclude the proof.
+</div>
+
+Note the following special case:
+Take $\alpha(x)=x$. Then $\beta=\phi$. Assume $\phi'$ is integrable on $[A,B]$. Then
+$$
+\int_a^b f(x)\mathrm dx=\int_A^Bf(\phi(y))\mathrm d\phi=\int_A^Bf(\phi(y))\phi'(y)\mathrm dy.
+$$
+
+## Integration and differentiation
+
+<div class="Theorem">
+Let $f:[a,b]\to\mathbb R$ be integrable. For $a\le x\le b$, write
+$$
+F(x)=\int_a^x f(t)\mathrm dt.
+$$
+Then $F$ is continuous on $[a,b]$. If $f$ is continuous at $x_0\in[a,b]$. Then $F$ is differentiable at $x_0$ with $F'(x_0)=f(x_0)$
+</div>
+<div class="Proof">
+Since $f$ is integrable, $f$ is bounded say $|f(t)|\le M$ for all $a\le t\le b$. If $a\le x< y\le b$, we have
+$$
+|F(y)-F(x)|=\left|\int_x^yf(t)\mathrm dt\right|\le M(y-x).
+$$
+Given $\epsilon>0$ we see that
+$$
+|F(y)-F(x)|<\epsilon
+$$
+for any $|y-x|<\frac\epsilon M$. This proves continuity of $F$. (also uniform continuity).
+
+Suppose $f$ is continuous at $x_0$. Given $\epsilon>0$ choose $\delta>0$ such that $|f(t)-f(x_0)|<\epsilon$ for all $t\in[a,b]$ with $|t-x_0|<\delta$. Hence, if
+$$
+x_0-\delta< s\le x_0\le t< x_0+\delta\text{ and }a\le s< t\le b,
+$$
+we have
+$$
+\left|\frac{F(t)-F(s)}{t-s}-f(x_0)\right|=\left|\frac1{t-s}\int_t^s[f(u)-f(x_0)]\mathrm du\right|<\epsilon.
+$$
+(The above equality used $\int_s^t f(x_0)=(t-s)f(x_0)$ which is trivial so long as anyone cares to prove it.)
+Hence $F'(x_0)=f(x_0)$.
+</div>
+
+<div class="Theorem">[Fundamental theorem of calculus]
+If $f:[a,b]\to\mathbb R$ is integrable and there is a differentiable function $F:[a,b]\to\mathbb R$ such that $F'=f$, then
+$$
+\int_a^b f(x)dx=F(b)-F(a)
+$$
+</div>
+<div class="Proof">
+Let $\epsilon>0$. Choose a partition $P=\{x_0,\dots,x_n\}$ of $[a,b]$ such that $U(P,f)-L(P,f)<\epsilon$. Use mean value theorem to find points $t_i\in[x_{i-1},x_i]$ such that
+$$
+F(x_i)-F(x_{i-1})=f(t_i)\Delta x_i.
+$$
+Then
+$$
+\sum_{i=1}^nf(t_i)\Delta x_i=F(b)-F(a).
+$$
+Then
+$$
+\left|F(b)-F(a)-\int_a^b f(x)\mathrm dx\right|<\epsilon
+$$
+by the theorem immediately after the criterion of integrability.
+Since $\epsilon$ is arbitrary, the proof is complete.
+</div>
+
+<div class="Theorem">[Integration by parts]
+Suppose $F$ and $G$ are differentiable functions on $[a,b]$ with $f:=F'$ and $g:=G'$ are both integrable on $[a,b]$. Then
+$$
+\int_a^b FG\mathrm dx=F(b)G(b)-F(a)G(a)-\int_a^bfG\mathrm dx.
+$$
+</div>
+<div class="Proof">
+Use ftc to $H(x)=F(x)G(x)$ and the fact that $H'(x)=f(x)G(x)+F(x)g(x)$. Just note that $H'$ is integrable by previous theorems.
+</div>
+
+For lack of time, we will omit integration of functions $[a,b]\to\mathbb R^k$, for interested reader, feel free to read @rudin1964principles 6.23 to 6.27. The exercises on @rudin1964principles are strongly recommended.
+
+## Summary
+
+This lecture is about Riemann-Stieltjes integral:
+
+- its definition
+- its property
+- Fundamental theorem of calculus
 
 # References 
 

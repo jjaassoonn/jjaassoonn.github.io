@@ -3243,8 +3243,419 @@ f^{(n)}(0)=r(r-1)\dots(r-n+1)
 </ul>
 </div>
 </div>
-<div id="riemman-integral" class="section level1">
-<h1>Riemman Integral</h1>
+<div id="riemman-integral-lecture-11" class="section level1">
+<h1>Riemman Integral (Lecture 11)</h1>
+<p>Last time, we talked about differentiation, this time, we embark on Riemann integration of a function <span class="math inline">\(f:[a,b]\to \mathbb R\)</span>, sometimes also known as Riemann-Stieltjes integral. Our definition, compared to a standard approach of choosing an <span class="math inline">\(\alpha(x)=x\)</span>, seems to be unnecessarily complicated, and this criticism is perhaps true. But by allowing <span class="math inline">\(\alpha(x)\)</span> to be any monotonically increasing function, pedagogically not more is added and careless reader could assume <span class="math inline">\(\alpha(x)=x\)</span> any way, but the advantage is clear when introducing integration by part and changing variables.</p>
+<div id="definition-and-existence-of-integral" class="section level2">
+<h2>Definition and existence of integral</h2>
+<p>Before we can define integral, we define partition of an interval.</p>
+<div class="Definition">
+<p>Let <span class="math inline">\([a,b]\)</span> be a given interval. By a partition <span class="math inline">\(P\)</span> of <span class="math inline">\([a,b]\)</span>, we mean a finite set of points <span class="math inline">\(x_0,x_1,\dots,x_n\)</span> where <span class="math display">\[
+a=x_0\le x_1\le\dots\le x_{n-1}\le x_n=b
+\]</span> For <span class="math inline">\(i=1,\dots,n\)</span>, we write <span class="math display">\[
+\Delta x_i=x_i-x_{i-1}
+\]</span> Suppose <span class="math inline">\(f\)</span> is bounded real function defined on <span class="math inline">\([a,b]\)</span>. Corresponding to each partition <span class="math inline">\(P\)</span> of <span class="math inline">\([a,b]\)</span>, we write <span class="math display">\[
+\begin{aligned}
+M_i    &amp;= \sup_{x_{i-1}\le x\le x_i}f(x)\\
+m_i    &amp;= \inf_{x_{i-1}\le x\le x_i}f(x)\\
+U(P,f) &amp;= \sum_{i=1}^n M_i \Delta x_i \\
+L(P,f) &amp;= \sum_{i=1}^n m_i \Delta x_i
+\end{aligned}
+\]</span> and finally we define the upper and lower Riemann integrals of <span class="math inline">\(f\)</span> over <span class="math inline">\([a,b]\)</span> respectively, <span class="math display">\[
+\begin{aligned}
+\overline{\int_a^b}f\mathrm{d}x=\inf_{P\text{ is a partition}}U(P,f)\\
+\underline{\int_a^b}f\mathrm{d}x=\sup_{P\text{ is a partition}}L(P,f)\\
+\end{aligned}
+\]</span></p>
+<p>If the upper and lower integrals are equal, we say <span class="math inline">\(f\)</span> is Riemann integrable on <span class="math inline">\([a,b]\)</span> and we denote the common value as <span class="math display">\[
+\int_a^b f\mathrm{d}x
+\]</span> This is called the Riemann integral of <span class="math inline">\(f\)</span> over <span class="math inline">\([a,b]\)</span>.</p>
+<p>Draw a picture here.</p>
+</div>
+<p>Since <span class="math inline">\(f\)</span> is assumed to be bounded, there exists two numbers <span class="math inline">\(m\)</span> and <span class="math inline">\(M\)</span> such that for all <span class="math inline">\(a\le x\le b\)</span> we have <span class="math inline">\(m\le f(x)\le M\)</span>. Then for any partition <span class="math inline">\(P\)</span>, we have <span class="math display">\[
+m(b-a)\le L(P, f)\le U(P,f)\le M(b-a)
+\]</span> so the upper and lower sums are bounded hence ther infimum and superemum exist.</p>
+<p>We can generalise the notion of Reimann integral a little to the Reimann-Stieltjes integral.</p>
+<div class="Definition">
+<p>Let <span class="math inline">\(\alpha\)</span> be a monotonically increasing function on <span class="math inline">\([a,b]\)</span> and <span class="math inline">\(P\)</span> be a partition of <span class="math inline">\([a,b]\)</span>. We write <span class="math display">\[
+\Delta \alpha_i=\alpha(x_i)-\alpha(x_{i-1})
+\]</span> By monotonicity of <span class="math inline">\(\alpha\)</span>, each <span class="math inline">\(\Delta \alpha_i\ge 0\)</span>. For any bounded function <span class="math inline">\(f:[a,b]\to\mathbb R\)</span>, we write <span class="math display">\[
+\begin{aligned}
+U(P,f,\alpha)&amp;=\sum_{i=1}^n M_i\Delta\alpha_i\\
+L(P,f,\alpha)&amp;=\sum_{i=1}^n m_i\Delta\alpha_i
+\end{aligned}
+\]</span> and we define <span class="math display">\[
+\begin{aligned}
+\overline{\int_a^b}f\mathrm{d}\alpha=\inf_{P\text{ is a partition}}U(P,f,\alpha)\\
+\underline{\int_a^b}f\mathrm{d}\alpha=\sup_{P\text{ is a partition}}L(P,f,\alpha)\\
+\end{aligned}
+\]</span> If the upper integral and lower integral are equal, we denote the common value by <span class="math display">\[
+\int_a^b f\mathrm{d}\alpha
+\]</span> This is called the Riemann-Stieltjes integral of <span class="math inline">\(f\)</span> with respec to <span class="math inline">\(\alpha\)</span> over <span class="math inline">\([a,b]\)</span>.</p>
+</div>
+<p>Note that by taking <span class="math inline">\(\alpha(x)=x\)</span>, we recover the Reimann integral. We now investigate existence of integral. From this point in this lecture, we assume <span class="math inline">\(f\)</span> to be a bounded real function and <span class="math inline">\(\alpha\)</span> to be monotonically increasing on <span class="math inline">\([a,b]\)</span>.</p>
+<div class="Definition">
+<p>Let <span class="math inline">\(P, P^*\)</span> be partions, we say <span class="math inline">\(P^*\)</span> is a refinement of <span class="math inline">\(P\)</span> if <span class="math inline">\(P\subseteq P^*\)</span>. Given two partions <span class="math inline">\(P_1\)</span> and <span class="math inline">\(P_2\)</span>, we say that <span class="math inline">\(P^*\)</span> is their common refinment if <span class="math inline">\(P^*=P_1\cup P_2\)</span>.</p>
+</div>
+<div class="Theorem">
+<p>If <span class="math inline">\(P^*\)</span> is a refinement of <span class="math inline">\(P\)</span>, then <span class="math display">\[
+\begin{aligned}
+L(P,f,\alpha)&amp;\le L(P^*,f\alpha)\\
+U(P^*,f,\alpha)&amp;le U(P,f,\alpha)
+\end{aligned}
+\]</span></p>
+</div>
+<div class="Proof">
+<p>Let us assume that <span class="math inline">\(P^*\)</span> contains just on point more than <span class="math inline">\(P\)</span>. Say the extra point is <span class="math inline">\(x^*\)</span>, and suppose <span class="math inline">\(x_{i-1}&lt; x^* &lt; x_i\)</span> where <span class="math inline">\(x_{i-1}\)</span> and <span class="math inline">\(x_i\)</span> are two consecutive points of <span class="math inline">\(P\)</span>. Let <span class="math display">\[
+\begin{aligned}
+w_1 &amp;= \inf_{x_{i-1}\le x\le x^*} f(x) \\
+w_2 &amp;= \inf_{x^*\le x \le x_i}f(x)
+\end{aligned}
+\]</span> Clearly <span class="math inline">\(w_1\ge m_i\)</span> and <span class="math inline">\(w_2\ge m_i\)</span>. Hence <span class="math display">\[
+\begin{aligned}
+L(P^*,f,\alpha)-L(P,f,\alpha)&amp;=w_1[\alpha(x^*)-\alpha(x_{i-1})]+w_2[\alpha(x_i)-\alpha(x^*)]-m_i[\alpha(x_i)-\alpha(x_{i-1})]\\
+&amp;=(w_1-m_i)[\alpha(x^*)-\alpha(x_{i-1})]+(w_2-m_i)[\alpha(x_i)-\alpha(x*)]\ge 0
+\end{aligned}
+\]</span></p>
+<p>If <span class="math inline">\(P^*\)</span> contains <span class="math inline">\(k\)</span> points more than <span class="math inline">\(P\)</span>, say the <span class="math inline">\(k\)</span> points are <span class="math inline">\(y_1\dots y_k\)</span>. Then <span class="math inline">\(L(P^*,f,\alpha)\ge L(P\cup\{y_1,\dots,y_{k-1}\},f,\alpha)\)</span>, we can conclude by induction.</p>
+<p>For upper sum, the proof is analogous hence left as an exercise.</p>
+</div>
+<div class="Theorem">
+<p><span class="math display">\[
+\underline{\int_a^b}f\mathrm{d}\alpha\le\overline{\int_a^b}f\mathrm{d}\alpha
+\]</span></p>
+</div>
+<div class="Proof">
+<p>For any partitions <span class="math inline">\(P_1\)</span> and <span class="math inline">\(P_2\)</span>, let <span class="math inline">\(P^*\)</span> be their common refinement. By previous theorem, we have <span class="math display">\[
+L(P_1,f,\alpha)\le L(P^*,f,\alpha)\le U(P^*,f,\alpha)\le U(P_2,f,\alpha)
+\]</span> Hence <span class="math display">\[
+L(P_1,f,\alpha)\le U(P_2,f,\alpha)
+\]</span> Since this is true for all <span class="math inline">\(P_1\)</span> we have <span class="math display">\[
+\sup_{P_1\text{ is a partition}}L(P_1,f,\alpha)\le U(P_2,f,\alpha)
+\]</span> This is: <span class="math display">\[
+\underline{\int_a^b}f\mathrm{d}\alpha\le U(P_2,f,\alpha)
+\]</span> Since this is true for any <span class="math inline">\(P_2\)</span>, we have: <span class="math display">\[
+\underline{\int_a^b}f\mathrm{d}\alpha\le\inf_{P_2\text{ is a partition}} U(P_2,f,\alpha)
+\]</span> This is exactly what we want: <span class="math display">\[
+\underline{\int_a^b}f\mathrm{d}\alpha\le\overline{\int_a^b}f\mathrm{d}\alpha
+\]</span></p>
+</div>
+<div class="Theorem">
+<p><span class="math inline">\(f:[a,b]\to\mathbb R\)</span> is integrable with respect to <span class="math inline">\(\alpha\)</span> if and only if for every <span class="math inline">\(\epsilon&gt;0\)</span> there is a partition <span class="math inline">\(P\)</span> such that <span class="math display">\[
+U(P,f,\alpha)-L(P,f,\alpha)&lt;\epsilon
+\]</span></p>
+</div>
+<div class="Proof">
+<p>For any partition <span class="math inline">\(P\)</span> we have <span class="math display">\[
+L(P,f,\alpha)\le\underline{\int_a^b}f\mathrm{d}\alpha\le\overline{\int_a^b}f\mathrm{d}\alpha\le U(P,f,\alpha)
+\]</span></p>
+<p>Let us prove from right to left: the inequality implies that <span class="math display">\[
+0\le\overline{\int_a^b}f\mathrm{d}\alpha-\underline{\int_a^b}f\mathrm{d}\alpha&lt;\epsilon
+\]</span> Since this is true for any <span class="math inline">\(\epsilon&gt;0\)</span>, we have to conclude that <span class="math display">\[
+\overline{\int_a^b}f\mathrm{d}\alpha=\underline{\int_a^b}f\mathrm{d}\alpha
+\]</span> This is precisely what we mean by <span class="math inline">\(f\)</span> being integrable with respect to <span class="math inline">\(\alpha\)</span>.</p>
+<p>Let us prove from left to right: for any <span class="math inline">\(f:[a,b]\to\mathbb R\)</span> integrable with respect to <span class="math inline">\(\alpha\)</span> and let <span class="math inline">\(\epsilon&gt;0\)</span> be given. There exists partitions <span class="math inline">\(P_1\)</span> and <span class="math inline">\(P_2\)</span> due to definition of <span class="math inline">\(\sup\)</span> and <span class="math inline">\(\inf\)</span> such that <span class="math display">\[
+\begin{aligned}
+U(P_2,f,\alpha)-\int_a^b f\mathrm{d}\alpha&amp;&lt;\frac\epsilon2\\
+\int_a^bf\mathrm d\alpha-L(P_1,f,\alpha)&lt;\frac\epsilon2
+\end{aligned}
+\]</span> So let <span class="math inline">\(P\)</span> be the common refine ment of <span class="math inline">\(P_1\)</span> and <span class="math inline">\(P_2\)</span>. Then by previous theorems and inequalies <span class="math display">\[
+U(P,f,\alpha)\le U(P_2,f,\alpha)&lt;\int_a^b f\mathrm d\alpha+\frac\epsilon2&lt; L(P_1,f,\alpha)+\epsilon\le L(P,f,\alpha)+\epsilon
+\]</span> This is what we want.</p>
+</div>
+<p>This theorem is a convenient criterion for integrability. Before we apply it, we state some closely related facts.</p>
+<div class="Theorem">
+<ul>
+<li>If <span class="math inline">\(U(P,f,\alpha)-L(P,f,\alpha)&lt;\epsilon\)</span> then for any refinement <span class="math inline">\(P^*\)</span> of <span class="math inline">\(P\)</span> we have <span class="math inline">\(U(P^*,f,\alpha)-L(P^*,f,\alpha)&lt;\epsilon\)</span></li>
+<li>If <span class="math inline">\(U(P,f,\alpha)-L(P,f,\alpha)&lt;\epsilon\)</span> for <span class="math inline">\(P=\{x_0,\dots,x_n\}\)</span> and if <span class="math inline">\(s_i\)</span> and <span class="math inline">\(t_i\)</span> are points in <span class="math inline">\([x_{i-1},x_i]\)</span> then <span class="math display">\[
+\sum_{i=1}^n\left|f(s_i)-f(t_i)\right|\Delta\alpha_i&lt;\epsilon
+\]</span></li>
+<li>If <span class="math inline">\(U(P,f,\alpha)-L(P,f,\alpha)&lt;\epsilon\)</span> for <span class="math inline">\(P=\{x_0,\dots,x_n\}\)</span> and if <span class="math inline">\(t_i\)</span> are points in <span class="math inline">\([x_{i-1},x_i]\)</span> then <span class="math display">\[. then for any $f:[a,b]\to\mathbb R$ integrable with respect to $\alpha$, we have
+\]</span> |_{i=1}^nf(t_i)_i-_a^bfd|&lt;$$</li>
+</ul>
+</div>
+<div class="Proof">
+<ul>
+<li>Trivial from a theorem above.</li>
+<li>We know <span class="math inline">\(f(s_i)\)</span> and <span class="math inline">\(f(t_i)\)</span> are in <span class="math inline">\([m_i,M_i]\)</span> hence <span class="math inline">\(|f(s_i)-f(t_i)|\le M_i-m_i\)</span>. Thus <span class="math inline">\(\sum_{i=1}^n |f(s_i)-f(t_i)|\le U(P,f,\alpha)-L(P,f,\alpha)\)</span></li>
+<li>We know obviously <span class="math display">\[
+L(P,f,\alpha)\le\sum f(t_i)\Delta\alpha_i\le U(P,f,\alpha)
+\]</span> and <span class="math display">\[
+L(P,f,\alpha)\le\int f\mathrm d\alpha\le U(P,f,\alpha)
+\]</span> This prove the last part.</li>
+</ul>
+</div>
+<div class="Theorem">
+<p>If <span class="math inline">\(f:[a,b]\mathbb R\)</span> is continuous on <span class="math inline">\([a,b]\)</span> then <span class="math inline">\(f\)</span> is integrable with respect to <span class="math inline">\(\alpha\)</span></p>
+</div>
+<div class="Proof">
+<p>Let <span class="math inline">\(\epsilon&gt;0\)</span> be arbitrary. Choose <span class="math inline">\(\eta&gt;0\)</span> such that <span class="math inline">\([\alpha(b)-\alpha(a)]\eta&lt;\epsilon\)</span>. Then since <span class="math inline">\(f\)</span> is continuous on <span class="math inline">\([a,b]\)</span> and <span class="math inline">\([a,b]\)</span> is compact, <span class="math inline">\(f\)</span> is uniformly continuous on <span class="math inline">\([a,b]\)</span>. Then there is a <span class="math inline">\(\delta&gt;0\)</span> such that for any <span class="math inline">\(x,t\in[a,b]\)</span> with <span class="math inline">\(|x-t|&lt;\delta\)</span> we have <span class="math display">\[
+|f(x)-f(t)|&lt;\eta.
+\]</span></p>
+<p>If <span class="math inline">\(P\)</span> is any partition of <span class="math inline">\([a,b]\)</span> such that <span class="math inline">\(\Delta x_i&lt;\delta\)</span> for all <span class="math inline">\(i\)</span>, then by the choice of <span class="math inline">\(\delta\)</span> we have <span class="math inline">\(M_i-m_i\le\eta\)</span>. Therefore <span class="math display">\[
+U(P,f,\alpha)-L(P,f,\alpha)=\sum_{i=1}^n(M_i-m_i)\Delta\alpha_i\le\eta\sum_{i=1}^n\Delta\alpha_i=\eta[\alpha(b)-\alpha(a)]&lt;\epsilon.
+\]</span> By the above criterion we are done.</p>
+</div>
+<p>We missed a results of intermediate value theorem in previous lectures, which we quote now.</p>
+<div class="Theorem">
+<p>If <span class="math inline">\(g:[a,b]\to\mathbb R\)</span> be a continuous function and <span class="math inline">\(g(a)&lt; g(b)\)</span> and <span class="math inline">\(c\)</span> is a number such that <span class="math inline">\(f(a)&lt; c&lt; f(b)\)</span> then there is a point <span class="math inline">\(x\in(a,b)\)</span> such that <span class="math inline">\(f(x)=c\)</span>.</p>
+</div>
+<div class="Proof">
+<p>Let <span class="math inline">\(E=\{y\in[a,b]|g(y)\le c\}\)</span>. Then <span class="math inline">\(a\in E\)</span> and <span class="math inline">\(E\)</span> is bounded above. Then <span class="math inline">\(x_0=\sup E\)</span> exists.</p>
+<p>Prove that <span class="math inline">\(f(x_0)=c\)</span> as an exercise using continuity and definition of supremum.</p>
+</div>
+<div class="Theorem">
+<p>If <span class="math inline">\(f\)</span> is monotic on <span class="math inline">\([a,b]\)</span> and if <span class="math inline">\(\alpha\)</span> is continuous on <span class="math inline">\([a,b]\)</span> then <span class="math inline">\(f\)</span> is integrable with respect to <span class="math inline">\(\alpha\)</span> over <span class="math inline">\([a,b]\)</span>.</p>
+</div>
+<div class="Proof">
+<p>Let <span class="math inline">\(\epsilon&gt;0\)</span> and <span class="math inline">\(n\)</span> be a positive integer. By intermediate value theorem we can choose a partition such that <span class="math display">\[
+\Delta\alpha_i=\frac{\alpha(b)-\alpha(a)}n
+\]</span></p>
+<p>Without loss of generality suppose <span class="math inline">\(f\)</span> is monotonically increasing. Then <span class="math inline">\(M_i=f(x_i)\)</span> and <span class="math inline">\(m_i=f(x_{i-1})\)</span>. So <span class="math display">\[
+U(P,f,\alpha)-L(P,f,\alpha)=\frac{\alpha(b)-\alpha(a)}n\sum_{i=1}^n[f(x_i)-f(x_{i-1})]=\frac{\alpha(b)-\alpha(a)}n(f(b)-f(a))
+\]</span> For <span class="math inline">\(n\)</span> large enough, this is less than <span class="math inline">\(\epsilon\)</span>. So <span class="math inline">\(f\)</span> is integrable.</p>
+</div>
+We quote a theorem without proof.
+<div class="Theorem">
+<p>Suppose <span class="math inline">\(f\)</span> is bounded on <span class="math inline">\([a,b]\)</span> with finitely many discontinuities. Suppose <span class="math inline">\(\alpha\)</span> is continuous at every discontinuities of <span class="math inline">\(f\)</span>. Then <span class="math inline">\(f\)</span> is integrable with respect to <span class="math inline">\(\alpha\)</span>.</p>
+</div>
+<div class="Theorem">
+<p>Suppose <span class="math inline">\(f:[a,b]\to\mathbb R\)</span> is integrable with respect to <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(m\le f\le M\)</span>, <span class="math inline">\(\phi\)</span> is continuous on <span class="math inline">\([m,M]\)</span>. Write <span class="math inline">\(h(x)=\phi(f(x))\)</span> on <span class="math inline">\([a,b]\)</span>. Then <span class="math inline">\(h\)</span> is integrable over <span class="math inline">\([a,b]\)</span> with respect to <span class="math inline">\(\alpha\)</span>.</p>
+</div>
+<div class="Proof">
+<p>Choose <span class="math inline">\(\epsilon&gt;0\)</span>. Since <span class="math inline">\(\phi\)</span> is uniformly continuous on <span class="math inline">\([m, M]\)</span>, there exists <span class="math inline">\(\delta&gt;0\)</span> such that <span class="math inline">\(\delta&lt;\epsilon\)</span> and <span class="math inline">\(|\phi(s)-\phi(t)|&lt;\epsilon\)</span> for any <span class="math inline">\(s,t\in[m, M]\)</span> <span class="math inline">\(|s-t|\le\delta\)</span>.</p>
+<p>Since <span class="math inline">\(f\)</span> is integrable over <span class="math inline">\([a,b]\)</span> with respect to <span class="math inline">\(\alpha\)</span>, there is a partition <span class="math inline">\(P=\{x_0,\dots,x_n\}\)</span> such that <span class="math display">\[
+U(P,f,\alpha)-L(P,f,\alpha)&lt;\delta^2
+\]</span> Let us write <span class="math inline">\(M_i\)</span> and <span class="math inline">\(m_i\)</span> be supremum and infimum of <span class="math inline">\(f\)</span> on <span class="math inline">\([x_{i-1},x_i]\)</span> and <span class="math inline">\(M_i^*\)</span> and <span class="math inline">\(m_i^*\)</span> be supremum and infimum of <span class="math inline">\(h\)</span>. We put <span class="math inline">\(i=1,\dots,n\)</span> into two sets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>: put <span class="math inline">\(i\in A\)</span> if <span class="math inline">\(M_i-m_i&lt;\delta\)</span> and <span class="math inline">\(i\in B\)</span> otherwise.</p>
+<ul>
+<li>For any <span class="math inline">\(i\in A\)</span>, our choice of <span class="math inline">\(\delta\)</span> shows that <span class="math inline">\(M_i^*-m_i^*\le\epsilon\)</span></li>
+<li>For any <span class="math inline">\(i\in B\)</span>, <span class="math inline">\(M_i^*-m_i^*\le2K\)</span> where <span class="math inline">\(K=\sup_{m\le t\le M}|\phi(t)|\)</span>. By <span class="math inline">\(U(P,f,\alpha)-L(P,f,\alpha)&lt;\delta^2\)</span> and definition of <span class="math inline">\(B\)</span>, we get <span class="math display">\[
+\delta\sum_{i\in B}\Delta\alpha_i\le\sum_{i\in B}(M_i-m_i)\Delta \alpha_i&lt;\delta^2
+\]</span> so that <span class="math inline">\(\sum_{i\in B}\Delta\alpha_i&lt;\delta\)</span>. It follows that <span class="math display">\[
+U(P,h,\alpha)-L(P,h,\alpha)=\sum_{i\in A}(M_i^*-m_i^*)\Delta\alpha+i+\sum_{i\in B}(M_i^*-m_i^*)\Delta\alpha_i\le\epsilon[\alpha(b)-\alpha(a)]+2K\delta&lt;\epsilon[\alpha(b)-\alpha(a)+2K].
+\]</span> Since <span class="math inline">\(\epsilon\)</span> is arbitrary, we proved integrability of <span class="math inline">\(h\)</span> by the previous criterion.</li>
+</ul>
+</div>
+</div>
+<div id="properties-of-integral" class="section level2">
+<h2>Properties of integral</h2>
+<div class="Theorem">
+<p>Assume <span class="math inline">\(f\)</span> is an integrable function on <span class="math inline">\([a,b]\)</span> with respect to <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(c\in\mathbb R\)</span> is a constant then <span class="math inline">\(c\cdot f\)</span> is integrable and <span class="math inline">\(\int_a^b cf\mathrm d\alpha=c\int_a^b f\mathrm d\alpha\)</span>.</p>
+</div>
+<div class="Proof">
+<p>If <span class="math inline">\(c=0\)</span>, trivial. We can assume <span class="math inline">\(c&gt;0\)</span> for <span class="math inline">\(cf=(-c)(-f)\)</span>. Let <span class="math inline">\(\epsilon&gt;0\)</span> be given and by integrability of <span class="math inline">\(f\)</span> we can find a partition <span class="math inline">\(P\)</span> such that <span class="math display">\[
+U(P,f,\alpha)-L(P,f,\alpha)&lt;\frac\epsilon c.
+\]</span> So <span class="math display">\[
+U(P,cf,\alpha)-L(P,cf,\alpha)&lt;\epsilon.
+\]</span></p>
+<p>Since for any partition <span class="math inline">\(P\)</span>, <span class="math inline">\(U(P,cf,\alpha)=cU(P,f,\alpha)\)</span> and <span class="math inline">\(L(P,cf,\alpha)=cL(P,f,\alpha)\)</span>, we have <span class="math display">\[
+\begin{aligned}
+\overline{\int_a^b}cf\mathrm{d}x=c\overline{\int_a^b}f\mathrm{d}x\\
+\underline{\int_a^b}cf\mathrm{d}x=c\underline{\int_a^b}f\mathrm{d}x\\
+\end{aligned}
+\]</span> This is what we want.</p>
+</div>
+<div class="Theorem">
+<p>Assume <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> are real functions on <span class="math inline">\([a,b]\)</span> that are integrable with respect to <span class="math inline">\(\alpha\)</span>. Then</p>
+<ul>
+<li><span class="math inline">\(f_1+f_2\)</span> is also integrable with respect to <span class="math inline">\(\alpha\)</span></li>
+<li><span class="math inline">\(\int_a^b(f_1+f_2)\mathrm d\alpha=\int_a^bf_1\mathrm d\alpha+\int_a^b\mathrm d\alpha\)</span></li>
+</ul>
+</div>
+<div class="Proof">
+<p>Write <span class="math inline">\(f=f_1+f_2\)</span> then for any partition <span class="math inline">\(P\)</span> of <span class="math inline">\([a,b]\)</span>, we have <span class="math display">\[
+L(P,f_1,\alpha)+L(P,f_2,\alpha)\le L(P,f,\alpha)\le U(P,f,\alpha)\le U(P,f_1,\alpha)+U(P,f_2,\alpha).
+\]</span> Let <span class="math inline">\(\epsilon&gt;0\)</span>, then there is two partitions <span class="math inline">\(P_1\)</span> and <span class="math inline">\(P_2\)</span> such that <span class="math inline">\(U(P_1,f_1,\alpha)-L(P_1,f_1,\alpha)&lt;\epsilon\)</span> and <span class="math inline">\(U(P_2,f_2,\alpha)-L(P_2,f_2,\alpha)&lt;\epsilon\)</span>. By one of previous theorem, let <span class="math inline">\(P\)</span> be common refinment of <span class="math inline">\(P_1\)</span> and <span class="math inline">\(P_2\)</span>, we have <span class="math inline">\(U(P,f_i,\alpha)-L(P,f_i,\alpha)\)</span> for <span class="math inline">\(i=1,2\)</span>. So <span class="math display">\[
+U(P,f,\alpha)-L(P,f,\alpha)&lt; 2\epsilon.
+\]</span> With the same <span class="math inline">\(P\)</span> we have <span class="math display">\[
+U(P,f_i,\alpha)&lt;\int f_i\mathrm d\alpha+\epsilon
+\]</span> So <span class="math display">\[
+\int f\mathrm d\alpha\le U(P,f,\alpha)&lt;\int f_1\mathrm d\alpha+\int f_2\mathrm d\alpha+2\epsilon+2\epsilon.
+\]</span> Since <span class="math inline">\(\epsilon\)</span> is arbitrary we conclude that <span class="math inline">\(\int f\mathrm d\alpha\le\int f_1\mathrm d\alpha+\int f_2\mathrm d\alpha\)</span></p>
+<p>If we use the same method but consider <span class="math inline">\(-f_1\)</span> and <span class="math inline">\(-f_2\)</span> we get <span class="math inline">\(\int ((-f_1)+(-f_2))\mathrm d\alpha&lt;\int -f_1\mathrm d\alpha+\int -f_2\mathrm d\alpha\)</span>. Combine with the last theorem, we have <span class="math display">\[
+-\int (f_1+f_2)&lt; -\int f_1-\int f_2.
+\]</span> We rest our case.</p>
+</div>
+By similar method, we obtain that
+<div class="Theorem">
+<ul>
+<li>If <span class="math inline">\(f_1(x)\le f_2(x)\)</span> for any <span class="math inline">\(x\in[a,b]\)</span>, we have <span class="math display">\[
+\int_a^b f_1\mathrm d\alpha\le\int_a^b f_2\mathrm d\alpha
+\]</span></li>
+<li>If <span class="math inline">\(f\)</span> is integrable on <span class="math inline">\([a,b]\)</span> and <span class="math inline">\(a&lt; c&lt; b\)</span>, then <span class="math inline">\(f\)</span> is integrable on <span class="math inline">\([a,c]\)</span> and <span class="math inline">\([b,c]\)</span> and <span class="math display">\[
+\int_a^b f\mathrm d\alpha=\int_a^c f\mathrm d\alpha+\int_c^b f\mathrm d\alpha.
+\]</span></li>
+<li>If <span class="math inline">\(f\)</span> is integrable on <span class="math inline">\([a,b]\)</span> and <span class="math inline">\(|f(x)|&lt; M\)</span> for all <span class="math inline">\(x\in[a,b]\)</span> then <span class="math display">\[
+|\int_a^b f\mathrm d\alpha|\le M[\alpha(b)-\alpha(a)]
+\]</span></li>
+<li>If <span class="math inline">\(f\)</span> is integrable with respect to <span class="math inline">\(\alpha_1\)</span> and <span class="math inline">\(\alpha_2\)</span> then <span class="math inline">\(f\)</span> is integrable with respect to <span class="math inline">\(\alpha_1+\alpha_2\)</span> and <span class="math display">\[
+\int_a^b f\mathrm d{(\alpha_1+\alpha_2)}=\int_a^b f\mathrm d\alpha_1+\int_a^b f\mathrm d\alpha_2 
+\]</span></li>
+<li>If If <span class="math inline">\(f\)</span> is integrable with respect to <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(c\)</span> is a postive constant then <span class="math inline">\(f\)</span> is integrable with respect to <span class="math inline">\(c\alpha\)</span> and <span class="math display">\[
+\int_a^b f\mathrm d(c\alpha)=c\int_a^b f\mathrm d\alpha
+\]</span></li>
+</ul>
+</div>
+<div class="Proof">
+<p>Proofs are similarly to the proof of the above theorem. In second part, by passing to refinements we amy restrict ourselves to partitions which cantain the point <span class="math inline">\(c\)</span> in approximating <span class="math inline">\(\int f\mathrm d\alpha\)</span>.</p>
+<p>This is a good exercise for testing understanding of the definition of Riemann-Stieltjes integral.</p>
+</div>
+<div class="Theorem">
+<p>If <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are integrable function on <span class="math inline">\([a,b]\)</span> with respect to <span class="math inline">\(\alpha\)</span> then</p>
+<ul>
+<li><span class="math inline">\(fg\)</span> is integrable</li>
+<li><span class="math inline">\(|f|\)</span> is integrable and <span class="math display">\[
+\left|\int_a^b f\mathrm d\alpha\right|\le\int_a^b|f|\mathrm d\alpha
+\]</span></li>
+</ul>
+</div>
+<div class="Proof">
+<ul>
+<li><span class="math inline">\(\phi(t)=t^2\)</span> is certainly continuous. So <span class="math inline">\(\phi(f(x))=f^2(x)\)</span> and <span class="math inline">\(g^2(x)\)</span> is integrable. Basic arithmetics: <span class="math display">\[
+4fg=(f+g)^2-(f-g)^2.
+\]</span> We are done.</li>
+<li><span class="math inline">\(\phi(t)=|t|\)</span> is continuous. So <span class="math inline">\(|f|\)</span> is integrable. Depending on the sign of <span class="math inline">\(\int f \mathrm d\alpha\)</span>, choose <span class="math inline">\(c=1\)</span> or <span class="math inline">\(c=-1\)</span> so that <span class="math inline">\(c\int fd\alpha \ge 0\)</span>. Then <span class="math display">\[
+\left|\int f\mathrm d\alpha\right|=c\int f\mathrm d\alpha=\int cf\mathrm d\alpha\le\int|f|\mathrm d\alpha
+\]</span> (<span class="math inline">\(cf\le |f|\)</span>.)</li>
+</ul>
+</div>
+<div class="Definition">
+<p>The unit step function <span class="math inline">\(I\)</span> is defined by <span class="math display">\[
+I(x)=\left\{
+\begin{aligned}
+&amp;0&amp;(x\le 0)\\
+&amp;1&amp;(x&gt;0)
+\end{aligned}
+\right.
+\]</span></p>
+</div>
+<div class="Theorem">
+<p>Let <span class="math inline">\(a&lt; s&lt; b\)</span>, assume <span class="math inline">\(f\)</span> to be bounded on <span class="math inline">\([a,b]\)</span>, continuous at <span class="math inline">\(s\)</span> and <span class="math inline">\(\alpha(x)=I(x-s)\)</span>. Then <span class="math display">\[
+\int_a^b\mathrm d\alpha=f(s)
+\]</span></p>
+</div>
+<div class="Proof">
+<p>Consider partition <span class="math inline">\(P=\{x_0,x_1,x_2,x_3\}\)</span> where <span class="math inline">\(x_0=a\)</span> and <span class="math inline">\(x_1=s&lt; x_2 &lt; x_3=b\)</span>. Then <span class="math display">\[
+U(P,f,\alpha)=M_2, L(P,f,\alpha)=m_2.
+\]</span> Since <span class="math inline">\(f\)</span> is continuous at <span class="math inline">\(s\)</span> we see that <span class="math inline">\(M_2\)</span> and <span class="math inline">\(m_2\)</span> converges to <span class="math inline">\(f(s)\)</span> as <span class="math inline">\(x_2\to s\)</span>.</p>
+</div>
+<div class="Theorem">
+<p>Suppose <span class="math inline">\(c_n\ge 0\)</span> for all <span class="math inline">\(n\in\mathbb N\)</span> and <span class="math inline">\(\sum c_n\)</span> converges, <span class="math inline">\((s_n)\)</span> is a sequence of distinct points in <span class="math inline">\((a,b)\)</span> and write <span class="math display">\[
+\alpha(x)=\sum_{n=1}^\infty c_nI(x-s_n).
+\]</span> Let <span class="math inline">\(f:[a,b]\to\mathbb R\)</span> be continuous then <span class="math display">\[
+\int_a^b f\mathrm d\alpha=\sum_{n=1}^\infty c_n f(s_n).
+\]</span></p>
+</div>
+<div class="Proof">
+<p>Comparison test shows that <span class="math inline">\(\alpha(x)\)</span> converges for all <span class="math inline">\(x\)</span>. <span class="math inline">\(\alpha\)</span> is evidently monotonic since <span class="math inline">\(c_n\ge 0\)</span>. We have <span class="math inline">\(\alpha(a)=0\)</span> and <span class="math inline">\(\alpha(b)=\sum c_n\)</span>.</p>
+<p>Let <span class="math inline">\(\epsilon&gt;0\)</span>, we choose <span class="math inline">\(N\)</span> such that <span class="math display">\[
+\sum_{N+1}^\infty c_n&lt;\epsilon.
+\]</span> Split <span class="math inline">\(\alpha(x)\)</span> as <span class="math display">\[
+\alpha_1(x)=\sum_{n=1}^N c_nI(x-s_n),\alpha_2(x)=\sum_{n=N+1}\infty c_n I(x-s_n).
+\]</span> By previous theorems we have <span class="math display">\[
+\int_a^b f\mathrm d\alpha_1=\sum_{n=1}^N c_n f(s_n)
+\]</span> Since <span class="math inline">\(\alpha_2(b)-alpha_2(a)&lt;\epsilon\)</span>, <span class="math display">\[
+\left|\int_a^b f\mathrm d\alpha_2\le M\epsilon\right|
+\]</span> where <span class="math inline">\(M=\sup|f(x)|\)</span>. Since <span class="math inline">\(\alpha=\alpha_1+\alpha_2\)</span>, we have <span class="math display">\[
+\left|\int_a^b f\mathrm d\alpha-\sum_{n=1}^Nc_nf(s_n)\right|\le M\epsilon
+\]</span> Taking limit as <span class="math inline">\(N\to\infty\)</span>, we conclude.</p>
+</div>
+<div class="Theorem">
+<p>Assume <span class="math inline">\(\alpha\)</span> increases monotonically and is differentiable. Assume <span class="math inline">\(\alpha'\)</span> is integrable with respect to <span class="math inline">\(x\)</span>. Let <span class="math inline">\(f\)</span> be a bounded real function on <span class="math inline">\([a,b]\)</span>. Then <span class="math inline">\(f\)</span> is integrable if and only if <span class="math inline">\(f\alpha'\)</span> is integrable. In that case we have <span class="math display">\[
+\int_a^b f\mathrm d\alpha=\int_a^b f(x)\alpha'(x)\mathrm dx.
+\]</span></p>
+</div>
+<div class="Proof">
+<p>Let <span class="math inline">\(\epsilon&gt;0\)</span> since <span class="math inline">\(\alpha'\)</span> then there is a partition <span class="math inline">\(P=\{x_0,\dots,x_n\}\)</span> such that <span class="math display">\[
+U(P,\alpha')-L(P,\alpha')&lt;\epsilon.
+\]</span> Use mean value theorem to find points <span class="math inline">\(t_i\in[x_{i-1},x_i]\)</span> such that <span class="math inline">\(\Delta\alpha_i=\alpha'(t_i)\Delta x_i\)</span>. Then if <span class="math inline">\(s_i\in[x_{i-1},x_i]\)</span> we have <span class="math display">\[
+\sum_{i=1}^n|\alpha'(s_i)-\alpha'(t_i)|\Delta x_i&lt;\epsilon
+\]</span> by the theorem immediately after the criterion of integrability. Write <span class="math inline">\(M=\sup|f(x)|\)</span>. By previous inequality and <span class="math display">\[
+\sum_{i=1}^nf(s_i)\Delta\alpha_i=\sum_{i=1}^nf(s_i)\alpha'(t_i)\Delta x_i,
+\]</span> we have <span class="math display">\[
+\left|\sum_{i=1}^nf(s_i)\Delta \alpha_i-\sum_{i=1}^nf(s_i)\alpha'(s_i)\Delta x_i\right|\le M\epsilon.
+\]</span> In particular, we have <span class="math display">\[
+\sum_{i=1}^n f(s_i)\Delta\alpha_i\le U(P,f\alpha')+M\epsilon
+\]</span> for any <span class="math inline">\(s_i\in[x_{i-1},x_i]\)</span>. Then <span class="math display">\[
+U(P,f,\alpha)\le U(P, f\alpha')+M\epsilon.
+\]</span> Similarly we have <span class="math display">\[
+U(P,f\alpha')\le U(P,f,\alpha)+M\epsilon.
+\]</span> So <span class="math display">\[
+|U(P,f,\alpha)-U(P,f\alpha')|\le M\epsilon.
+\]</span> Now the above argument remains true for any refinement of <span class="math inline">\(P\)</span>. Hence we have <span class="math display">\[
+\left|\overline{\int_a^b}f\mathrm{d}\alpha-\overline{\int_a^b}f(x)\alpha'(x)\mathrm{d}x\right|\le M\epsilon.
+\]</span> Since <span class="math inline">\(\epsilon\)</span> is arbitrary, we have <span class="math display">\[
+\overline{\int_a^b}f\mathrm{d}\alpha=\overline{\int_a^b}f(x)\alpha'(x)\mathrm{d}x
+\]</span> for any bounded <span class="math inline">\(f\)</span>. The equality of lower integral is similar. The theorem follows.</p>
+</div>
+<div class="Theorem">
+<p>Suppose <span class="math inline">\(\phi\)</span> is a strictly increasing continuous function that maps <span class="math inline">\([A,B]\)</span> onto <span class="math inline">\([a,b]\)</span>. Suppose <span class="math inline">\(\alpha\)</span> is monotonically increasing function on <span class="math inline">\([a,b]\)</span> and <span class="math inline">\(f:[a,b]\to\mathbb R\)</span> is integrable with respect to <span class="math inline">\(\alpha\)</span>. Define <span class="math inline">\(\beta\)</span> and <span class="math inline">\(g\)</span> to be functinos on <span class="math inline">\([A,B]\)</span> by <span class="math display">\[
+\beta(y)=\alpha(\phi(y)), g(y)=f(\phi(y))
+\]</span> Then <span class="math inline">\(g\)</span> is integrable with respect to <span class="math inline">\(\beta\)</span> and <span class="math display">\[
+\int_A^B g\mathrm d\beta=\int_a^b f\mathrm d\alpha.
+\]</span></p>
+</div>
+<div class="Proof">
+<p>To each partition <span class="math inline">\(P=\{x_0,x_1,\dots,x_n\}\)</span> of <span class="math inline">\([a,b]\)</span> there is a partion <span class="math inline">\(Q=\{y_0,\dots,y_n\}\)</span> of <span class="math inline">\([A,B]\)</span> such that <span class="math inline">\(x_i=\phi(y_i)\)</span>. All partition of <span class="math inline">\([A,B]\)</span> can be obtained this way. By intermediate value theorem, we see the values taken by <span class="math inline">\(f\)</span> on <span class="math inline">\([x_{i-1},x_i]\)</span> are the same as those taken by <span class="math inline">\(g\)</span> on <span class="math inline">\([y_{i-1},y_i]\)</span>, hence we have <span class="math display">\[
+U(Q,g,\beta)=U(P,f,\alpha),L(Q,g,\beta)=L(P,f,\alpha).
+\]</span> <span class="math inline">\(f\)</span> is integrable so <span class="math inline">\(P\)</span> can be chosen so that <span class="math inline">\(U(P,f,\alpha)\)</span> and <span class="math inline">\(L(P,f, \alpha)\)</span> are arbitrarily close to <span class="math inline">\(\int f\mathrm d\alpha\)</span>. Then find corresponding <span class="math inline">\(Q\)</span>, we conclude the proof.</p>
+</div>
+<p>Note the following special case: Take <span class="math inline">\(\alpha(x)=x\)</span>. Then <span class="math inline">\(\beta=\phi\)</span>. Assume <span class="math inline">\(\phi'\)</span> is integrable on <span class="math inline">\([A,B]\)</span>. Then <span class="math display">\[
+\int_a^b f(x)\mathrm dx=\int_A^Bf(\phi(y))\mathrm d\phi=\int_A^Bf(\phi(y))\phi'(y)\mathrm dy.
+\]</span></p>
+</div>
+<div id="integration-and-differentiation" class="section level2">
+<h2>Integration and differentiation</h2>
+<div class="Theorem">
+<p>Let <span class="math inline">\(f:[a,b]\to\mathbb R\)</span> be integrable. For <span class="math inline">\(a\le x\le b\)</span>, write <span class="math display">\[
+F(x)=\int_a^x f(t)\mathrm dt.
+\]</span> Then <span class="math inline">\(F\)</span> is continuous on <span class="math inline">\([a,b]\)</span>. If <span class="math inline">\(f\)</span> is continuous at <span class="math inline">\(x_0\in[a,b]\)</span>. Then <span class="math inline">\(F\)</span> is differentiable at <span class="math inline">\(x_0\)</span> with <span class="math inline">\(F'(x_0)=f(x_0)\)</span></p>
+</div>
+<div class="Proof">
+<p>Since <span class="math inline">\(f\)</span> is integrable, <span class="math inline">\(f\)</span> is bounded say <span class="math inline">\(|f(t)|\le M\)</span> for all <span class="math inline">\(a\le t\le b\)</span>. If <span class="math inline">\(a\le x&lt; y\le b\)</span>, we have <span class="math display">\[
+|F(y)-F(x)|=\left|\int_x^yf(t)\mathrm dt\right|\le M(y-x).
+\]</span> Given <span class="math inline">\(\epsilon&gt;0\)</span> we see that <span class="math display">\[
+|F(y)-F(x)|&lt;\epsilon
+\]</span> for any <span class="math inline">\(|y-x|&lt;\frac\epsilon M\)</span>. This proves continuity of <span class="math inline">\(F\)</span>. (also uniform continuity).</p>
+<p>Suppose <span class="math inline">\(f\)</span> is continuous at <span class="math inline">\(x_0\)</span>. Given <span class="math inline">\(\epsilon&gt;0\)</span> choose <span class="math inline">\(\delta&gt;0\)</span> such that <span class="math inline">\(|f(t)-f(x_0)|&lt;\epsilon\)</span> for all <span class="math inline">\(t\in[a,b]\)</span> with <span class="math inline">\(|t-x_0|&lt;\delta\)</span>. Hence, if <span class="math display">\[
+x_0-\delta&lt; s\le x_0\le t&lt; x_0+\delta\text{ and }a\le s&lt; t\le b,
+\]</span> we have <span class="math display">\[
+\left|\frac{F(t)-F(s)}{t-s}-f(x_0)\right|=\left|\frac1{t-s}\int_t^s[f(u)-f(x_0)]\mathrm du\right|&lt;\epsilon.
+\]</span> (The above equality used <span class="math inline">\(\int_s^t f(x_0)=(t-s)f(x_0)\)</span> which is trivial so long as anyone cares to prove it.) Hence <span class="math inline">\(F'(x_0)=f(x_0)\)</span>.</p>
+</div>
+<div class="Theorem">
+<p>[Fundamental theorem of calculus] If <span class="math inline">\(f:[a,b]\to\mathbb R\)</span> is integrable and there is a differentiable function <span class="math inline">\(F:[a,b]\to\mathbb R\)</span> such that <span class="math inline">\(F'=f\)</span>, then <span class="math display">\[
+\int_a^b f(x)dx=F(b)-F(a)
+\]</span></p>
+</div>
+<div class="Proof">
+<p>Let <span class="math inline">\(\epsilon&gt;0\)</span>. Choose a partition <span class="math inline">\(P=\{x_0,\dots,x_n\}\)</span> of <span class="math inline">\([a,b]\)</span> such that <span class="math inline">\(U(P,f)-L(P,f)&lt;\epsilon\)</span>. Use mean value theorem to find points <span class="math inline">\(t_i\in[x_{i-1},x_i]\)</span> such that <span class="math display">\[
+F(x_i)-F(x_{i-1})=f(t_i)\Delta x_i.
+\]</span> Then <span class="math display">\[
+\sum_{i=1}^nf(t_i)\Delta x_i=F(b)-F(a).
+\]</span> Then <span class="math display">\[
+\left|F(b)-F(a)-\int_a^b f(x)\mathrm dx\right|&lt;\epsilon
+\]</span> by the theorem immediately after the criterion of integrability. Since <span class="math inline">\(\epsilon\)</span> is arbitrary, the proof is complete.</p>
+</div>
+<div class="Theorem">
+<p>[Integration by parts] Suppose <span class="math inline">\(F\)</span> and <span class="math inline">\(G\)</span> are differentiable functions on <span class="math inline">\([a,b]\)</span> with <span class="math inline">\(f:=F'\)</span> and <span class="math inline">\(g:=G'\)</span> are both integrable on <span class="math inline">\([a,b]\)</span>. Then <span class="math display">\[
+\int_a^b FG\mathrm dx=F(b)G(b)-F(a)G(a)-\int_a^bfG\mathrm dx.
+\]</span></p>
+</div>
+<div class="Proof">
+<p>Use ftc to <span class="math inline">\(H(x)=F(x)G(x)\)</span> and the fact that <span class="math inline">\(H'(x)=f(x)G(x)+F(x)g(x)\)</span>. Just note that <span class="math inline">\(H'\)</span> is integrable by previous theorems.</p>
+</div>
+<p>For lack of time, we will omit integration of functions <span class="math inline">\([a,b]\to\mathbb R^k\)</span>, for interested reader, feel free to read <span class="citation">Rudin and others (1964)</span> 6.23 to 6.27. The exercises on <span class="citation">Rudin and others (1964)</span> are strongly recommended.</p>
+</div>
+<div id="summary-10" class="section level2">
+<h2>Summary</h2>
+<p>This lecture is about Riemann-Stieltjes integral:</p>
+<ul>
+<li>its definition</li>
+<li>its property</li>
+<li>Fundamental theorem of calculus</li>
+</ul>
+</div>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
