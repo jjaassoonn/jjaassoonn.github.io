@@ -4072,6 +4072,362 @@ This lecture is about Riemann-Stieltjes integral:
 - its property
 - Fundamental theorem of calculus
 
+# Some special functions
+
+In this lecture we will formally define exponentiation, logarithm, sine and cosine functions.
+
+## $\exp$ and $\log$
+
+<div class="Definition">
+We define the exponential function $\exp:\mathbb R\to\mathbb R$ by the power series
+$$
+\exp(x)=\sum_{n=0}^\infty\frac{x^n}{n!}
+$$
+</div>
+
+We have previously saw that $\exp$ converges for all $x\in\mathbb R$ and $\exp(x)\exp(y)=\exp(x+y)$. We have the following corollaries.
+
+<div class="Corollary">
+
+- $\exp(0)=1$
+- $\exp(-x)=\frac1{\exp(x)}$ for all $x\in\mathbb R$
+- $\exp(x)>0$ for all $x\in\mathbb R$
+
+</div>
+
+<div class="Proof">
+
+- straight from definition by substitute $x=0$ in.
+- $1=\exp(0)=\exp(-x+x)=\exp(x)\exp(-x)$.
+- partial sums are $>0$.
+
+</div>
+
+<div class="theorem">
+$f(x)=\exp(x)$ is differentiable everywhere and $f'=f$.
+</div>
+
+<div class="Proof">
+Let $a\in\mathbb R$ then
+$$
+\frac{\exp(a+h)-exp(a)}h=\exp(a)\frac{\exp(h)-1}h=\exp(a)\left(1+\frac h{2!}+\frac {h^2}{3!}+\dots\right).
+$$
+
+For $|h|<2$, we have
+$$
+\left|\frac h{2!}+\frac{h^2}{3!}+\dots\right|\le\frac{|h|}2+\frac{|h|^2}4+\dots+\frac{|h|^n}{2^n}+\dots=\frac{\frac{|h|}2}{1-\frac{|h|}2}
+$$
+and this tends to zero as $h\to 0$.
+Hence
+$$
+f'(a)=\lim_{h\to0}\frac{\exp(a+h)-exp(a)}h=exp(a)\lim_{h\to0}{\exp(h)-1}{h}=\exp(a).
+$$
+</div>
+
+<div class="Corollary">
+Since $\exp$ is everywhere continuous, it is everywhere differentiable.
+</div>
+
+<div class="Theorem">
+
+$\lim_{x\to+\infty}x^n\exp(-x)=0$ for every $n\in\mathbb N$.
+
+</div>
+
+<div class="Proof">
+By defniition for $x>0$
+$$
+\exp(x)>\frac{x^{n+1}}{(n+1)!}
+$$
+hence
+$$
+x^n\exp(-x)<\frac{(n+1)!}x
+$$
+As $x\to\infty$, the above tends to zero.
+</div>
+
+We often write $\exp(x)$ as $e^x$ this because
+
+- for $n\in\mathbb N$, $\exp(n)=\exp(1+1\dots+1)=\exp(1)\exp(1)\dots\exp(1)=e\cdot e\dots e=e^n$;
+- then if $p=\frac nm\in\mathbb Q$, $\exp(p)^m=\exp(pm)=\exp(n)=e^n$, hence $\exp(p)=e^{\frac nm}$;
+- then for any $x\in\mathbb R$, using continuity one can verify that $\exp(x)=\sup_{\{y\in\mathbb Q|y < x\}}e^y$.
+
+By intermediate value theorem, domain of $\exp$ is $\mathbb R_{> 0}$, i.e $\exp:\mathbb R\to\mathbb R_{> 0}$ is bijective. Hence there is an inverse function $\log:\mathbb R_{> 0}\to\mathbb R$ that is also strictly increasing and differentiable (think about why?).
+
+By definition of inverse function:
+for all $y>0$
+$$
+\exp(\log y)=y,
+$$
+and for all $x\in\mathbb R$:
+$$
+\log(\exp x)=x.
+$$
+Differentiating this we get
+$$
+\log'(\exp(x))\exp'(x)=1
+$$
+since $\exp'=\exp$ we get for all $y>0$
+$$
+\log'(y)=\frac1y.
+$$
+We use Fundamental theorem of calculus and the fact that $\log(1)=\log(\exp(0))=0$, we get
+$$
+\log(y)=\log(y)-\log(1)=\int_1^y\frac1x\mathrm dx.
+$$
+
+Note that this integral can sometimes taken as definition of logarithm.
+
+Since $\log:\mathbb R_{>0}\to\mathbb R$ is bijective, for any $u,v>0$ we can write $u=\exp(x)$ and $v=\exp(y)$ for some $x,y\in\mathbb R$ then
+$$
+\log(uv)=\log(\exp(x)\exp(y))=\log(\exp(x+y))=x+y=\log(u)+\log(v)
+$$
+
+We can see that for $x>0$ and integer $n$
+$$
+x^n=x\cdot x\dots x=\exp(\log x)\dots\exp(\log x)=\exp(\log x+\dots+\log x)=\exp(n\log(x))
+$$
+Then for any postive integer $m$, we have
+$$
+x^{\frac1m}=\exp(\frac1m\log(x))
+$$
+Then for any $\alpha\in\mathbb Q$, we have
+$$
+x^\alpha=\exp(\alpha\log x)=e^{\alpha\log x}.
+$$
+Then for any real $\alpha$, by continuity, $\sup_{\{y\in\mathbb Q|y< \alpha\}}x^y=e^{\alpha\log x}$.
+Thus we can calculate the derivative of $x^\alpha$ for any real number $\alpha$:
+$$
+(x^\alpha)'=\exp(\alpha\log x)\cdot\frac\alpha x=\alpha x^{\alpha-1}.
+$$
+
+This is different from previous result where we only considered the integer case.
+
+Contrary to $\exp$, $\log$ grows extremely slowly:
+
+<div class="Theorem">
+For all $\alpha>0$, we have
+$$
+\lim_{x\to\infty}x^{-\alpha}\log x=0
+$$
+</div>
+<div class="Proof">
+For any $0<\epsilon<\alpha$ and $x>1$ we have
+$$
+\begin{aligned}
+x^{-\alpha}\log x&=x^{-\alpha}\int_1^x\frac1t\mathrm dt < x^{-\alpha}\int_1^x t^{\epsilon-1}\\
+&=x^{-\alpha}\frac{x^{\epsilon}-1}{\epsilon}<\frac{x^{\epsilon-\alpha}}\epsilon.
+\end{aligned}
+$$
+So the theorem follows.
+</div>
+
+## Sine and cosine
+
+<div class="Definition">
+We define $\sin:\mathbb R\to\mathbb R$ and $\cos:\mathbb R\to\mathbb R$ by
+$$
+\begin{aligned}
+\sin(x)&=\sum_{n=0}^\infty\frac{(-1)^n}{(2n+1)!}x^{2n+1}\\
+\cos(x)&=\sum_{n=0}^\infty\frac{(-1)^n}{(2n)!}x^(2n)
+\end{aligned}
+$$
+</div>
+
+One can show the radius of convergence of both function is infinite.
+
+<div class="Theorem">
+$$
+\begin{aligned}
+\sin(0)  &=0\\
+\cos(0)  &=1\\
+\sin(x+y)&=\sin(x)\cos(y)+\cos(x)\sin(y)\\
+\cos(x+y)&=\cos(x)\cos(y)-\sin(x)\sin(y)\\
+\sin^2(x)+\cos^2(x)&=1
+\end{aligned}
+$$
+</div>
+
+<div class="Proof">
+All the prove is basically expanding series. It is a complicated exercise but the idea is really simple.
+</div>
+
+From the above theorem we get that for all $x\in\mathbb R$ we have $-1\le\sin x\le 1$ and $-1\le cos(x)\le 1$
+
+<div class="Theorem">
+$$
+\sin'=cos\text{ and }\cos'=-sin
+$$
+</div>
+<div class="Proof">
+We prove the first and leave $\cos'$ as exercise:
+
+$$
+\begin{aligned}
+\sin'(x)&=\lim_{y\to0}\frac{\sin(x+y)-\sin(x)}{y}\\
+&=\lim_{y\to0}\frac{\sin x\cos y+\cos x\sin y-\sin x}{y}\\
+&=\lim_{y\to 0}\left[\frac{\sin(x)(\cos y-1)}{y}+\frac{\cos x\sin y}{y} \right]\\
+&=\sin(x)\lim_{y\to 0}\frac{\cos y-1}{y}+\cos x\lim_{y\to 0}{\frac{\sin{y}}{y}}.
+\end{aligned}
+$$
+
+By definition:
+$$
+\left|\frac{\cos y-1}{y}\right|=|-\frac{y}{2!}+\frac{y^3}{4!}-\frac{y^5}{6!}+\dots|\le\frac{y}{2}+\frac{y^3}{2^3}+\frac{y^5}{2^5}+\dots
+$$
+Thus $\lim_{y\to 0}\frac{\cos y-1}{y}=0$.
+By definition
+$$
+\frac{\sin{y}}{y}-1=-\frac{y^2}{3!}+\frac{y^4}{5!}-\frac{y^6}{7!}+\dots
+$$
+By similar reasoning, $\lim_{y\to 0}\frac{\sin y}y=1$.
+Hence $\sin'(x)=cos(x)$
+</div>
+
+Since $\sin,\cos$ are differentiable they are continuous.
+
+If $0 < x < 2$, we have
+$$
+\sin(x)=\left(x-\frac{x^3}{3!}\right)+\left(\frac{x^5}{5!}-\frac{x^7}{7!}\right)+\dots>0
+$$
+Then for $0< x < 2$ we have $(cos x)'=-sin(x)< 0$. Hence $\cos x$ is decreasing. Note that
+$$
+\cos(x)=\left(1-\frac{x^2}2!\right)+\left(\frac{x^4}{4!}-\frac{x^6}{6!})+\dots.
+$$
+Hence $\cos(\sqrt2)>0$. We rearrange $\cos(x)$ as following:
+$$
+\cos x=1-\frac{x^2}{2!}+\frac{x^4}{4!}-(\frac{x^6}{6!}-\frac{x^8}{8!})-\dots
+$$
+This shows that $\cos(\sqrt3)<0$. This with intermediate value theorem proves that for some number which we call $\frac\pi 2$ satisfies $\cos(\frac\pi 2)=0$ hence $\sin(\frac\pi 2)=1$.
+
+<div class="Corollary">
+$$
+\begin{aligned}
+& \sin(x+\frac\pi2)&=\cos x ,& \cos(x+\frac\pi2)=-\sin x,\\
+& \sin(x+\pi)=-\sin(x) , & \cos(x+\pi)=-\cos(x),\\
+& \sin(x+2\pi)=\sin(x), & \cos(x+2\pi)=\cos(x)
+\end{aligned}
+$$
+</div>
+
+Since $\sin(x+2\pi)=\sin(x)$ and $\cos(x+2\pi)=\cos(x)$, we say $\sin$ and $\cos$ has period $2\pi$
+
+Let us consider a circle in $\mathbb R^2$ defined by $\{(x,y)|x^2+y^2\le1\}$. The area of the upper semicircle can be calculated as
+
+$$
+\int_{-1}^1\sqrt{1-x^2}\mathrm dx=\int_0^\pi\sin^2\theta\mathrm d\theta=\frac12\int_0^\pi(1-\cos2\theta)\mathrm d\theta=\frac12\pi.
+$$
+Here we used integration and change of variable by $x=\cos\theta$. This shows that our definition of $\pi$ doesn't contradict our formulae for area of circles.
+
+We are going to briefly overview the gamma function, this function appears at many areas in analysis. This section is not intended to be proved in a very rigorous manner. Readers are welcome to fill in the details.
+
+## Gamma function $\Gamma$
+
+<div class="Definition">
+For $0< x <\infty$, we define
+$$
+\Gamma(x)=\int_0^\infty t^{x-1}e^{-t}\mathrm dt
+$$
+Check that the integral converges for all $x$, i.e.:
+$$
+\lim_{y\to\infty}\int_0^y t^{x-1}e^{-t}\mathrm dt
+$$
+exists.
+</div>
+
+<div class="Theorem">
+
+- For $0< x <\infty$, $\Gamma(x+1)=x\Gamma(x)$;
+- $\Gamma(n+1)=n!$ for $n=1,2,3,\dots$;
+- $\log\Gamma$ is connvex on $(0,\infty)$. where $f:E\to\mathbb R$ is said to be a convex function if $E$ is a convex set and for all $x_1,x_2\in E$ and $t\in[0,1]$ we have $f(tx_1+(1-t)x_2)\le tf(x_1)+(1-t)f(x_2)$
+</div>
+
+<div class="Proof">
+
+- Integration by part
+- $\Gamma(1)=1$ then use first part and induction.
+- This requires Hölder's inequality [^4], omitted.
+
+</div>
+
+Suprisingly, these 3 properties determines $\Gamma$ completely:
+
+<div class="Theorem">
+If $f$ is a postive function on $(0,\infty)$ such that
+
+- $f(x+1)=x f(x)$
+- $f(1)=1$
+- $log f$ is convex
+
+then $f$ is the Gamma function.
+
+</div>
+
+<div class="Proof">
+Since $\Gamma$ statisfies all three properties, we just need to prove these 3 properties determines a function uniquely. By the first property, we just need to check everything on $(0,1)$, then for all $x\ge 1$ will be determined using $f(x+1)=xf(x)$.
+
+Put $\phi=\log f$. Then $\phi(x+1)=\log x+\phi(x)$ by first property and $\phi(1)=0$ by second property. Since $\phi$ is convex, suppose $0 < x < 1$ and $n$ positive integer, we have $\phi(n+1)=\phi(n)+\log(n)=\phi(n-1)+\log(n-1)+\log(n)=\dots=\log(n!)$.
+By convexicity:
+$$
+\log n\le\frac{\phi(n+1+x)-\phi(n+1)}{x}\le\log(n+1).
+$$
+But $\phi(n+1+x)=\phi(x)+\log[x(x+1)\dots(x+n)]$.
+Thus
+$$
+0\le\phi(x)-\log\left[\frac{n!n^x}{x(x+1)\cdots(x+n)} \right]\le x\log\left(1+\frac1n\right).
+$$
+As $n\to\infty$, $\log\left(1+\frac1n\right)\to 0$. Hence $\phi(x)$ is uniquely determined. So is $f$. Then $f$ must be $\Gamma$.
+</div>
+
+Coincidentally, we found out
+$$
+\Gamma(x)=\lim_{n\to\infty}\frac{n!n^x}{x(x+1)\cdots(x+n)},
+$$
+for $0 < x < 1$ and use $\Gamma(x+1)=x\Gamma(x)$ to deduce this holds for all $x>0$.
+
+<div class="Definition">
+We define the beta function $B(x,y)$ to be
+$$
+\int_0^1t^{x-1}(1-t)^{y-1}\mathrm dt
+$$
+</div>
+
+<div class="Theorem">
+$$
+B(x,y)=\frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+$$
+</div>
+<div class="Proof">
+The idea is to define
+$$
+f(x)=\frac{\Gamma(x+y)}{\Gamma(y)}B(x,y)
+$$
+and prove that $f$ has the 3 properties hence $f(x)=\Gamma(x)$.
+
+Let us not worry about it too much. See @rudin1964principles 8.20 for details.
+</div>
+
+If we substitute $t=\sin^2\theta$ we have:
+$$
+2\int_0^{\frac\pi2}(\sin\theta)^{2x-1}(\cos\theta)^{2y-1}\mathrm d\theta=\frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+$$
+We put $x=y=\frac12$, then
+$$
+2\int_0^{\frac\pi2}1\mathrm d\theta=\pi=\frac{\Gamma(\frac12)\Gamma(\frac12)}{\Gamma(1)}=\Gamma(\frac12)^2
+$$
+hence $\Gamma(12)=\sqrt{\pi}$.
+
+## Summary
+
+In this lecture we defined $\exp,\log,\sin,\cos,\Gamma$. When dealing with $\sin$ and $\cos$, one can avoid some of the arithmetic boredom if one goes into complex plane, but we didn't develop complex plane, so we avoid this approach.
+
+- Definition of $\exp$;
+- $\log$ as inverse of $\exp$;
+- $\sin$ and $\cos$ as power series;
+- crash course of $\Gamma$ function.
+
+If anyone is interested in $\Gamma$, @artin2015gamma is a good place to start.
+
 # References 
 
 
@@ -4080,3 +4436,5 @@ This lecture is about Riemann-Stieltjes integral:
 [^2]: If you don't believe this, try to find black snow and a not red grass.
 
 [^3]: We need so called transitive sets (sets without $\in$-holes). Interested reader may find @jech2008axiom helpful.
+
+[^4]: For example, see https://en.wikipedia.org/wiki/H%C3%B6lder%27s_inequality and @rudin1964principles 8.18(c)

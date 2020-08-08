@@ -3657,9 +3657,259 @@ F(x_i)-F(x_{i-1})=f(t_i)\Delta x_i.
 </ul>
 </div>
 </div>
+<div id="some-special-functions" class="section level1">
+<h1>Some special functions</h1>
+<p>In this lecture we will formally define exponentiation, logarithm, sine and cosine functions.</p>
+<div id="exp-and-log" class="section level2">
+<h2><span class="math inline">\(\exp\)</span> and <span class="math inline">\(\log\)</span></h2>
+<div class="Definition">
+<p>We define the exponential function <span class="math inline">\(\exp:\mathbb R\to\mathbb R\)</span> by the power series <span class="math display">\[
+\exp(x)=\sum_{n=0}^\infty\frac{x^n}{n!}
+\]</span></p>
+</div>
+<p>We have previously saw that <span class="math inline">\(\exp\)</span> converges for all <span class="math inline">\(x\in\mathbb R\)</span> and <span class="math inline">\(\exp(x)\exp(y)=\exp(x+y)\)</span>. We have the following corollaries.</p>
+<div class="Corollary">
+<ul>
+<li><span class="math inline">\(\exp(0)=1\)</span></li>
+<li><span class="math inline">\(\exp(-x)=\frac1{\exp(x)}\)</span> for all <span class="math inline">\(x\in\mathbb R\)</span></li>
+<li><span class="math inline">\(\exp(x)&gt;0\)</span> for all <span class="math inline">\(x\in\mathbb R\)</span></li>
+</ul>
+</div>
+<div class="Proof">
+<ul>
+<li>straight from definition by substitute <span class="math inline">\(x=0\)</span> in.</li>
+<li><span class="math inline">\(1=\exp(0)=\exp(-x+x)=\exp(x)\exp(-x)\)</span>.</li>
+<li>partial sums are <span class="math inline">\(&gt;0\)</span>.</li>
+</ul>
+</div>
+<div class="theorem">
+<p><span class="math inline">\(f(x)=\exp(x)\)</span> is differentiable everywhere and <span class="math inline">\(f'=f\)</span>.</p>
+</div>
+<div class="Proof">
+<p>Let <span class="math inline">\(a\in\mathbb R\)</span> then <span class="math display">\[
+\frac{\exp(a+h)-exp(a)}h=\exp(a)\frac{\exp(h)-1}h=\exp(a)\left(1+\frac h{2!}+\frac {h^2}{3!}+\dots\right).
+\]</span></p>
+<p>For <span class="math inline">\(|h|&lt;2\)</span>, we have <span class="math display">\[
+\left|\frac h{2!}+\frac{h^2}{3!}+\dots\right|\le\frac{|h|}2+\frac{|h|^2}4+\dots+\frac{|h|^n}{2^n}+\dots=\frac{\frac{|h|}2}{1-\frac{|h|}2}
+\]</span> and this tends to zero as <span class="math inline">\(h\to 0\)</span>. Hence <span class="math display">\[
+f'(a)=\lim_{h\to0}\frac{\exp(a+h)-exp(a)}h=exp(a)\lim_{h\to0}{\exp(h)-1}{h}=\exp(a).
+\]</span></p>
+</div>
+<div class="Corollary">
+<p>Since <span class="math inline">\(\exp\)</span> is everywhere continuous, it is everywhere differentiable.</p>
+</div>
+<div class="Theorem">
+<p><span class="math inline">\(\lim_{x\to+\infty}x^n\exp(-x)=0\)</span> for every <span class="math inline">\(n\in\mathbb N\)</span>.</p>
+</div>
+<div class="Proof">
+<p>By defniition for <span class="math inline">\(x&gt;0\)</span> <span class="math display">\[
+\exp(x)&gt;\frac{x^{n+1}}{(n+1)!}
+\]</span> hence <span class="math display">\[
+x^n\exp(-x)&lt;\frac{(n+1)!}x
+\]</span> As <span class="math inline">\(x\to\infty\)</span>, the above tends to zero.</p>
+</div>
+<p>We often write <span class="math inline">\(\exp(x)\)</span> as <span class="math inline">\(e^x\)</span> this because</p>
+<ul>
+<li>for <span class="math inline">\(n\in\mathbb N\)</span>, <span class="math inline">\(\exp(n)=\exp(1+1\dots+1)=\exp(1)\exp(1)\dots\exp(1)=e\cdot e\dots e=e^n\)</span>;</li>
+<li>then if <span class="math inline">\(p=\frac nm\in\mathbb Q\)</span>, <span class="math inline">\(\exp(p)^m=\exp(pm)=\exp(n)=e^n\)</span>, hence <span class="math inline">\(\exp(p)=e^{\frac nm}\)</span>;</li>
+<li>then for any <span class="math inline">\(x\in\mathbb R\)</span>, using continuity one can verify that <span class="math inline">\(\exp(x)=\sup_{\{y\in\mathbb Q|y &lt; x\}}e^y\)</span>.</li>
+</ul>
+<p>By intermediate value theorem, domain of <span class="math inline">\(\exp\)</span> is <span class="math inline">\(\mathbb R_{&gt; 0}\)</span>, i.e <span class="math inline">\(\exp:\mathbb R\to\mathbb R_{&gt; 0}\)</span> is bijective. Hence there is an inverse function <span class="math inline">\(\log:\mathbb R_{&gt; 0}\to\mathbb R\)</span> that is also strictly increasing and differentiable (think about why?).</p>
+<p>By definition of inverse function: for all <span class="math inline">\(y&gt;0\)</span> <span class="math display">\[
+\exp(\log y)=y,
+\]</span> and for all <span class="math inline">\(x\in\mathbb R\)</span>: <span class="math display">\[
+\log(\exp x)=x.
+\]</span> Differentiating this we get <span class="math display">\[
+\log'(\exp(x))\exp'(x)=1
+\]</span> since <span class="math inline">\(\exp'=\exp\)</span> we get for all <span class="math inline">\(y&gt;0\)</span> <span class="math display">\[
+\log'(y)=\frac1y.
+\]</span> We use Fundamental theorem of calculus and the fact that <span class="math inline">\(\log(1)=\log(\exp(0))=0\)</span>, we get <span class="math display">\[
+\log(y)=\log(y)-\log(1)=\int_1^y\frac1x\mathrm dx.
+\]</span></p>
+<p>Note that this integral can sometimes taken as definition of logarithm.</p>
+<p>Since <span class="math inline">\(\log:\mathbb R_{&gt;0}\to\mathbb R\)</span> is bijective, for any <span class="math inline">\(u,v&gt;0\)</span> we can write <span class="math inline">\(u=\exp(x)\)</span> and <span class="math inline">\(v=\exp(y)\)</span> for some <span class="math inline">\(x,y\in\mathbb R\)</span> then <span class="math display">\[
+\log(uv)=\log(\exp(x)\exp(y))=\log(\exp(x+y))=x+y=\log(u)+\log(v)
+\]</span></p>
+<p>We can see that for <span class="math inline">\(x&gt;0\)</span> and integer <span class="math inline">\(n\)</span> <span class="math display">\[
+x^n=x\cdot x\dots x=\exp(\log x)\dots\exp(\log x)=\exp(\log x+\dots+\log x)=\exp(n\log(x))
+\]</span> Then for any postive integer <span class="math inline">\(m\)</span>, we have <span class="math display">\[
+x^{\frac1m}=\exp(\frac1m\log(x))
+\]</span> Then for any <span class="math inline">\(\alpha\in\mathbb Q\)</span>, we have <span class="math display">\[
+x^\alpha=\exp(\alpha\log x)=e^{\alpha\log x}.
+\]</span> Then for any real <span class="math inline">\(\alpha\)</span>, by continuity, <span class="math inline">\(\sup_{\{y\in\mathbb Q|y&lt; \alpha\}}x^y=e^{\alpha\log x}\)</span>. Thus we can calculate the derivative of <span class="math inline">\(x^\alpha\)</span> for any real number <span class="math inline">\(\alpha\)</span>: <span class="math display">\[
+(x^\alpha)'=\exp(\alpha\log x)\cdot\frac\alpha x=\alpha x^{\alpha-1}.
+\]</span></p>
+<p>This is different from previous result where we only considered the integer case.</p>
+<p>Contrary to <span class="math inline">\(\exp\)</span>, <span class="math inline">\(\log\)</span> grows extremely slowly:</p>
+<div class="Theorem">
+<p>For all <span class="math inline">\(\alpha&gt;0\)</span>, we have <span class="math display">\[
+\lim_{x\to\infty}x^{-\alpha}\log x=0
+\]</span></p>
+</div>
+<div class="Proof">
+<p>For any <span class="math inline">\(0&lt;\epsilon&lt;\alpha\)</span> and <span class="math inline">\(x&gt;1\)</span> we have <span class="math display">\[
+\begin{aligned}
+x^{-\alpha}\log x&amp;=x^{-\alpha}\int_1^x\frac1t\mathrm dt &lt; x^{-\alpha}\int_1^x t^{\epsilon-1}\\
+&amp;=x^{-\alpha}\frac{x^{\epsilon}-1}{\epsilon}&lt;\frac{x^{\epsilon-\alpha}}\epsilon.
+\end{aligned}
+\]</span> So the theorem follows.</p>
+</div>
+</div>
+<div id="sine-and-cosine" class="section level2">
+<h2>Sine and cosine</h2>
+<div class="Definition">
+<p>We define <span class="math inline">\(\sin:\mathbb R\to\mathbb R\)</span> and <span class="math inline">\(\cos:\mathbb R\to\mathbb R\)</span> by <span class="math display">\[
+\begin{aligned}
+\sin(x)&amp;=\sum_{n=0}^\infty\frac{(-1)^n}{(2n+1)!}x^{2n+1}\\
+\cos(x)&amp;=\sum_{n=0}^\infty\frac{(-1)^n}{(2n)!}x^(2n)
+\end{aligned}
+\]</span></p>
+</div>
+<p>One can show the radius of convergence of both function is infinite.</p>
+<div class="Theorem">
+<p><span class="math display">\[
+\begin{aligned}
+\sin(0)  &amp;=0\\
+\cos(0)  &amp;=1\\
+\sin(x+y)&amp;=\sin(x)\cos(y)+\cos(x)\sin(y)\\
+\cos(x+y)&amp;=\cos(x)\cos(y)-\sin(x)\sin(y)\\
+\sin^2(x)+\cos^2(x)&amp;=1
+\end{aligned}
+\]</span></p>
+</div>
+<div class="Proof">
+<p>All the prove is basically expanding series. It is a complicated exercise but the idea is really simple.</p>
+</div>
+<p>From the above theorem we get that for all <span class="math inline">\(x\in\mathbb R\)</span> we have <span class="math inline">\(-1\le\sin x\le 1\)</span> and <span class="math inline">\(-1\le cos(x)\le 1\)</span></p>
+<div class="Theorem">
+<p><span class="math display">\[
+\sin'=cos\text{ and }\cos'=-sin
+\]</span></p>
+</div>
+<div class="Proof">
+<p>We prove the first and leave <span class="math inline">\(\cos'\)</span> as exercise:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sin'(x)&amp;=\lim_{y\to0}\frac{\sin(x+y)-\sin(x)}{y}\\
+&amp;=\lim_{y\to0}\frac{\sin x\cos y+\cos x\sin y-\sin x}{y}\\
+&amp;=\lim_{y\to 0}\left[\frac{\sin(x)(\cos y-1)}{y}+\frac{\cos x\sin y}{y} \right]\\
+&amp;=\sin(x)\lim_{y\to 0}\frac{\cos y-1}{y}+\cos x\lim_{y\to 0}{\frac{\sin{y}}{y}}.
+\end{aligned}
+\]</span></p>
+<p>By definition: <span class="math display">\[
+\left|\frac{\cos y-1}{y}\right|=|-\frac{y}{2!}+\frac{y^3}{4!}-\frac{y^5}{6!}+\dots|\le\frac{y}{2}+\frac{y^3}{2^3}+\frac{y^5}{2^5}+\dots
+\]</span> Thus <span class="math inline">\(\lim_{y\to 0}\frac{\cos y-1}{y}=0\)</span>. By definition <span class="math display">\[
+\frac{\sin{y}}{y}-1=-\frac{y^2}{3!}+\frac{y^4}{5!}-\frac{y^6}{7!}+\dots
+\]</span> By similar reasoning, <span class="math inline">\(\lim_{y\to 0}\frac{\sin y}y=1\)</span>. Hence <span class="math inline">\(\sin'(x)=cos(x)\)</span></p>
+</div>
+<p>Since <span class="math inline">\(\sin,\cos\)</span> are differentiable they are continuous.</p>
+<p>If <span class="math inline">\(0 &lt; x &lt; 2\)</span>, we have <span class="math display">\[
+\sin(x)=\left(x-\frac{x^3}{3!}\right)+\left(\frac{x^5}{5!}-\frac{x^7}{7!}\right)+\dots&gt;0
+\]</span> Then for <span class="math inline">\(0&lt; x &lt; 2\)</span> we have <span class="math inline">\((cos x)'=-sin(x)&lt; 0\)</span>. Hence <span class="math inline">\(\cos x\)</span> is decreasing. Note that <span class="math display">\[
+\cos(x)=\left(1-\frac{x^2}2!\right)+\left(\frac{x^4}{4!}-\frac{x^6}{6!})+\dots.
+\]</span> Hence <span class="math inline">\(\cos(\sqrt2)&gt;0\)</span>. We rearrange <span class="math inline">\(\cos(x)\)</span> as following: <span class="math display">\[
+\cos x=1-\frac{x^2}{2!}+\frac{x^4}{4!}-(\frac{x^6}{6!}-\frac{x^8}{8!})-\dots
+\]</span> This shows that <span class="math inline">\(\cos(\sqrt3)&lt;0\)</span>. This with intermediate value theorem proves that for some number which we call <span class="math inline">\(\frac\pi 2\)</span> satisfies <span class="math inline">\(\cos(\frac\pi 2)=0\)</span> hence <span class="math inline">\(\sin(\frac\pi 2)=1\)</span>.</p>
+<div class="Corollary">
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \sin(x+\frac\pi2)&amp;=\cos x ,&amp; \cos(x+\frac\pi2)=-\sin x,\\
+&amp; \sin(x+\pi)=-\sin(x) , &amp; \cos(x+\pi)=-\cos(x),\\
+&amp; \sin(x+2\pi)=\sin(x), &amp; \cos(x+2\pi)=\cos(x)
+\end{aligned}
+\]</span></p>
+</div>
+<p>Since <span class="math inline">\(\sin(x+2\pi)=\sin(x)\)</span> and <span class="math inline">\(\cos(x+2\pi)=\cos(x)\)</span>, we say <span class="math inline">\(\sin\)</span> and <span class="math inline">\(\cos\)</span> has period <span class="math inline">\(2\pi\)</span></p>
+<p>Let us consider a circle in <span class="math inline">\(\mathbb R^2\)</span> defined by <span class="math inline">\(\{(x,y)|x^2+y^2\le1\}\)</span>. The area of the upper semicircle can be calculated as</p>
+<p><span class="math display">\[
+\int_{-1}^1\sqrt{1-x^2}\mathrm dx=\int_0^\pi\sin^2\theta\mathrm d\theta=\frac12\int_0^\pi(1-\cos2\theta)\mathrm d\theta=\frac12\pi.
+\]</span> Here we used integration and change of variable by <span class="math inline">\(x=\cos\theta\)</span>. This shows that our definition of <span class="math inline">\(\pi\)</span> doesn't contradict our formulae for area of circles.</p>
+<p>We are going to briefly overview the gamma function, this function appears at many areas in analysis. This section is not intended to be proved in a very rigorous manner. Readers are welcome to fill in the details.</p>
+</div>
+<div id="gamma-function-gamma" class="section level2">
+<h2>Gamma function <span class="math inline">\(\Gamma\)</span></h2>
+<div class="Definition">
+<p>For <span class="math inline">\(0&lt; x &lt;\infty\)</span>, we define <span class="math display">\[
+\Gamma(x)=\int_0^\infty t^{x-1}e^{-t}\mathrm dt
+\]</span> Check that the integral converges for all <span class="math inline">\(x\)</span>, i.e.: <span class="math display">\[
+\lim_{y\to\infty}\int_0^y t^{x-1}e^{-t}\mathrm dt
+\]</span> exists.</p>
+</div>
+<div class="Theorem">
+<ul>
+<li>For <span class="math inline">\(0&lt; x &lt;\infty\)</span>, <span class="math inline">\(\Gamma(x+1)=x\Gamma(x)\)</span>;</li>
+<li><span class="math inline">\(\Gamma(n+1)=n!\)</span> for <span class="math inline">\(n=1,2,3,\dots\)</span>;</li>
+<li><span class="math inline">\(\log\Gamma\)</span> is connvex on <span class="math inline">\((0,\infty)\)</span>. where <span class="math inline">\(f:E\to\mathbb R\)</span> is said to be a convex function if <span class="math inline">\(E\)</span> is a convex set and for all <span class="math inline">\(x_1,x_2\in E\)</span> and <span class="math inline">\(t\in[0,1]\)</span> we have <span class="math inline">\(f(tx_1+(1-t)x_2)\le tf(x_1)+(1-t)f(x_2)\)</span></li>
+</ul>
+</div>
+<div class="Proof">
+<ul>
+<li>Integration by part</li>
+<li><span class="math inline">\(\Gamma(1)=1\)</span> then use first part and induction.</li>
+<li>This requires Hölder's inequality,<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> omitted.</li>
+</ul>
+</div>
+<p>Suprisingly, these 3 properties determines <span class="math inline">\(\Gamma\)</span> completely:</p>
+<div class="Theorem">
+<p>If <span class="math inline">\(f\)</span> is a postive function on <span class="math inline">\((0,\infty)\)</span> such that</p>
+<ul>
+<li><span class="math inline">\(f(x+1)=x f(x)\)</span></li>
+<li><span class="math inline">\(f(1)=1\)</span></li>
+<li><span class="math inline">\(log f\)</span> is convex</li>
+</ul>
+<p>then <span class="math inline">\(f\)</span> is the Gamma function.</p>
+</div>
+<div class="Proof">
+<p>Since <span class="math inline">\(\Gamma\)</span> statisfies all three properties, we just need to prove these 3 properties determines a function uniquely. By the first property, we just need to check everything on <span class="math inline">\((0,1)\)</span>, then for all <span class="math inline">\(x\ge 1\)</span> will be determined using <span class="math inline">\(f(x+1)=xf(x)\)</span>.</p>
+<p>Put <span class="math inline">\(\phi=\log f\)</span>. Then <span class="math inline">\(\phi(x+1)=\log x+\phi(x)\)</span> by first property and <span class="math inline">\(\phi(1)=0\)</span> by second property. Since <span class="math inline">\(\phi\)</span> is convex, suppose <span class="math inline">\(0 &lt; x &lt; 1\)</span> and <span class="math inline">\(n\)</span> positive integer, we have <span class="math inline">\(\phi(n+1)=\phi(n)+\log(n)=\phi(n-1)+\log(n-1)+\log(n)=\dots=\log(n!)\)</span>. By convexicity: <span class="math display">\[
+\log n\le\frac{\phi(n+1+x)-\phi(n+1)}{x}\le\log(n+1).
+\]</span> But <span class="math inline">\(\phi(n+1+x)=\phi(x)+\log[x(x+1)\dots(x+n)]\)</span>. Thus <span class="math display">\[
+0\le\phi(x)-\log\left[\frac{n!n^x}{x(x+1)\cdots(x+n)} \right]\le x\log\left(1+\frac1n\right).
+\]</span> As <span class="math inline">\(n\to\infty\)</span>, <span class="math inline">\(\log\left(1+\frac1n\right)\to 0\)</span>. Hence <span class="math inline">\(\phi(x)\)</span> is uniquely determined. So is <span class="math inline">\(f\)</span>. Then <span class="math inline">\(f\)</span> must be <span class="math inline">\(\Gamma\)</span>.</p>
+</div>
+<p>Coincidentally, we found out <span class="math display">\[
+\Gamma(x)=\lim_{n\to\infty}\frac{n!n^x}{x(x+1)\cdots(x+n)},
+\]</span> for <span class="math inline">\(0 &lt; x &lt; 1\)</span> and use <span class="math inline">\(\Gamma(x+1)=x\Gamma(x)\)</span> to deduce this holds for all <span class="math inline">\(x&gt;0\)</span>.</p>
+<div class="Definition">
+<p>We define the beta function <span class="math inline">\(B(x,y)\)</span> to be <span class="math display">\[
+\int_0^1t^{x-1}(1-t)^{y-1}\mathrm dt
+\]</span></p>
+</div>
+<div class="Theorem">
+<p><span class="math display">\[
+B(x,y)=\frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+\]</span></p>
+</div>
+<div class="Proof">
+<p>The idea is to define <span class="math display">\[
+f(x)=\frac{\Gamma(x+y)}{\Gamma(y)}B(x,y)
+\]</span> and prove that <span class="math inline">\(f\)</span> has the 3 properties hence <span class="math inline">\(f(x)=\Gamma(x)\)</span>.</p>
+<p>Let us not worry about it too much. See <span class="citation">Rudin and others (1964)</span> 8.20 for details.</p>
+</div>
+<p>If we substitute <span class="math inline">\(t=\sin^2\theta\)</span> we have: <span class="math display">\[
+2\int_0^{\frac\pi2}(\sin\theta)^{2x-1}(\cos\theta)^{2y-1}\mathrm d\theta=\frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+\]</span> We put <span class="math inline">\(x=y=\frac12\)</span>, then <span class="math display">\[
+2\int_0^{\frac\pi2}1\mathrm d\theta=\pi=\frac{\Gamma(\frac12)\Gamma(\frac12)}{\Gamma(1)}=\Gamma(\frac12)^2
+\]</span> hence <span class="math inline">\(\Gamma(12)=\sqrt{\pi}\)</span>.</p>
+</div>
+<div id="summary-11" class="section level2">
+<h2>Summary</h2>
+<p>In this lecture we defined <span class="math inline">\(\exp,\log,\sin,\cos,\Gamma\)</span>. When dealing with <span class="math inline">\(\sin\)</span> and <span class="math inline">\(\cos\)</span>, one can avoid some of the arithmetic boredom if one goes into complex plane, but we didn't develop complex plane, so we avoid this approach.</p>
+<ul>
+<li>Definition of <span class="math inline">\(\exp\)</span>;</li>
+<li><span class="math inline">\(\log\)</span> as inverse of <span class="math inline">\(\exp\)</span>;</li>
+<li><span class="math inline">\(\sin\)</span> and <span class="math inline">\(\cos\)</span> as power series;</li>
+<li>crash course of <span class="math inline">\(\Gamma\)</span> function.</li>
+</ul>
+<p>If anyone is interested in <span class="math inline">\(\Gamma\)</span>, <span class="citation">Artin (2015)</span> is a good place to start.</p>
+</div>
+</div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
 <div id="refs" class="references">
+<div id="ref-artin2015gamma">
+<p>Artin, Emil. 2015. <em>The Gamma Function</em>. Courier Dover Publications.</p>
+</div>
 <div id="ref-halmos2017naive">
 <p>Halmos, Paul R. 2017. <em>Naive Set Theory</em>. Courier Dover Publications.</p>
 </div>
@@ -3689,6 +3939,7 @@ F(x_i)-F(x_{i-1})=f(t_i)\Delta x_i.
 <li id="fn1"><p>see for example <a href="https://plato.stanford.edu/entries/conditionals/" class="uri">https://plato.stanford.edu/entries/conditionals/</a> and relevant pages for a start.<a href="#fnref1">↩</a></p></li>
 <li id="fn2"><p>If you don't believe this, try to find black snow and a not red grass.<a href="#fnref2">↩</a></p></li>
 <li id="fn3"><p>We need so called transitive sets (sets without <span class="math inline">\(\in\)</span>-holes). Interested reader may find <span class="citation">Jech (2008)</span> helpful.<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>For example, see <a href="https://en.wikipedia.org/wiki/H%C3%B6lder%27s_inequality">https://en.wikipedia.org/wiki/H%C3%B6lder%27s_inequality</a> and <span class="citation">Rudin and others (1964)</span> 8.18(c)<a href="#fnref4">↩</a></p></li>
 </ol>
 </div>
 
